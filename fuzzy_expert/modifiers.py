@@ -57,3 +57,26 @@ def somewhat(membership):
 
 def very(membership):
     return [(x, np.power(u, 2)) for x, u in membership]
+
+
+def apply_modifiers(membership, modifiers):
+
+    fn = {
+        "EXTREMELY": extremely,
+        "INTENSIFY": intensify,
+        "MORE_OR_LESS": more_or_less,
+        "NORM": norm,
+        "NOT": not_,
+        "PLUS": plus,
+        "SLIGHTLY": slightly,
+        "SOMEWHAT": somewhat,
+        "VERY": very,
+    }
+
+    membership = membership.copy()
+    modifiers = modifiers.copy()
+
+    for modifier in modifiers.reverse():
+        membership = fn[modifier.upper()](membership)
+
+    return membership
