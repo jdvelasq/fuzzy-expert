@@ -11,6 +11,7 @@ class FuzzyVariable:
 
     """
 
-    def __init__(self, universe, terms):
+    def __init__(self, name, universe, terms):
+        self.name = name
         self.universe = universe
         self.terms = terms
