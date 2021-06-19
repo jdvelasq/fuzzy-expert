@@ -4,8 +4,6 @@ import numpy as np
 
 def format_plot(title=None, view_xaxis=True, view_yaxis=False):
 
-    print("---", view_yaxis)
-
     plt.gca().set_ylim(-0.05, 1.05)
 
     plt.gca().spines["bottom"].set_visible(True)
