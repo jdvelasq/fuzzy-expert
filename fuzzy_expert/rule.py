@@ -19,9 +19,13 @@ class FuzzyRule:
         self,
         premises,
         consequence,
+        cf=1.0,
+        threshold_cf=0,
     ):
         self.premises = premises
         self.consequence = consequence
+        self.rule_cf = cf
+        self.threshold_cf = threshold_cf
 
     def __repr__(self):
 

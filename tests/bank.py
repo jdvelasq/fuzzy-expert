@@ -51,6 +51,7 @@ decision = FuzzyVariable(
 # decision.plot()
 
 rule_1 = FuzzyRule(
+    cf=0.8,
     premises=[
         (score, "High"),
         ("AND", ratio, "Goodr"),
@@ -64,6 +65,7 @@ rule_1 = FuzzyRule(
 
 
 rule_2 = FuzzyRule(
+    cf=0.7,
     premises=[
         (score, "Low"),
         ("AND", ratio, "Badr"),
@@ -85,23 +87,23 @@ model = DecompositionalInference(
 )
 
 
-# print(
-#     model(
-#         rules=[rule_1, rule_2],
-#         score=190,
-#         ratio=0.39,
-#         credit=1.5,
-#     )
-# )
-
-
-plt.figure(figsize=(12, 9))
-model.plot(
-    rules=[rule_1, rule_2],
-    score=190,
-    ratio=0.38,
-    credit=1.5,
+print(
+    model(
+        rules=[rule_1, rule_2],
+        score=(190, 0.9),
+        ratio=(0.39, 1),
+        credit=(1.5, 1),
+    )
 )
+
+
+# plt.figure(figsize=(12, 9))
+# model.plot(
+#     rules=[rule_1, rule_2],
+#     score=190,
+#     ratio=0.38,
+#     credit=1.5,
+# )
 
 
 # model = DecompositionalInference(

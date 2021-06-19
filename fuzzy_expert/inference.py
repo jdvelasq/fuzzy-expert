@@ -34,22 +34,39 @@ class DecompositionalInference:
         #
         self.input_types = {}
 
-    def __call__(self, rules, **values):
+    def __call__(self, rules, **facts):
 
         self.rules = rules
-        self.values = values
+        self.facts = facts
 
+        self.assign_input_cf()
         self.fuzzificate()
         self.compute_modified_premise_memberships()
         self.compute_modified_consequence_membership()
         self.compute_fuzzy_implication()
         self.compute_fuzzy_composition()
-        self.compute_consequence_aggregation()
+        self.compute_consequence_membership_aggregation()
+        self.compute_consequence_cf_aggregation()
         self.build_infered_consequence()
-        self.aggregate_productions()
+        self.aggregate_production_memberships()
+        self.aggregate_production_cf()
         self.defuzzificate()
 
-        return self.defuzzificated_infered_membership
+        return self.defuzzificated_infered_membership, self.infered_cf
+
+    def assign_input_cf(self):
+
+        self.fact_values = {}
+        self.fact_cf = {}
+
+        for fact in self.facts.keys():
+            f = self.facts[fact]
+            if isinstance(f, tuple):
+                self.fact_values[fact] = f[0]
+                self.fact_cf[fact] = f[1]
+            else:
+                self.fact_values[fact] = f
+                self.fact_cf[fact] = 1.0
 
     def fuzzificate(self):
 
@@ -57,8 +74,8 @@ class DecompositionalInference:
         # Transforms values to memberships
         #
 
-        self.value_types = {}
-        self.fuzzificated_values = {}
+        self.fact_types = {}
+        self.fuzzificated_fact_values = {}
 
         for rule in self.rules:
 
@@ -69,22 +86,22 @@ class DecompositionalInference:
                 else:
                     fuzzyvar = premise[1]
 
-                value = self.values[fuzzyvar.name]
+                value = self.fact_values[fuzzyvar.name]
 
                 if isinstance(value, (int, float)):
-                    self.value_types[fuzzyvar.name] = "crisp"
+                    self.fact_types[fuzzyvar.name] = "crisp"
                     fuzzyvar.add_points_to_universe(value)
                     membership = np.array(
                         [1 if u == value else 0 for u in fuzzyvar.universe]
                     )
-                    self.fuzzificated_values[fuzzyvar.name] = membership
+                    self.fuzzificated_fact_values[fuzzyvar.name] = membership
 
                 if isinstance(value, list):
-                    self.value_types[fuzzyvar.name] = "fuzzy"
+                    self.fact_types[fuzzyvar.name] = "fuzzy"
                     xp = [xp for xp, _ in value]
                     fp = [fp for _, fp in value]
                     fuzzyvar.add_points_to_universe(xp)
-                    self.fuzzificated_values[fuzzyvar.name] = np.interp(
+                    self.fuzzificated_fact_values[fuzzyvar.name] = np.interp(
                         x=fuzzyvar.universe, xp=xp, fp=fp
                     )
 
@@ -191,7 +208,7 @@ class DecompositionalInference:
 
                 implication = rule.fuzzy_implications[name]
 
-                value = self.fuzzificated_values[name]
+                value = self.fuzzificated_fact_values[name]
                 n_dim = len(value)
                 value = value.reshape((n_dim, 1))
                 value = np.tile(value, (1, implication.shape[1]))
@@ -204,7 +221,7 @@ class DecompositionalInference:
 
                 rule.fuzzy_compositions[name] = composition.max(axis=0)
 
-    def compute_consequence_aggregation(self):
+    def compute_consequence_membership_aggregation(self):
 
         for rule in self.rules:
 
@@ -239,6 +256,27 @@ class DecompositionalInference:
 
             rule.infered_membership = aggregated_membership
 
+    def compute_consequence_cf_aggregation(self):
+
+        for rule in self.rules:
+
+            aggregated_cf = None
+
+            for premise in rule.premises:
+
+                if aggregated_cf is None:
+                    aggregated_cf = self.fact_cf[premise[0].name]
+                else:
+                    other_cf = self.fact_cf[premise[1].name]
+
+                    if premise[0] == "AND":
+                        aggregated_cf = np.minimum(aggregated_cf, other_cf)
+
+                    if premise[0] == "OR":
+                        aggregated_cf = np.maximum(aggregated_cf, other_cf)
+
+            rule.infered_cf = aggregated_cf * rule.rule_cf
+
     def build_infered_consequence(self):
 
         self.infered_consequence = FuzzyVariable(
@@ -247,9 +285,12 @@ class DecompositionalInference:
         )
 
         for i_rule, rule in enumerate(self.rules):
-            self.infered_consequence["Rule-{}".format(i_rule)] = rule.infered_membership
+            if rule.infered_cf >= rule.threshold_cf:
+                self.infered_consequence[
+                    "Rule-{}".format(i_rule)
+                ] = rule.infered_membership
 
-    def aggregate_productions(self):
+    def aggregate_production_memberships(self):
         """Computes the output fuzzy set of the inference system."""
 
         infered_membership = None
@@ -266,6 +307,19 @@ class DecompositionalInference:
 
         self.infered_membership = infered_membership
 
+    def aggregate_production_cf(self):
+        """Computes the output fuzzy set of the inference system."""
+
+        infered_cf = None
+
+        for rule in self.rules:
+            if infered_cf is None:
+                infered_cf = rule.infered_cf
+            else:
+                infered_cf = np.maximum(infered_cf, rule.infered_cf)
+
+        self.infered_cf = infered_cf
+
     def defuzzificate(self):
 
         self.defuzzificated_infered_membership = defuzzificate(
@@ -274,7 +328,7 @@ class DecompositionalInference:
             operator=self.defuzzification_operator,
         )
 
-    def plot(self, rules, **values):
+    def plot(self, rules, **facts):
         def get_position():
             names = []
             for rule in rules:
@@ -288,7 +342,7 @@ class DecompositionalInference:
             return position
 
         # computation
-        self.__call__(rules, **values)
+        self.__call__(rules, **facts)
 
         n_rows = len(self.rules) + 1
         position = get_position()
@@ -322,9 +376,9 @@ class DecompositionalInference:
                 view_xaxis = True if i_rule + 1 == len(rules) else False
                 title = varname if i_rule == 0 else None
 
-                if self.value_types[varname] == "crisp":
+                if self.fact_types[varname] == "crisp":
                     plot_crisp_input(
-                        value=values[varname],
+                        value=facts[varname],
                         universe=rule.universes[varname],
                         membership=rule.modified_premise_memberships[varname],
                         name=title,
@@ -333,7 +387,7 @@ class DecompositionalInference:
                     )
                 else:
                     plot_fuzzy_input(
-                        value=values[varname],
+                        value=facts[varname],
                         universe=rule.universes[varname],
                         membership=rule.modified_premise_memberships[varname],
                         name=title,
