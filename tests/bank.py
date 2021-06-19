@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 from fuzzy_expert.mf import gaussmf
 
-print(gaussmf("x", 1, 1))
+# print(gaussmf("x", 1, 1))
 
 # import os
 # os.chdir('/workspaces/fuzzy-expert/')
@@ -81,24 +81,24 @@ rule_2 = FuzzyRule(
 # print(rule_2)
 
 
-model = DecompositionalInference(
-    and_operator="min",
-    or_operator="max",
-    implication_operator="Rc",
-    composition_operator="min",  # min / prod
-    production_link="max",
-    defuzzification_operator="cog",
-)
+# model = DecompositionalInference(
+#     and_operator="min",
+#     or_operator="max",
+#     implication_operator="Rc",
+#     composition_operator="min",  # min / prod
+#     production_link="max",
+#     defuzzification_operator="cog",
+# )
 
 
-print(
-    model(
-        rules=[rule_1, rule_2],
-        score=(190, 0.9),
-        ratio=(0.39, 1),
-        credit=(1.5, 1),
-    )
-)
+# print(
+#     model(
+#         rules=[rule_1, rule_2],
+#         score=(190, 0.9),
+#         ratio=(0.39, 1),
+#         credit=(1.5, 1),
+#     )
+# )
 
 
 # plt.figure(figsize=(12, 9))
@@ -110,15 +110,14 @@ print(
 # )
 
 
-# model = DecompositionalInference(
-#     input_type="fuzzy",
-#     and_operator="min",
-#     or_operator="max",
-#     implication_operator="Rc",
-#     composition_operator="min",  # min / prod
-#     production_link="max",
-#     defuzzification_operator="cog",
-# )
+model = DecompositionalInference(
+    and_operator="min",
+    or_operator="max",
+    implication_operator="Rc",
+    composition_operator="min",  # min / prod
+    production_link="max",
+    defuzzification_operator="cog",
+)
 
 
 score_1 = [(180, 0.0), (190, 0.2), (195, 0.8), (200, 1.0)]
@@ -131,7 +130,7 @@ credit_2 = [(6, 0), (7, 0.3), (8, 0.5), (9, 0.7), (10, 0.9)]
 
 score_3 = [(185, 0.0), (190, 0.4), (195, 0.6), (200, 0.8)]
 ratio_3 = [(0.45, 0), (0.5, 0.4), (0.7, 0.6), (1, 0.8)]
-credit_3 = [(2, 1), (3, 0.8), (4, 0.6), (5, 0.4)]
+credit_3 = [(2, 1), (3, 0.8), (4, 0.6), (5, 0.4), (6, 0)]
 
 
 # print(
@@ -143,10 +142,10 @@ credit_3 = [(2, 1), (3, 0.8), (4, 0.6), (5, 0.4)]
 #     )
 # )
 
-# plt.figure(figsize=(12, 9))
-# model.plot(
-#     rules=[rule_1, rule_2],
-#     score=score_3,
-#     ratio=ratio_3,
-#     credit=credit_3,
-# )
+plt.figure(figsize=(12, 9))
+model.plot(
+    rules=[rule_1, rule_2],
+    score=score_3,
+    ratio=ratio_3,
+    credit=credit_3,
+)
