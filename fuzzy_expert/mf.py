@@ -31,7 +31,7 @@ def gaussmf(x, center, sigma):
 def gbellmf(x, center=0, sigma=1, b=1):
     """Generalized bell-shaped membership function.
 
-    This function computes fuzzy membership values using a generalized bell membership function using NumPy.
+    This function computes membership values using a generalized bell membership function using NumPy.
 
     Args:
         a (float): standard deviation.
@@ -47,7 +47,7 @@ def gbellmf(x, center=0, sigma=1, b=1):
 def pimf(x, a, b, c, d):
     """Pi-shaped membership function.
 
-    This function computes fuzzy membership values using a pi-shaped membership function using NumPy.
+    This function computes membership values using a pi-shaped membership function using NumPy.
 
     Args:
         a (float): Left feet.

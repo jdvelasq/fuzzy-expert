@@ -2,7 +2,8 @@ import numpy as np
 
 # from .modifiers import apply_modifiers
 from fuzzy_expert.mf import gaussmf, gbellmf, pimf, smf, sigmf, trimf, zmf, trapmf
-from fuzzy_expert.core import plot_fuzzyvariable
+from fuzzy_expert.plots import plot_fuzzy_variable, plot_fuzzy_input, plot_crisp_input
+from fuzzy_expert.operators import get_modified_membership
 
 
 class FuzzyVariable:
@@ -225,7 +226,7 @@ class FuzzyVariable:
         for term in self.terms.keys():
             memberships.append(self.terms[term])
 
-        plot_fuzzyvariable(
+        plot_fuzzy_variable(
             universe=self.universe,
             memberships=memberships,
             labels=list(self.terms.keys()),
@@ -234,6 +235,54 @@ class FuzzyVariable:
             linewidth=linewidth,
             view_xaxis=True,
             view_yaxis=True,
+        )
+
+    def plot_input(self, value, fuzzyset, view_xaxis=True, view_yaxis="left"):
+
+        if isinstance(value, (np.ndarray, list)):
+
+            plot_fuzzy_input(
+                value=value,
+                universe=self.universe,
+                membership=self.terms[fuzzyset],
+                name=self.name,
+                view_xaxis=view_xaxis,
+                view_yaxis=view_yaxis,
+            )
+
+        else:
+
+            plot_crisp_input(
+                value=value,
+                universe=self.universe,
+                membership=self.terms[fuzzyset],
+                name=self.name,
+                view_xaxis=view_xaxis,
+                view_yaxis=view_yaxis,
+            )
+
+    def fuzzificate(self, value, term, modifiers=None):
+        """Computes the value of the membership function on a specifyied point of the universe for the fuzzy set.
+
+        Args:
+            value (float, numpy.array): point to evaluate the value of the membership function.
+            fuzzyset (string): name of the fuzzy set.
+            modifier (string): membership function modifier.
+            negation (bool): returns the negation?.
+
+        Returns:
+            A float number or numpy.array.
+        """
+
+        membership = self.terms[term]
+
+        if modifiers is not None:
+            membership = get_modified_membership(membership, modifiers)
+
+        return np.interp(
+            x=value,
+            xp=self.universe,
+            fp=membership,
         )
 
 
