@@ -2,6 +2,9 @@ from fuzzy_expert.variable import FuzzyVariable
 from fuzzy_expert.rule import FuzzyRule
 from fuzzy_expert.inference import DecompositionalInference
 
+
+import matplotlib.pyplot as plt
+
 # import os
 # os.chdir('/workspaces/fuzzy-expert/')
 # !pwd
@@ -92,13 +95,13 @@ model = DecompositionalInference(
 # )
 
 
-# plt.figure(figsize=(12, 9))
-# model.plot(
-#     rules=[rule_1, rule_2],
-#     score=190,
-#     ratio=0.39,
-#     credit=1.5,
-# )
+plt.figure(figsize=(12, 9))
+model.plot(
+    rules=[rule_1, rule_2],
+    score=190,
+    ratio=0.38,
+    credit=1.5,
+)
 
 
 # model = DecompositionalInference(
@@ -125,14 +128,14 @@ ratio_3 = [(0.45, 0), (0.5, 0.4), (0.7, 0.6), (1, 0.8)]
 credit_3 = [(2, 1), (3, 0.8), (4, 0.6), (5, 0.4)]
 
 
-print(
-    model(
-        rules=[rule_1, rule_2],
-        score=score_1,
-        ratio=ratio_1,
-        credit=credit_1,
-    )
-)
+# print(
+#     model(
+#         rules=[rule_1, rule_2],
+#         score=score_1,
+#         ratio=ratio_1,
+#         credit=credit_1,
+#     )
+# )
 
 # plt.figure(figsize=(12, 9))
 # model.plot(

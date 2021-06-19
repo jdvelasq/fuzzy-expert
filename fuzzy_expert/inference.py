@@ -322,7 +322,7 @@ class DecompositionalInference:
                 view_xaxis = True if i_rule + 1 == len(rules) else False
                 title = varname if i_rule == 0 else None
 
-                if self.input_types[varname] == "crisp":
+                if self.value_types[varname] == "crisp":
                     plot_crisp_input(
                         value=values[varname],
                         universe=rule.universes[varname],

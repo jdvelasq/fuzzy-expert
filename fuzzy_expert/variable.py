@@ -25,7 +25,7 @@ class FuzzyVariable:
 
     """
 
-    def __init__(self, name, universe, terms=None, n_points=9):
+    def __init__(self, name, universe, terms=None, n_points=9, step_universe=0.1):
 
         #
         # universe -> (u_min, u_max)
@@ -44,7 +44,9 @@ class FuzzyVariable:
         #
         if isinstance(universe, tuple):
             self.min_u, self.max_u = universe
-            self.universe = np.array([self.min_u, self.max_u])
+            self.universe = np.arange(
+                start=self.min_u, stop=self.max_u, step=step_universe
+            )
         else:
             self.universe = universe
 
