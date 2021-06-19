@@ -25,7 +25,7 @@ class FuzzyVariable:
 
     """
 
-    def __init__(self, name, universe, terms, n_points=9):
+    def __init__(self, name, universe, terms=None, n_points=9):
 
         #
         # universe -> (u_min, u_max)
@@ -33,8 +33,12 @@ class FuzzyVariable:
         #
         self.name = name
         self.min_u, self.max_u = universe
-        self.terms = terms
         self.n_points = n_points
+
+        if terms is None:
+            self.terms = {}
+        else:
+            self.terms = terms
 
         #
         # internal attributes

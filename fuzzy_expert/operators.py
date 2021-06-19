@@ -11,7 +11,7 @@ import numpy as np
 # #############################################################################
 #
 #
-# Basic membership functions
+# Unary operators
 #
 #
 # #############################################################################
@@ -25,14 +25,6 @@ def intensify(membership):
     return np.where(
         membership <= 0.5, np.power(membership, 2), 1 - 2 * np.power(1 - membership, 2)
     )
-
-
-def maximum(membership1, membership2):
-    return np.maximum(membership1, membership2)
-
-
-def minimum(membership1, membership2):
-    return np.minimum(membership1, membership2)
 
 
 def more_or_less(membership):
@@ -72,10 +64,31 @@ def slightly(membership):
 # #############################################################################
 #
 #
-# Advanced membership functions
+# Advanced operators
 #
 #
 # #############################################################################
+
+
+def probor(memberships):
+    result = memberships[0]
+    for membership in memberships[1:]:
+        result = result + membership - result * membership
+    return np.maximum(1, np.minimum(1, result))
+
+
+def maximum(memberships):
+    result = memberships[0]
+    for membership in memberships[1:]:
+        result = np.maximum(result, membership)
+    return result
+
+
+def minimum(memberships):
+    result = memberships[0]
+    for membership in memberships[1:]:
+        result = np.mminimum(result, membership)
+    return result
 
 
 def aggregate(memberships, operator):
