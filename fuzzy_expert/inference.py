@@ -6,7 +6,7 @@ Inference methods
 
 import numpy as np
 import matplotlib.pyplot as plt
-from fuzzy_expert.operators import probor, defuzzificate
+from fuzzy_expert.operators import get_modified_membership, probor, defuzzificate
 from fuzzy_expert.variable import FuzzyVariable
 
 from fuzzy_expert.plots import plot_fuzzy_input, plot_crisp_input
@@ -48,6 +48,8 @@ class DecompositionalInference:
         self.build_infered_consequence()
         self.aggregate_productions()
         self.defuzzificate()
+
+        return self.defuzzificated_infered_membership
 
     def fuzzificate(self):
 
@@ -98,25 +100,26 @@ class DecompositionalInference:
                 if i_premise == 0:
 
                     if len(premise) == 2:
-                        fuzzyvar, fuzzyset = premise
+                        fuzzyvar, term = premise
                         modifiers = None
                     else:
                         fuzzyvar = premise[0]
-                        fuzzyset = premise[-1]
+                        term = premise[-1]
                         modifiers = premise[1:-1]
                 else:
 
                     if len(premise) == 3:
-                        _, fuzzyvar, fuzzyset = premise
+                        _, fuzzyvar, term = premise
                         modifiers = None
                     else:
                         fuzzyvar = premise[1]
-                        fuzzyset = premise[-1]
+                        term = premise[-1]
                         modifiers = premise[2:-1]
 
+                membership = fuzzyvar.terms[term]
                 rule.modified_premise_memberships[
                     fuzzyvar.name
-                ] = fuzzyvar.apply_modifiers(fuzzyset, modifiers)
+                ] = get_modified_membership(membership, modifiers)
 
                 rule.universes[fuzzyvar.name] = fuzzyvar.universe
 
@@ -129,10 +132,12 @@ class DecompositionalInference:
             else:
                 modifiers = rule.consequence[1:-1]
 
-            fuzzyset = rule.consequence[-1]
+            term = rule.consequence[-1]
+            fuzzyvar = rule.consequence[0]
+            membership = fuzzyvar.terms[term]
 
-            rule.modified_consequence_membership = rule.consequence[0].apply_modifiers(
-                fuzzyset, modifiers
+            rule.modified_consequence_membership = get_modified_membership(
+                membership, modifiers
             )
 
     def compute_fuzzy_implication(self):

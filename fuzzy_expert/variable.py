@@ -32,7 +32,6 @@ class FuzzyVariable:
         # terms -> tuples / list of tuples
         #
         self.name = name
-        self.min_u, self.max_u = universe
         self.n_points = n_points
 
         if terms is None:
@@ -43,7 +42,11 @@ class FuzzyVariable:
         #
         # internal attributes
         #
-        self.universe = np.array([self.min_u, self.max_u])
+        if isinstance(universe, tuple):
+            self.min_u, self.max_u = universe
+            self.universe = np.array([self.min_u, self.max_u])
+        else:
+            self.universe = universe
 
         #
         # universe expansion
