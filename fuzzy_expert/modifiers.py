@@ -61,6 +61,9 @@ def very(membership):
 
 def apply_modifiers(membership, modifiers):
 
+    if modifiers is None:
+        return membership
+
     fn = {
         "EXTREMELY": extremely,
         "INTENSIFY": intensify,
@@ -74,9 +77,14 @@ def apply_modifiers(membership, modifiers):
     }
 
     membership = membership.copy()
-    modifiers = modifiers.copy()
 
-    for modifier in modifiers.reverse():
-        membership = fn[modifier.upper()](membership)
+    print("3 ====>", modifiers)
+    modifiers = list(modifiers)
+    modifiers.reverse()
+    print("4 ====>", modifiers)
+
+    if modifiers is not None:
+        for modifier in modifiers:
+            membership = fn[modifier.upper()](membership)
 
     return membership

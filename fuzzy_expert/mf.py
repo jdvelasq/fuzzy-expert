@@ -6,9 +6,13 @@ Functions to compute fuzzy membership values for numpy.arrays.
 
 """
 import numpy as np
+from .modifiers import not_
 
 
-def gaussmf(x, center=0, sigma=1):
+## pag. 27, FuzzyCLIPS
+
+
+def gaussmf(center=0, sigma=1, npoints=9):
     """Gaussian membership function.
 
     This function computes fuzzy membership values using a Gaussian membership function using NumPy.
@@ -21,16 +25,23 @@ def gaussmf(x, center=0, sigma=1):
     Returns:
         A numpy.array.
     """
-    return np.exp(-((x - center) ** 2) / (2 * sigma))
+
+    xp = np.linspace(start=center - 2 * sigma, stop=center + 2 * sigma, num=2 * npoints)
+    yp = np.exp(-((xp - center) ** 2) / (2 * sigma))
+
+    return (
+        [(center - 3 * sigma, 0)]
+        + [(x, y) for x, y in zip(xp, yp)]
+        + (center + 3 * sigma, 0)
+    )
 
 
-def gbellmf(x, a=1, b=1, c=0):
+def gbellmf(center=0, sigma=1, b=1, npoints=9):
     """Generalized bell-shaped membership function.
 
     This function computes fuzzy membership values using a generalized bell membership function using NumPy.
 
     Args:
-        x (float, np.array): input value.
         a (float): standard deviation.
         b (float): exponent.
         c (float): center.
@@ -38,40 +49,22 @@ def gbellmf(x, a=1, b=1, c=0):
     Returns:
         A numpy.array.
     """
+    xp = np.linspace(start=center - 2 * sigma, stop=center + 2 * sigma, num=2 * npoints)
+    yp = 1 / (1 + np.abs((xp - center) / sigma) ** (2 * b))
 
-    return 1 / (1 + np.abs((x - c) / a) ** (2 * b))
-
-
-def trimf(x, a, b, c):
-    """Triangular membership function.
-
-    This function computes fuzzy membership values using a triangular membership function using NumPy.
-
-    Args:
-        x (float, np.array): input value.
-        a (float): Left feet.
-        b (float): center or peak.
-        c (float): right feet.
-
-    Returns:
-        A numpy.array.
-    """
-    a = np.where(a == b, a - 1e-4, a)
-    c = np.where(b == c, c + 1e-4, c)
-    return np.where(
-        x <= a,
-        0,
-        np.where(x <= b, (x - a) / (b - a), np.where(x <= c, (c - x) / (c - b), 0)),
+    return (
+        [(center - 3 * sigma, 0)]
+        + [(x, y) for x, y in zip(xp, yp)]
+        + (center + 3 * sigma, 0)
     )
 
 
-def pimf(x, a, b, c, d):
+def pimf(a, b, c, d, npoints=9):
     """Pi-shaped membership function.
 
     This function computes fuzzy membership values using a pi-shaped membership function using NumPy.
 
     Args:
-        x (float, np.array): input value.
         a (float): Left feet.
         b (float): Left peak.
         c (float): Right peak.
@@ -80,26 +73,10 @@ def pimf(x, a, b, c, d):
     Returns:
         A numpy.array.
     """
-    return np.where(
-        x <= a,
-        0,
-        np.where(
-            x <= (a + b) / 2.0,
-            2 * ((x - a) / (b - a)) ** 2,
-            np.where(
-                x <= c,
-                1,
-                np.where(
-                    x <= (c + d) / 2.0,
-                    1 - 2 * ((x - c) / (d - c)) ** 2,
-                    np.where(x <= d, 2 * ((x - d) / (d - c)) ** 2, 0),
-                ),
-            ),
-        ),
-    )
+    return smf(a=a, b=b, npoints=npoints) + zmf(a=c, b=d, npoints=npoints)[1:]
 
 
-def sigmf(x, a, c):
+def sigmf(center, alpha, npoints=9):
     """Sigmoidal membership function.
 
     This function computes fuzzy membership values using a sigmoidal membership function using NumPy.
@@ -112,40 +89,45 @@ def sigmf(x, a, c):
     Returns:
         A numpy.array.
     """
-    return 1 / (1 + np.exp(-a * (x - c)))
+    xp = np.linspace(start=center - 5 * alpha, stop=center + 5 * alpha, num=2 * npoints)
+    return 1 / (1 + np.exp(-np.abs(alpha) * (xp - center)))
 
 
-def smf(x, a, b):
+def smf(a, b, npoints=9):
     """S-shaped membership function
 
     This function computes fuzzy membership values using a S-shaped membership function using NumPy.
 
     Args:
-        x (float, np.array): input value.
         a (float): Left feet.
         b (float): Right peak.
 
     Returns:
         A numpy.array.
     """
-    return np.where(
-        x <= a,
+    if a == b:
+        return [(a, 0), (a, 1)]
+
+    xp = np.linspace(start=a, stop=b, num=npoints)
+    yp = np.where(
+        xp <= a,
         0,
         np.where(
-            x <= (a + b) / 2,
-            2 * ((x - a) / (b - a)) ** 2,
-            np.where(x <= b, 1 - 2 * ((x - b) / (b - a)) ** 2, 1),
+            xp <= (a + b) / 2,
+            2 * ((xp - a) / (b - a)) ** 2,
+            np.where(xp <= b, 1 - 2 * ((xp - b) / (b - a)) ** 2, 1),
         ),
     )
 
+    return [(x, y) for x, y in zip(xp, yp)]
 
-def trapmf(x, a, b, c, d):
+
+def trapmf(a, b, c, d):
     """Trapezoida membership function
 
     This function computes fuzzy membership values using a trapezoidal membership function using NumPy.
 
     Args:
-        x (float, np.array): input value.
         a (float): Left feet.
         b (float): Left peak.
         c (float): Right peak.
@@ -154,22 +136,26 @@ def trapmf(x, a, b, c, d):
     Returns:
         A numpy.array.
     """
-
-    a = np.where(a == b, a - 1e-4, a)
-    d = np.where(d == c, d + 1e-4, d)
-
-    return np.where(
-        x <= a,
-        0,
-        np.where(
-            x <= b,
-            (x - a) / (b - a),
-            np.where(x <= c, 1, np.where(x <= d, (d - x) / (d - c), 0)),
-        ),
-    )
+    return [(a, 0), (b, 1), (c, 1), (d, 0)]
 
 
-def zmf(x, a, b):
+def trimf(a, b, c):
+    """Triangular membership function.
+
+    This function computes fuzzy membership values using a triangular membership function using NumPy.
+
+    Args:
+        a (float): Left feet.
+        b (float): center or peak.
+        c (float): right feet.
+
+    Returns:
+        A numpy.array.
+    """
+    return [(a, 0), (b, 1), (c, 0)]
+
+
+def zmf(a, b, npoints=9):
     """Z-shaped membership function
 
     This function computes fuzzy membership values using a Z-shaped membership function using NumPy.
@@ -182,12 +168,4 @@ def zmf(x, a, b):
     Returns:
         A numpy.array.
     """
-    return np.where(
-        x <= a,
-        1,
-        np.where(
-            x <= (a + b) / 2,
-            1 - 2 * ((x - a) / (b - a)) ** 2,
-            np.where(x <= b, 2 * ((x - b) / (b - a)) ** 2, 0),
-        ),
-    )
+    return not_(smf(a=a, b=b, npoints=npoints))
