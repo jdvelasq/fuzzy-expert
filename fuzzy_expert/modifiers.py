@@ -1,90 +1,84 @@
-"""
-Modifiers
-===============================================================================
+# """
+# Modifiers and operators
+# ===============================================================================
 
-Definition of inguistic modifers:
+# Definition of inguistic modifers:
 
-"""
-import numpy as np
-
-
-def extremely(membership):
-    return [(x, np.power(u, 3)) for x, u in membership]
+# """
+# import numpy as np
+# from .connectors import not_
 
 
-def intensify(membership):
-    return [
-        (x, np.power(u, 2) if u <= 0.5 else 1 - 2 * np.power(1 - u, 2))
-        for x, u in membership
-    ]
+# def extremely(membership):
+#     return [(x, np.power(u, 3)) for x, u in membership]
 
 
-def more_or_less(membership):
-    return [(x, np.power(u, 0.5)) for x, u in membership]
+# def intensify(membership):
+#     return [
+#         (x, np.power(u, 2) if u <= 0.5 else 1 - 2 * np.power(1 - u, 2))
+#         for x, u in membership
+#     ]
 
 
-def norm(membership):
-    max_u = np.maximum([u for _, u in membership])
-    return [(x, u / max_u) for x, u in membership]
+# def more_or_less(membership):
+#     return [(x, np.power(u, 0.5)) for x, u in membership]
 
 
-def not_(membership):
-    return [(x, 1 - u) for x, u in membership]
+# def norm(membership):
+#     max_u = np.maximum([u for _, u in membership])
+#     return [(x, u / max_u) for x, u in membership]
 
 
-def plus(membership):
-    return [(x, np.power(u, 1.25)) for x, u in membership]
+# def plus(membership):
+#     return [(x, np.power(u, 1.25)) for x, u in membership]
 
 
-def slightly(membership):
+# def slightly(membership):
 
-    #
-    # intensify( nom (plus A AND not very A))
-    #
-    u = [u for x, u in membership]
-    plus_u = np.power(u, 1.25)
-    not_very_u = 1 - np.power(u, 2)
-    and_u = np.minimum(plus_u, not_very_u)
-    m = [(x, u) for x, _, u in zip(membership, and_u)]
-    m = norm(m)
-    m = intensify(m)
-    return [(x, u) for x, _, u in zip(membership, u)]
-
-
-def somewhat(membership):
-    return [(x, np.power(u, 1.0 / 3.0)) for x, u in membership]
+#     #
+#     # intensify( nom (plus A AND not very A))
+#     #
+#     u = [u for x, u in membership]
+#     plus_u = np.power(u, 1.25)
+#     not_very_u = 1 - np.power(u, 2)
+#     and_u = np.minimum(plus_u, not_very_u)
+#     m = [(x, u) for x, _, u in zip(membership, and_u)]
+#     m = norm(m)
+#     m = intensify(m)
+#     return [(x, u) for x, _, u in zip(membership, u)]
 
 
-def very(membership):
-    return [(x, np.power(u, 2)) for x, u in membership]
+# def somewhat(membership):
+#     return [(x, np.power(u, 1.0 / 3.0)) for x, u in membership]
 
 
-def apply_modifiers(membership, modifiers):
+# def very(membership):
+#     return [(x, np.power(u, 2)) for x, u in membership]
 
-    if modifiers is None:
-        return membership
 
-    fn = {
-        "EXTREMELY": extremely,
-        "INTENSIFY": intensify,
-        "MORE_OR_LESS": more_or_less,
-        "NORM": norm,
-        "NOT": not_,
-        "PLUS": plus,
-        "SLIGHTLY": slightly,
-        "SOMEWHAT": somewhat,
-        "VERY": very,
-    }
+# def apply_modifiers(membership, modifiers):
 
-    membership = membership.copy()
+#     if modifiers is None:
+#         return membership
 
-    print("3 ====>", modifiers)
-    modifiers = list(modifiers)
-    modifiers.reverse()
-    print("4 ====>", modifiers)
+#     fn = {
+#         "EXTREMELY": extremely,
+#         "INTENSIFY": intensify,
+#         "MORE_OR_LESS": more_or_less,
+#         "NORM": norm,
+#         "NOT": not_,
+#         "PLUS": plus,
+#         "SLIGHTLY": slightly,
+#         "SOMEWHAT": somewhat,
+#         "VERY": very,
+#     }
 
-    if modifiers is not None:
-        for modifier in modifiers:
-            membership = fn[modifier.upper()](membership)
+#     membership = membership.copy()
+#     modifiers = list(modifiers)
+#     modifiers.reverse()
 
-    return membership
+#     if modifiers is not None:
+#         for modifier in modifiers:
+#             membership = fn[modifier.upper()](membership)
+
+#     return membership
