@@ -78,6 +78,89 @@ def slightly(membership):
 # #############################################################################
 
 
+def aggregate(memberships, operator):
+    """Replace the fuzzy sets by a unique fuzzy set computed by the aggregation operator.
+
+    Args:
+        operator (string): {"max"|"sim"|"probor"} aggregation operator.
+
+    Returns:
+        A FuzzyVariable
+
+    """
+    result = memberships[0]
+
+    if operator == "max":
+        for membership in memberships[1:]:
+            result = np.maximum(result, membership)
+        return result
+
+    if operator == "sum":
+        for membership in memberships[1:]:
+            result = result + membership
+        return np.minimum(1, result)
+
+    if operator == "probor":
+        for membership in memberships[1:]:
+            result = result + membership - result * membership
+        return np.maximum(1, np.minimum(1, result))
+
+
+def defuzzificate(universe, membership, operator="cog"):
+    """Computes a representative crisp value for the fuzzy set.
+
+    Args:
+        fuzzyset (string): Fuzzy set to defuzzify
+        operator (string): {"cog"|"bisection"|"mom"|"lom"|"som"}
+
+    Returns:
+        A float value.
+
+    """
+
+    def cog():
+        start = np.min(universe)
+        stop = np.max(universe)
+        x = np.linspace(start, stop, num=200)
+        m = np.interp(x, xp=universe, fp=membership)
+        return np.sum(x * m) / sum(m)
+
+    def coa():
+        start = np.min(universe)
+        stop = np.max(universe)
+        x = np.linspace(start, stop, num=200)
+        m = np.interp(x, xp=universe, fp=membership)
+        area = np.sum(m)
+        cum_area = np.cumsum(m)
+        return np.interp(area / 2, xp=cum_area, fp=x)
+
+    def mom():
+        maximum = np.max(membership)
+        maximum = np.array([u for u, m in zip(universe, membership) if m == maximum])
+        return np.mean(maximum)
+
+    def lom():
+        maximum = np.max(membership)
+        maximum = np.array([u for u, m in zip(universe, membership) if m == maximum])
+        return np.max(maximum)
+
+    def som():
+        maximum = np.max(membership)
+        maximum = np.array([u for u, m in zip(universe, membership) if m == maximum])
+        return np.min(maximum)
+
+    if np.sum(membership) == 0.0:
+        return 0.0
+
+    return {
+        "cog": cog,
+        "coa": coa,
+        "mom": mom,
+        "lom": lom,
+        "som": som,
+    }[operator]()
+
+
 def get_modified_membership(membership, modifiers):
 
     if modifiers is None:
