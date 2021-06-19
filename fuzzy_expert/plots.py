@@ -29,18 +29,16 @@ def format_plot(title=None, view_xaxis=True, view_yaxis=False):
 def plot_fuzzy_variable(
     universe, memberships, labels, title, fmt, linewidth, view_xaxis, view_yaxis
 ):
-    #
+
     for label, membership in zip(labels, memberships):
         plt.gca().plot(universe, membership, fmt, label=label, linewidth=linewidth)
     plt.gca().legend()
-    #
+
     format_plot(
         title=title,
         view_xaxis=view_xaxis,
         view_yaxis=view_yaxis,
     )
-
-    # plt.gca().spines["left"].set_color("lightgray")
 
 
 def plot_crisp_input(

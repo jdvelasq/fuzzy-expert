@@ -235,7 +235,7 @@ class FuzzyVariable:
         #
         self.universe = universe
 
-    def plot(self, fmt="-", linewidth=2, num=100):
+    def plot(self, fmt="-", linewidth=3):
         """Plots the fuzzy sets defined for the variable.
 
         Args:
@@ -255,7 +255,7 @@ class FuzzyVariable:
             fmt=fmt,
             linewidth=linewidth,
             view_xaxis=True,
-            view_yaxis=True,
+            view_yaxis="left",
         )
 
     def plot_input(self, value, fuzzyset, view_xaxis=True, view_yaxis="left"):
