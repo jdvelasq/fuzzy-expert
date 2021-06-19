@@ -6,7 +6,6 @@ Fuzzy Variables
 
 import numpy as np
 
-# from .modifiers import apply_modifiers
 from fuzzy_expert.mf import gaussmf, gbellmf, pimf, smf, sigmf, trimf, zmf, trapmf
 from fuzzy_expert.plots import plot_fuzzy_variable, plot_fuzzy_input, plot_crisp_input
 from fuzzy_expert.operators import get_modified_membership
@@ -25,7 +24,14 @@ class FuzzyVariable:
 
     """
 
-    def __init__(self, name, universe, terms=None, n_points=9, step_universe=0.1):
+    def __init__(
+        self,
+        name: str,
+        universe,
+        terms=None,
+        n_points: int = 9,
+        step_universe: float = 0.1,
+    ):
 
         #
         # universe -> (u_min, u_max)
@@ -61,7 +67,7 @@ class FuzzyVariable:
             if isinstance(membership, list):
                 self.expand_fuzzyset_from_list(term, membership)
 
-    def __setitem__(self, term, membership):
+    def __setitem__(self, term: str, membership):
         """Sets the membership function values for the specified fuzzy set.
 
         Args:
@@ -76,7 +82,7 @@ class FuzzyVariable:
         if isinstance(membership, list):
             self.expand_fuzzyset_from_list(term, membership)
 
-    def __getitem__(self, term):
+    def __getitem__(self, term: str):
         """Returns the membership function for the specified fuzzy set.
 
         Args:

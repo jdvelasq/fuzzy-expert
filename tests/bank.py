@@ -5,6 +5,10 @@ from fuzzy_expert.inference import DecompositionalInference
 
 import matplotlib.pyplot as plt
 
+from fuzzy_expert.mf import gaussmf
+
+print(gaussmf("x", 1, 1))
+
 # import os
 # os.chdir('/workspaces/fuzzy-expert/')
 # !pwd

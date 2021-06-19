@@ -11,24 +11,26 @@ import numpy as np
 ## pag. 27, FuzzyCLIPS
 
 
-def gaussmf(x, center, sigma):
+def gaussmf(x: float or np.ndarray, center: float, sigma: float) -> float or np.ndarray:
     """Gaussian membership function.
 
     This function computes fuzzy membership values using a Gaussian membership function using NumPy.
 
     Args:
-        x (float, np.array): input value.
+        x (float, np.ndarray): input value.
         center (float): Center of the distribution.
         sigma (float): standard deviation.
 
     Returns:
-        A numpy.array.
+        A float or numpy.ndarray.
     """
 
     return np.exp(-((x - center) ** 2) / (2 * sigma))
 
 
-def gbellmf(x, center=0, sigma=1, b=1):
+def gbellmf(
+    x: float or np.ndarray, center: float, sigma: float, b: float
+) -> float or np.ndarray:
     """Generalized bell-shaped membership function.
 
     This function computes membership values using a generalized bell membership function using NumPy.
@@ -44,7 +46,7 @@ def gbellmf(x, center=0, sigma=1, b=1):
     return 1 / (1 + np.abs((x - center) / sigma) ** (2 * b))
 
 
-def pimf(x, a, b, c, d):
+def pimf(x: np.ndarray, a: float, b: float, c: float, d: float) -> np.ndarray:
     """Pi-shaped membership function.
 
     This function computes membership values using a pi-shaped membership function using NumPy.
@@ -77,7 +79,7 @@ def pimf(x, a, b, c, d):
     )
 
 
-def sigmf(x, center, alpha):
+def sigmf(x, center, alpha) -> np.ndarray:
     """Sigmoidal membership function.
 
     This function computes fuzzy membership values using a sigmoidal membership function using NumPy.
@@ -93,7 +95,7 @@ def sigmf(x, center, alpha):
     return 1 / (1 + np.exp(-np.abs(alpha) * (x - center)))
 
 
-def smf(x, a, b):
+def smf(x, a, b) -> np.ndarray:
     """S-shaped membership function
 
     This function computes fuzzy membership values using a S-shaped membership function using NumPy.
@@ -117,7 +119,7 @@ def smf(x, a, b):
     )
 
 
-def trapmf(x, a, b, c, d):
+def trapmf(x, a, b, c, d) -> np.ndarray:
     """Trapezoida membership function
 
     This function computes fuzzy membership values using a trapezoidal membership function using NumPy.
@@ -145,7 +147,7 @@ def trapmf(x, a, b, c, d):
     )
 
 
-def trimf(x, a, b, c):
+def trimf(x, a, b, c) -> np.ndarray:
     """Triangular membership function.
 
     This function computes fuzzy membership values using a triangular membership function using NumPy.
@@ -167,7 +169,7 @@ def trimf(x, a, b, c):
     )
 
 
-def zmf(x, a, b):
+def zmf(x, a, b) -> np.ndarray:
     """Z-shaped membership function
 
     This function computes fuzzy membership values using a Z-shaped membership function using NumPy.
