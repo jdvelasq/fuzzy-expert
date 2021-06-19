@@ -16,6 +16,7 @@ def format_plot(title=None, view_xaxis=True, view_yaxis=False):
     plt.gca().get_yaxis().set_visible(False)
     if view_yaxis == "left":
         plt.gca().get_yaxis().set_visible(True)
+        print("---")
     if view_yaxis == "right":
         plt.gca().get_yaxis().set_visible(True)
         plt.gca().yaxis.tick_right()
