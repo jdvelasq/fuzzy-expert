@@ -1,3 +1,9 @@
+"""
+Fuzzy Variables
+===============================================================================
+
+"""
+
 import numpy as np
 
 # from .modifiers import apply_modifiers
