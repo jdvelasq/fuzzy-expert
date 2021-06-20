@@ -2,17 +2,17 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="fuzzy-toolbox",
+    name="fuzzy_expert",
     version="0.1.0",
     author="Juan D. Velasquez",
     author_email="jdvelasq@unal.edu.co",
     license="MIT",
-    url="http://github.com/jdvelasq/fuzzy_toolbox",
-    description="Fuzzy Toolbox",
-    long_description="Fuzzy Inference Systems Toolbox",
+    url="http://github.com/jdvelasq/fuzzy-expert",
+    description="Fuzzy Expert System in Python",
+    long_description="Fuzzy Expert System",
     keywords="fuzzy",
     platforms="any",
-    provides=["fuzzy_toolbox"],
+    provides=["fuzzy_expert"],
     install_requires=[
         "numpy",
         "matplotlib",
@@ -20,7 +20,7 @@ setup(
         "pandas",
     ],
     packages=find_packages(),
-    package_dir={"fuzzy_toolbox": "fuzzy_toolbox"},
+    package_dir={"fuzzy_expert": "fuzzy_expert"},
     include_package_data=True,
     classifiers=[
         "Development Status :: 3 - Alpha",
