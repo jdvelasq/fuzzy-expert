@@ -145,7 +145,7 @@ credit_3 = [(2, 1), (3, 0.8), (4, 0.6), (5, 0.4), (6, 0)]
 plt.figure(figsize=(12, 9))
 model.plot(
     rules=[rule_1, rule_2],
-    score=score_3,
-    ratio=ratio_3,
-    credit=credit_3,
+    score=score_1,
+    ratio=ratio_1,
+    credit=credit_1,
 )

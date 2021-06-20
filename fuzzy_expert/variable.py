@@ -51,7 +51,7 @@ class FuzzyVariable:
         if isinstance(universe, tuple):
             self.min_u, self.max_u = universe
             self.universe = np.arange(
-                start=self.min_u, stop=self.max_u, step=step_universe
+                start=self.min_u, stop=self.max_u + 1e-3, step=step_universe
             )
         else:
             self.universe = universe

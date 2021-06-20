@@ -357,10 +357,8 @@ class DecompositionalInference:
 
                 if i_premise == 0:
                     varname = premise[0].name
-                    fuzzyvar = premise[0]
                 else:
                     varname = premise[1].name
-                    fuzzyvar = premise[1]
 
                 i_col = position[varname]
 
