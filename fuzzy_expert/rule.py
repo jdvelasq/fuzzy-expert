@@ -48,5 +48,7 @@ class FuzzyRule:
         text += "THEN\n"
         text += space + self.consequence[0].name + " IS"
         for t in self.consequence[1:]:
-            text += " " + t
+            text += " " + t + "\n"
+        text += "CF = {:.2f}\n".format(self.rule_cf)
+        text += "Threshold-CF = {:.2f}\n".format(self.rule_cf)
         return text
