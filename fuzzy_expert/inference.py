@@ -37,10 +37,10 @@ class DecompositionalInference:
         #
         self.variables = variables
         self.rules = rules
-        self.input_values = input_values
+        self.input_values: dict = input_values
 
         self.convert_inputs_to_facts()
-        # self.convert_crisp_facts_to_memberships()
+        self.fuzzificate_facts()
 
     #         self.fuzzificate()
     #         self.compute_modified_premise_memberships()
@@ -73,42 +73,40 @@ class DecompositionalInference:
                 self.fact_values[key] = input_value
                 self.fact_cf[key] = 1.0
 
-    def convert_crisp_facts_to_memberships(self):
+    def fuzzificate_crisp_fact(self, fact_name: str) -> None:
         """
-        Convert crisp facts (i.e., score = 123) to membership fucntions
+        Fuzzificate a fact with a crisp value (i.e., fact: float)
 
         """
+        fact_value = self.fact_values[fact_name]
+        self.variables[fact_name].add_points_to_universe([fact_value])
+        self.fact_values[fact_name] = np.array(
+            [1 if u == fact_value else 0 for u in self.variables[fact_name].universe]
+        )
 
-        self.fact_types = {}
-        self.fuzzificated_fact_values = {}
+    def fuzzificate_fuzzy_fact(self, fact_name: str) -> None:
+        """
+        Fuzzificate a fact specified as a membership function (i.e., fact: List[Tuple(float, float), ...])
 
-        for rule in self.rules:
+        """
+        fact_value = self.fact_values[fact_name]
+        xp = [xp for xp, _ in fact_value]
+        fp = [fp for _, fp in fact_value]
+        self.variables[fact_name].add_points_to_universe(xp)
+        self.fact_values[fact_name] = np.interp(
+            x=self.variables[fact_name], xp=xp, fp=fp
+        )
 
-            for i_premise, premise in enumerate(rule.premises):
+    def fuzzificate_facts(self):
+        """
+        Convert crisp facts (i.e., score = 123) to membership fuctiostions
 
-                if i_premise == 0:
-                    fuzzyvar = premise[0]
-                else:
-                    fuzzyvar = premise[1]
-
-                value = self.fact_values[fuzzyvar.name]
-
-                if isinstance(value, (int, float)):
-                    self.fact_types[fuzzyvar.name] = "crisp"
-                    fuzzyvar.add_points_to_universe(value)
-                    membership = np.array(
-                        [1 if u == value else 0 for u in fuzzyvar.universe]
-                    )
-                    self.fuzzificated_fact_values[fuzzyvar.name] = membership
-
-                if isinstance(value, list):
-                    self.fact_types[fuzzyvar.name] = "fuzzy"
-                    xp = [xp for xp, _ in value]
-                    fp = [fp for _, fp in value]
-                    fuzzyvar.add_points_to_universe(xp)
-                    self.fuzzificated_fact_values[fuzzyvar.name] = np.interp(
-                        x=fuzzyvar.universe, xp=xp, fp=fp
-                    )
+        """
+        for key in self.fact_values.keys():
+            if isinstance(self.fact_values[key], (float, int)):
+                self.fuzzificate_crisp_fact(fact_name=key)
+            elif isinstance(self.fact_values[key], list):
+                self.fuzzificate_fuzzy_fact(fact_name=key)
 
 
 #     def compute_modified_premise_memberships(self):

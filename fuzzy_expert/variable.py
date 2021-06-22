@@ -14,15 +14,13 @@ from fuzzy_expert.plots import plot_fuzzy_variable, plot_fuzzy_input, plot_crisp
 class FuzzyVariable:
     def __init__(
         self,
-        name: str,
-        universe_range: tuple[int, int],
+        universe_range: tuple[float, float],
         terms: Union[dict, tuple, None] = None,
         step: float = 0.1,
     ) -> None:
 
         if terms is None:
             terms: dict = {}
-        self.name: str = name
         self.universe_range: tuple[int, int] = universe_range
         self.terms: dict = terms
 
@@ -119,7 +117,7 @@ class FuzzyVariable:
             universe=self.universe,
             memberships=memberships,
             labels=list(self.terms.keys()),
-            title=self.name,
+            title=None,
             fmt=fmt,
             linewidth=linewidth,
             view_xaxis=True,
@@ -134,7 +132,7 @@ class FuzzyVariable:
                 value=value,
                 universe=self.universe,
                 membership=self.terms[fuzzyset],
-                name=self.name,
+                name=None,
                 view_xaxis=view_xaxis,
                 view_yaxis=view_yaxis,
             )
@@ -145,7 +143,7 @@ class FuzzyVariable:
                 value=value,
                 universe=self.universe,
                 membership=self.terms[fuzzyset],
-                name=self.name,
+                name=None,
                 view_xaxis=view_xaxis,
                 view_yaxis=view_yaxis,
             )

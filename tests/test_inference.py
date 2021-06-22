@@ -13,19 +13,15 @@ def test_loan_decision_problem() -> None:
     Loan Bank Decision Problem
 
     """
-    variables = [
-        #
-        FuzzyVariable(
-            name="score",
+    variables = {
+        "score": FuzzyVariable(
             universe_range=(150, 200),
             terms={
                 "High": [(175, 0), (180, 0.2), (185, 0.7), (190, 1)],
                 "Low": [(155, 1), (160, 0.8), (165, 0.5), (170, 0.2), (175, 0)],
             },
         ),
-        #
-        FuzzyVariable(
-            name="ratio",
+        "ratio": FuzzyVariable(
             universe_range=(0.1, 1),
             terms={
                 "Goodr": [(0.3, 1), (0.4, 0.7), (0.41, 0.3), (0.42, 0)],
@@ -33,8 +29,7 @@ def test_loan_decision_problem() -> None:
             },
         ),
         #
-        FuzzyVariable(
-            name="credit",
+        "credit": FuzzyVariable(
             universe_range=(0, 10),
             terms={
                 "Goodc": [(2, 1), (3, 0.7), (4, 0.3), (5, 0)],
@@ -42,15 +37,14 @@ def test_loan_decision_problem() -> None:
             },
         ),
         #
-        FuzzyVariable(
-            name="decision",
+        "decision": FuzzyVariable(
             universe_range=(0, 10),
             terms={
                 "Approve": [(5, 0), (6, 0.3), (7, 0.7), (8, 1)],
                 "Reject": [(2, 1), (3, 0.7), (4, 0.3), (5, 0)],
             },
         ),
-    ]
+    }
 
     rules = [
         #
