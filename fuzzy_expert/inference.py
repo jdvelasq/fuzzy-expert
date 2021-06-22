@@ -42,8 +42,8 @@ class DecompositionalInference:
         self.convert_inputs_to_facts()
         self.fuzzificate_facts()
         self.compute_modified_premise_memberships()
+        self.compute_modified_consequence_memberships()
 
-    #         self.compute_modified_consequence_membership()
     #         self.compute_fuzzy_implication()
     #         self.compute_fuzzy_composition()
     #         self.compute_consequence_membership_aggregation()
@@ -127,6 +127,26 @@ class DecompositionalInference:
                     modifiers = premise[1:-1]
 
                 rule.modified_premise_memberships[fuzzyvar] = self.variables[
+                    fuzzyvar
+                ].get_modified_membeship(term=term, modifiers=modifiers)
+
+    def compute_modified_consequence_memberships(self):
+
+        for rule in self.rules:
+
+            rule.modified_consequence_memberships = {}
+
+            for consequence in rule.consequences:
+
+                if len(consequence) == 2:
+                    fuzzyvar, term = consequence
+                    modifiers = None
+                else:
+                    fuzzyvar = consequence[0]
+                    term = consequence[-1]
+                    modifiers = consequence[1:-1]
+
+                rule.modified_consequence_memberships[fuzzyvar] = self.variables[
                     fuzzyvar
                 ].get_modified_membeship(term=term, modifiers=modifiers)
 
