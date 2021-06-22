@@ -97,6 +97,23 @@ def test_pimf():
     Pi-shaped membersip function.
 
     """
+    obj: MembershipFunction = MembershipFunction(n_points=3)
+    lfeet = 0
+    lpeak = 1
+    rpeak = 2
+    rfeet = 3
+    result = obj(mfspec=("pimf", lfeet, lpeak, rpeak, rfeet))
+    comp_xp = [x for x, _ in result]
+    comp_fp = [y for _, y in result]
+
+    expected = MembershipFunction(n_points=3)(
+        mfspec=("smf", lfeet, lpeak)
+    ) + MembershipFunction(n_points=3)(mfspec=("zmf", rpeak, rfeet))
+    expected_xp = [pytest.approx(xp) for xp, _ in expected]
+    expected_fp = [pytest.approx(fp) for _, fp in expected]
+
+    assert expected_xp == comp_xp
+    assert expected_fp == comp_fp
 
 
 def test_sigmf():
@@ -180,3 +197,17 @@ def test_zmf():
     Z-shaped membersip function.
 
     """
+    obj: MembershipFunction = MembershipFunction(n_points=3)
+    foot = 0
+    shld = 1
+    result = obj(mfspec=("zmf", foot, shld))
+    comp_xp = [x for x, _ in result]
+    comp_fp = [y for _, y in result]
+
+    expected_xp = [0, 0.5, 1]
+    expected_xp = [pytest.approx(u) for u in expected_xp]
+    expected_fp = [1.0, 0.5, 0]
+    expected_fp = [pytest.approx(u) for u in expected_fp]
+
+    assert expected_xp == comp_xp
+    assert expected_fp == comp_fp
