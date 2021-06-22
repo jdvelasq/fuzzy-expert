@@ -1,4 +1,18 @@
-# from fuzzy_expert.variable import FuzzyVariable
+from fuzzy_expert.variable import FuzzyVariable
+
+
+def test_variable_init():
+    """Test fuzzy variable creation"""
+    name = "name"
+    universe_range = (0, 100)
+    terms = {}
+
+    fuzzyvar = FuzzyVariable(name=name, universe_range=universe_range, terms=terms)
+
+    assert fuzzyvar.name == name
+    assert fuzzyvar.universe_range == universe_range
+    assert fuzzyvar.terms == terms
+
 
 # score = FuzzyVariable(
 #     name="score",

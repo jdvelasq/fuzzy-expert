@@ -4,6 +4,21 @@ Fuzzy Variables
 
 """
 
+
+class FuzzyVariable:
+    def __init__(self, name, universe_range, terms):
+        self.name = name
+        self.universe_range = universe_range
+        self.terms = terms
+
+
+#
+#
+# C O D E   T O   R E F A C T O R I N G
+#
+#
+
+
 # import numpy as np
 
 # from fuzzy_expert.mf import gaussmf, gbellmf, pimf, smf, sigmf, trimf, zmf, trapmf
