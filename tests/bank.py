@@ -13,46 +13,6 @@
 # os.chdir('/workspaces/fuzzy-expert/')
 # !pwd
 
-# score = FuzzyVariable(
-#     name="score",
-#     n_points=20,
-#     universe=(150, 200),
-#     terms={
-#         "High": [(175, 0), (180, 0.2), (185, 0.7), (190, 1)],
-#         "Low": [(155, 1), (160, 0.8), (165, 0.5), (170, 0.2), (175, 0)],
-#     },
-# )
-# score.plot()
-
-# ratio = FuzzyVariable(
-#     name="ratio",
-#     universe=(0.1, 1),
-#     terms={
-#         "Goodr": [(0.3, 1), (0.4, 0.7), (0.41, 0.3), (0.42, 0)],
-#         "Badr": [(0.44, 0), (0.45, 0.3), (0.5, 0.7), (0.7, 1)],
-#     },
-# )
-# ratio.plot()
-
-# credit = FuzzyVariable(
-#     name="credit",
-#     universe=(0, 10),
-#     terms={
-#         "Goodc": [(2, 1), (3, 0.7), (4, 0.3), (5, 0)],
-#         "Badc": [(5, 0), (6, 0.3), (7, 0.7), (8, 1)],
-#     },
-# )
-# credit.plot()
-
-# decision = FuzzyVariable(
-#     name="decision",
-#     universe=(0, 10),
-#     terms={
-#         "Approve": [(5, 0), (6, 0.3), (7, 0.7), (8, 1)],
-#         "Reject": [(2, 1), (3, 0.7), (4, 0.3), (5, 0)],
-#     },
-# )
-# decision.plot()
 
 # rule_1 = FuzzyRule(
 #     cf=0.8,

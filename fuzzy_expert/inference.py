@@ -3,7 +3,7 @@ Inference Method
 ===============================================================================
 
 """
-
+from typing import List, Union
 import numpy as np
 
 # import matplotlib.pyplot as plt
@@ -30,81 +30,86 @@ class DecompositionalInference:
         self.defuzzification_operator = defuzzification_operator
         self.implication_operator = implication_operator
 
-    def __call__(self, variables, rules, **facts):
+    def __call__(self, variables, rules, **input_values):
 
         #
         # Components of a fis.
         #
-        self.rules = rules
-        self.facts = facts
         self.variables = variables
+        self.rules = rules
+        self.input_values = input_values
 
+        self.convert_inputs_to_facts()
+        # self.convert_crisp_facts_to_memberships()
 
-#         self.assign_input_cf()
-#         self.fuzzificate()
-#         self.compute_modified_premise_memberships()
-#         self.compute_modified_consequence_membership()
-#         self.compute_fuzzy_implication()
-#         self.compute_fuzzy_composition()
-#         self.compute_consequence_membership_aggregation()
-#         self.compute_consequence_cf_aggregation()
-#         self.build_infered_consequence()
-#         self.aggregate_production_memberships()
-#         self.aggregate_production_cf()
-#         self.defuzzificate()
+    #         self.fuzzificate()
+    #         self.compute_modified_premise_memberships()
+    #         self.compute_modified_consequence_membership()
+    #         self.compute_fuzzy_implication()
+    #         self.compute_fuzzy_composition()
+    #         self.compute_consequence_membership_aggregation()
+    #         self.compute_consequence_cf_aggregation()
+    #         self.build_infered_consequence()
+    #         self.aggregate_production_memberships()
+    #         self.aggregate_production_cf()
+    #         self.defuzzificate()
 
-#         return self.defuzzificated_infered_membership, self.infered_cf
+    #         return self.defuzzificated_infered_membership, self.infered_cf
 
-#     def assign_input_cf(self):
+    def convert_inputs_to_facts(self):
+        """
+        Converts input values to FIS facts (fact_values, fact_cf=1.0).
 
-#         self.fact_values = {}
-#         self.fact_cf = {}
+        """
+        self.fact_values: dict = {}
+        self.fact_cf: dict = {}
 
-#         for fact in self.facts.keys():
-#             f = self.facts[fact]
-#             if isinstance(f, tuple):
-#                 self.fact_values[fact] = f[0]
-#                 self.fact_cf[fact] = f[1]
-#             else:
-#                 self.fact_values[fact] = f
-#                 self.fact_cf[fact] = 1.0
+        for key in self.input_values.keys():
+            input_value: Union[tuple, float] = self.input_values[key]
+            if isinstance(input_value, tuple):
+                self.fact_values[key] = input_value[0]
+                self.fact_cf[key] = input_value[1]
+            else:
+                self.fact_values[key] = input_value
+                self.fact_cf[key] = 1.0
 
-#     def fuzzificate(self):
+    def convert_crisp_facts_to_memberships(self):
+        """
+        Convert crisp facts (i.e., score = 123) to membership fucntions
 
-#         #
-#         # Transforms values to memberships
-#         #
+        """
 
-#         self.fact_types = {}
-#         self.fuzzificated_fact_values = {}
+        self.fact_types = {}
+        self.fuzzificated_fact_values = {}
 
-#         for rule in self.rules:
+        for rule in self.rules:
 
-#             for i_premise, premise in enumerate(rule.premises):
+            for i_premise, premise in enumerate(rule.premises):
 
-#                 if i_premise == 0:
-#                     fuzzyvar = premise[0]
-#                 else:
-#                     fuzzyvar = premise[1]
+                if i_premise == 0:
+                    fuzzyvar = premise[0]
+                else:
+                    fuzzyvar = premise[1]
 
-#                 value = self.fact_values[fuzzyvar.name]
+                value = self.fact_values[fuzzyvar.name]
 
-#                 if isinstance(value, (int, float)):
-#                     self.fact_types[fuzzyvar.name] = "crisp"
-#                     fuzzyvar.add_points_to_universe(value)
-#                     membership = np.array(
-#                         [1 if u == value else 0 for u in fuzzyvar.universe]
-#                     )
-#                     self.fuzzificated_fact_values[fuzzyvar.name] = membership
+                if isinstance(value, (int, float)):
+                    self.fact_types[fuzzyvar.name] = "crisp"
+                    fuzzyvar.add_points_to_universe(value)
+                    membership = np.array(
+                        [1 if u == value else 0 for u in fuzzyvar.universe]
+                    )
+                    self.fuzzificated_fact_values[fuzzyvar.name] = membership
 
-#                 if isinstance(value, list):
-#                     self.fact_types[fuzzyvar.name] = "fuzzy"
-#                     xp = [xp for xp, _ in value]
-#                     fp = [fp for _, fp in value]
-#                     fuzzyvar.add_points_to_universe(xp)
-#                     self.fuzzificated_fact_values[fuzzyvar.name] = np.interp(
-#                         x=fuzzyvar.universe, xp=xp, fp=fp
-#                     )
+                if isinstance(value, list):
+                    self.fact_types[fuzzyvar.name] = "fuzzy"
+                    xp = [xp for xp, _ in value]
+                    fp = [fp for _, fp in value]
+                    fuzzyvar.add_points_to_universe(xp)
+                    self.fuzzificated_fact_values[fuzzyvar.name] = np.interp(
+                        x=fuzzyvar.universe, xp=xp, fp=fp
+                    )
+
 
 #     def compute_modified_premise_memberships(self):
 
