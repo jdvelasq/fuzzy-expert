@@ -1,10 +1,11 @@
 """
-Inference methods
+Inference Method
 ===============================================================================
 
 """
 
-# import numpy as np
+import numpy as np
+
 # import matplotlib.pyplot as plt
 # from fuzzy_expert.operators import get_modified_membership, probor, defuzzificate
 # from fuzzy_expert.variable import FuzzyVariable
@@ -12,32 +13,32 @@ Inference methods
 # from fuzzy_expert.plots import plot_fuzzy_input, plot_crisp_input
 
 
-# class DecompositionalInference:
-#     def __init__(
-#         self,
-#         and_operator,
-#         or_operator,
-#         implication_operator,
-#         composition_operator,
-#         production_link,
-#         defuzzification_operator,
-#     ):
-#         self.and_operator = and_operator
-#         self.or_operator = or_operator
-#         self.composition_operator = composition_operator
-#         self.production_link = production_link
-#         self.defuzzification_operator = defuzzification_operator
-#         self.implication_operator = implication_operator
+class DecompositionalInference:
+    def __init__(
+        self,
+        and_operator,
+        or_operator,
+        implication_operator,
+        composition_operator,
+        production_link,
+        defuzzification_operator,
+    ):
+        self.and_operator = and_operator
+        self.or_operator = or_operator
+        self.composition_operator = composition_operator
+        self.production_link = production_link
+        self.defuzzification_operator = defuzzification_operator
+        self.implication_operator = implication_operator
 
-#         #
-#         # internal members
-#         #
-#         self.input_types = {}
+    def __call__(self, variables, rules, **facts):
 
-#     def __call__(self, rules, **facts):
+        #
+        # Components of a fis.
+        #
+        self.rules = rules
+        self.facts = facts
+        self.variables = variables
 
-#         self.rules = rules
-#         self.facts = facts
 
 #         self.assign_input_cf()
 #         self.fuzzificate()
