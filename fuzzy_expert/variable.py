@@ -165,63 +165,6 @@ class FuzzyVariable:
 # from fuzzy_expert.operators import get_modified_membership
 
 
-# class FuzzyVariable:
-#     """Creates a fuzzy variable.
-
-#     Args:
-#         name (string): variable name.
-#         universe (list, numpy.array): list of points defining the universe of the variable.
-#         sets (dict): dictionary where keys are the name of the sets, and the values correspond to the membership for each point of the universe.
-
-#     Returns:
-#         A fuzzy variable.
-
-#     """
-
-#     def __init__(
-#         self,
-#         name: str,
-#         universe,
-#         terms=None,
-#         n_points: int = 9,
-#         step_universe: float = 0.1,
-#     ):
-
-#         #
-#         # universe -> (u_min, u_max)
-#         # terms -> tuples / list of tuples
-#         #
-#         self.name = name
-#         self.n_points = n_points
-
-#         if terms is None:
-#             self.terms = {}
-#         else:
-#             self.terms = terms
-
-#         #
-#         # internal attributes
-#         #
-#         if isinstance(universe, tuple):
-#             self.min_u, self.max_u = universe
-#             self.universe = np.arange(
-#                 start=self.min_u, stop=self.max_u + 1e-3, step=step_universe
-#             )
-#         else:
-#             self.universe = universe
-
-#         #
-#         # universe expansion
-#         #
-#         for term, membership in self.terms.items():
-
-#             if isinstance(membership, tuple):
-#                 self.expand_fuzzyset_from_tuple(term, membership)
-
-#             if isinstance(membership, list):
-#                 self.expand_fuzzyset_from_list(term, membership)
-
-
 # # score = FuzzyVariable(
 # #     name="score",
 # #     n_points=20,
