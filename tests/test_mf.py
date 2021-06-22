@@ -38,6 +38,58 @@ def test_gbellmf():
     Generalized-bell membersip function.
 
     """
+    obj: MembershipFunction = MembershipFunction(n_points=3)
+    cen = 0
+    wth = 1
+    sha = 0.5
+    result = obj(mfspec=("gbellmf", cen, wth, sha))
+    comp_xp = [x for x, _ in result]
+    comp_fp = [y for _, y in result]
+
+    expected_xp = [
+        -6.0,
+        -5.0,
+        -4.0,
+        -3.0,
+        -2.0,
+        -1.2,
+        -1.0,
+        -0.4,
+        0.0,
+        0.4,
+        1.0,
+        1.2,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+    ]
+
+    expected_xp = [pytest.approx(u) for u in expected_xp]
+    expected_fp = [
+        0.0,
+        0.166666667,
+        0.2,
+        0.25,
+        0.33333333,
+        0.45454545,
+        0.5,
+        0.71428571,
+        1.0,
+        0.71428571,
+        0.5,
+        0.45454545,
+        0.33333333,
+        0.25,
+        0.2,
+        0.16666667,
+        0.0,
+    ]
+    expected_fp = [pytest.approx(u) for u in expected_fp]
+
+    assert expected_xp == comp_xp
+    assert expected_fp == comp_fp
 
 
 def test_pimf():

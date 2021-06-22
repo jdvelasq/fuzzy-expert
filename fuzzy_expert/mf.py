@@ -57,9 +57,16 @@ class MembershipFunction:
         xp: np.ndarray = np.linspace(
             start=center - 2 * width, stop=center + 2 * width, num=2 * self.n_points
         )
-        xp: np.ndarray = np.append(xp, [center - 3 * width, center * 3 + width])
+        delta = center + width * np.linspace(start=-5, stop=5, num=11)
+        xp: np.ndarray = np.append(xp, delta)
+        xp = np.unique(xp)
+        xp.sort()
         fp: np.ndarray = 1 / (1 + np.abs((xp - center) / width) ** (2 * shape))
-        return [(x, f) for x, f in zip(xp, fp)]
+        return (
+            [(center - 6 * width, 0)]
+            + [(x, f) for x, f in zip(xp, fp)]
+            + [(center + 6 * width, 0)]
+        )
 
     def pimf(
         self,
