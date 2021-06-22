@@ -94,6 +94,31 @@ def __getitem__(self, term: str) -> np.ndarray:
     return self.terms[term]
 
 
+#     def fuzzificate(self, value, term, modifiers=None):
+#         """Computes the value of the membership function on a specifyied point of the universe for the fuzzy set.
+
+#         Args:
+#             value (float, numpy.array): point to evaluate the value of the membership function.
+#             fuzzyset (string): name of the fuzzy set.
+#             modifier (string): membership function modifier.
+#             negation (bool): returns the negation?.
+
+#         Returns:
+#             A float number or numpy.array.
+#         """
+
+#         membership = self.terms[term]
+
+#         if modifiers is not None:
+#             membership = get_modified_membership(membership, modifiers)
+
+#         return np.interp(
+#             x=value,
+#             xp=self.universe,
+#             fp=membership,
+#         )
+
+
 #
 #
 #   C O D E   T O   R E F A C T O R I N G
@@ -211,30 +236,6 @@ def __getitem__(self, term: str) -> np.ndarray:
 #                 view_xaxis=view_xaxis,
 #                 view_yaxis=view_yaxis,
 #             )
-
-#     def fuzzificate(self, value, term, modifiers=None):
-#         """Computes the value of the membership function on a specifyied point of the universe for the fuzzy set.
-
-#         Args:
-#             value (float, numpy.array): point to evaluate the value of the membership function.
-#             fuzzyset (string): name of the fuzzy set.
-#             modifier (string): membership function modifier.
-#             negation (bool): returns the negation?.
-
-#         Returns:
-#             A float number or numpy.array.
-#         """
-
-#         membership = self.terms[term]
-
-#         if modifiers is not None:
-#             membership = get_modified_membership(membership, modifiers)
-
-#         return np.interp(
-#             x=value,
-#             xp=self.universe,
-#             fp=membership,
-#         )
 
 
 # # score = FuzzyVariable(

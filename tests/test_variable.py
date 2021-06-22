@@ -63,6 +63,27 @@ def test_set_term_from_list() -> None:
     assert (fuzzyvar.terms["A"] == np.linspace(start=0, stop=1, num=3)).all()
 
 
+def test_set_term_from_tuple() -> None:
+    """Check term addition speecified as a list"""
+
+    name: str = "name"
+    universe_range: tuple[int, int] = (0, 1)
+    terms: dict = {}
+    step: float = 0.5
+
+    fuzzyvar: FuzzyVariable = FuzzyVariable(
+        name=name, universe_range=universe_range, terms=terms, step=step
+    )
+
+    term = "A"
+    membership: tuple = ("trimf", 0, 0.5, 1)
+
+    fuzzyvar.set_term_from_tuple(term=term, membership=membership)
+
+    assert list(fuzzyvar.terms.keys()) == [term]
+    assert (fuzzyvar.terms["A"] == [0, 1, 0]).all()
+
+
 # score = FuzzyVariable(
 #     name="score",
 #     universe=(150, 200),
