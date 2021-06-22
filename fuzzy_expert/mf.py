@@ -71,7 +71,11 @@ class MembershipFunction:
         """
         return self.smf(a=left_feet, b=left_peak) + self.zmf(a=right_peak, b=right_feet)
 
-    def sigmf(self, center: float, width: float) -> list[tuple[float, float]]:
+    def sigmf(
+        self,
+        center: float,
+        width: float,
+    ) -> list[tuple[float, float]]:
         """
         Sigmoidal membership function.
 
