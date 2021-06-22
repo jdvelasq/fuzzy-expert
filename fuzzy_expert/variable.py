@@ -5,6 +5,7 @@ Fuzzy Variables
 """
 import numpy as np
 from typing import Union
+from fuzzy_expert.mf import MembershipFunction
 
 
 class FuzzyVariable:
@@ -39,7 +40,9 @@ class FuzzyVariable:
 
     def set_term_from_tuple(self, term: str, membership: type) -> None:
         """Sets the membership of a term when it is specified as a function"""
-        pass
+
+        mf = MembershipFunction()
+        self.set_term_from_list(term=term, membership=mf(membership))
 
     def set_term_from_list(
         self, term: str, membership: list[tuple[float, float]]
@@ -78,23 +81,17 @@ class FuzzyVariable:
         self.universe = universe
 
 
-#         if isinstance(membership, tuple):
-#             self.expand_fuzzyset_from_tuple(term, membership)
+def __getitem__(self, term: str) -> np.ndarray:
+    """Returns the membership function for the specified fuzzy set.
 
-#         if isinstance(membership, list):
-#             self.expand_fuzzyset_from_list(term, membership)
+    Args:
+        term (string): Fuzzy set name
 
-# def __getitem__(self, term: str):
-#     """Returns the membership function for the specified fuzzy set.
+    Returns:
+        A numpy array.
 
-#     Args:
-#         term (string): Fuzzy set name
-
-#     Returns:
-#         A numpy array.
-
-#     """
-#     return self.terms_[term]
+    """
+    return self.terms[term]
 
 
 #
@@ -166,147 +163,6 @@ class FuzzyVariable:
 
 #             if isinstance(membership, list):
 #                 self.expand_fuzzyset_from_list(term, membership)
-
-#     def __setitem__(self, term: str, membership):
-#         """Sets the membership function values for the specified fuzzy set.
-
-#         Args:
-#             name (string): Fuzzy set name.
-#             memberships (list, numpy.array): membership values.
-
-#         """
-
-#         if isinstance(membership, tuple):
-#             self.expand_fuzzyset_from_tuple(term, membership)
-
-#         if isinstance(membership, list):
-#             self.expand_fuzzyset_from_list(term, membership)
-
-#     def __getitem__(self, term: str):
-#         """Returns the membership function for the specified fuzzy set.
-
-#         Args:
-#             term (string): Fuzzy set name
-
-#         Returns:
-#             A numpy array.
-
-#         """
-#         return self.terms[term]
-
-#     def expand_fuzzyset_from_list(self, term, membership):
-
-#         #
-#         # term -> [(x1, u1), (x2, u2), ... ]
-#         #
-
-#         xp = [x for x, _ in membership]
-#         fp = [y for _, y in membership]
-#         self.add_points_to_universe(points=xp)
-#         self.terms[term] = np.interp(x=self.universe, xp=xp, fp=fp)
-
-#     def expand_fuzzyset_from_tuple(self, term, membership):
-
-#         #
-#         # term -> (fn, param0, param1, ....)
-#         #
-
-#         xp = self.get_new_universe_points(mf=membership)
-#         self.add_points_to_universe(points=xp)
-#         fn, *params = membership
-
-#         if fn == "gaussmf":
-#             center, sigma = params
-#             self.terms[term] = gaussmf(x=self.universe, center=center, sigma=sigma)
-
-#         if fn == "gbellmf":
-#             center, sigma, b = params
-#             self.terms[term] = gbellmf(x=self.universe, center=center, sigma=sigma, b=b)
-
-#         if fn == "pimf":
-#             a, b, c, d = params
-#             self.terms[term] = pimf(x=self.universe, a=a, b=b, c=c, d=d)
-
-#         if fn == "sigmf":
-#             center, alpha = params
-#             self.terms[term] = sigmf(x=self.universe, center=center, alpha=alpha)
-
-#         if fn == "smf":
-#             a, b = params
-#             self.terms[term] = smf(x=self.universe, a=a, b=b)
-
-#         if fn == "trapmf":
-#             a, b, c, d = params
-#             self.terms[term] = trapmf(x=self.universe, a=a, b=b, c=c, d=d)
-
-#         if fn == "trimf":
-#             a, b, c = params
-#             self.terms[term] = trimf(x=self.universe, a=a, b=b, c=c)
-
-#         if fn == "zmf":
-#             a, b = params
-#             self.terms[term] = zmf(x=self.universe, a=a, b=b)
-
-#     def get_new_universe_points(self, mf):
-#         #
-#         def get_points_gaussmf(params):
-#             center, sigma = params
-#             xp = np.linspace(
-#                 start=center - 2 * sigma,
-#                 stop=center + 2 * sigma,
-#                 num=2 * self.n_points,
-#             )
-#             return xp.tolist() + [center - 3 * sigma, center + 3 * sigma]
-
-#         def get_points_gbellmf(params):
-#             center, sigma, _ = params
-#             xp = np.linspace(
-#                 start=center - 2 * sigma, stop=center + 2 * sigma, num=2 * self.n_points
-#             )
-#             xp = [center - 3 * sigma, center * 3 + sigma] + xp.tolist()
-#             return xp
-
-#         def get_points_pimf(params):
-#             a, b, c, d = params
-#             return get_points_smf((a, b)) + get_points_zmf((c, d))
-
-#         def get_points_sigmf(params):
-#             center, alpha = params
-#             xp = np.linspace(
-#                 start=center - 5 * alpha, stop=center + 5 * alpha, num=2 * self.n_points
-#             )
-#             return xp.tolist()
-
-#         def get_points_smf(params):
-#             a, b = params
-#             xp = np.linspace(start=a, stop=b, num=self.n_points)
-#             return xp.tolist()
-
-#         def get_points_trapmf(params):
-#             return np.array(list(params))
-
-#         def get_points_trimf(params):
-#             return np.array(list(params))
-
-#         def get_points_zmf(params):
-#             a, b = params
-#             return get_points_smf([a, b])
-
-#         ## mf -> (mf, param0, param1, ....)
-#         fn, *params = mf
-
-#         new_points = {
-#             "gaussmf": get_points_gaussmf,
-#             "gbellmf": get_points_gbellmf,
-#             "pimf": get_points_pimf,
-#             "sigmf": get_points_sigmf,
-#             "smf": get_points_smf,
-#             "trapmf": get_points_trapmf,
-#             "trimf": get_points_trimf,
-#             "zmf": get_points_zmf,
-#         }[fn](params)
-
-#         return new_points
 
 
 #     def plot(self, fmt="-", linewidth=3):
