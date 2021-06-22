@@ -6,10 +6,10 @@ Fuzzy Variables
 
 
 class FuzzyVariable:
-    def __init__(self, name, universe_range, terms):
-        self.name = name
-        self.universe_range = universe_range
-        self.terms = terms
+    def __init__(self, name: str, universe_range: tuple[int, int], terms: dict) -> None:
+        self.name: str = name
+        self.universe_range: tuple[int, int] = universe_range
+        self.terms: dict = terms
 
 
 #

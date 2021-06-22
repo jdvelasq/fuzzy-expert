@@ -1,13 +1,17 @@
+"""Tests
+"""
 from fuzzy_expert.variable import FuzzyVariable
 
 
-def test_variable_init():
+def test_variable_init() -> None:
     """Test fuzzy variable creation"""
-    name = "name"
-    universe_range = (0, 100)
-    terms = {}
+    name: str = "name"
+    universe_range: tuple(int, int) = (0, 100)
+    terms: dict = {}
 
-    fuzzyvar = FuzzyVariable(name=name, universe_range=universe_range, terms=terms)
+    fuzzyvar: FuzzyVariable = FuzzyVariable(
+        name=name, universe_range=universe_range, terms=terms
+    )
 
     assert fuzzyvar.name == name
     assert fuzzyvar.universe_range == universe_range
