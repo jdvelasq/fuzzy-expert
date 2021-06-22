@@ -132,6 +132,20 @@ def test_smf():
     S-shaped membersip function.
 
     """
+    obj: MembershipFunction = MembershipFunction(n_points=3)
+    foot = 0
+    shld = 1
+    result = obj(mfspec=("smf", foot, shld))
+    comp_xp = [x for x, _ in result]
+    comp_fp = [y for _, y in result]
+
+    expected_xp = [-0, 0.5, 1]
+    expected_xp = [pytest.approx(u) for u in expected_xp]
+    expected_fp = [0, 0.5, 1]
+    expected_fp = [pytest.approx(u) for u in expected_fp]
+
+    assert expected_xp == comp_xp
+    assert expected_fp == comp_fp
 
 
 def test_trapmf():

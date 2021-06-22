@@ -79,7 +79,9 @@ class MembershipFunction:
         Pi-shaped membership function.
 
         """
-        return self.smf(a=left_feet, b=left_peak) + self.zmf(a=right_peak, b=right_feet)
+        return self.smf(foot=left_feet, shoulder=left_peak) + self.zmf(
+            a=right_peak, b=right_feet
+        )
 
     def sigmf(
         self,
@@ -98,21 +100,25 @@ class MembershipFunction:
 
     def smf(
         self,
-        a: float,
-        b: float,
+        foot: float,
+        shoulder: float,
     ) -> list[tuple[float, float]]:
         """
         S-shaped membership function.
 
         """
-        xp: np.ndarray = np.linspace(start=a, stop=b, num=self.n_points)
+        xp: np.ndarray = np.linspace(start=foot, stop=shoulder, num=self.n_points)
         fp: np.ndarray = np.where(
-            xp <= a,
+            xp <= foot,
             0,
             np.where(
-                xp <= (a + b) / 2,
-                2 * ((xp - a) / (b - a)) ** 2,
-                np.where(xp <= b, 1 - 2 * ((xp - b) / (b - a)) ** 2, 1),
+                xp <= (foot + shoulder) / 2,
+                2 * ((xp - foot) / (shoulder - foot)) ** 2,
+                np.where(
+                    xp <= shoulder,
+                    1 - 2 * ((xp - shoulder) / (shoulder - foot)) ** 2,
+                    1,
+                ),
             ),
         )
         return [(x, f) for x, f in zip(xp, fp)]
