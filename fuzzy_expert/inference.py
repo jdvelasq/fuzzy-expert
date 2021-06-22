@@ -41,9 +41,8 @@ class DecompositionalInference:
 
         self.convert_inputs_to_facts()
         self.fuzzificate_facts()
+        self.compute_modified_premise_memberships()
 
-    #         self.fuzzificate()
-    #         self.compute_modified_premise_memberships()
     #         self.compute_modified_consequence_membership()
     #         self.compute_fuzzy_implication()
     #         self.compute_fuzzy_composition()
@@ -108,41 +107,29 @@ class DecompositionalInference:
             elif isinstance(self.fact_values[key], list):
                 self.fuzzificate_fuzzy_fact(fact_name=key)
 
+    def compute_modified_premise_memberships(self):
 
-#     def compute_modified_premise_memberships(self):
+        for rule in self.rules:
 
-#         for rule in self.rules:
+            rule.modified_premise_memberships = {}
 
-#             rule.modified_premise_memberships = {}
-#             rule.universes = {}
+            for i_premise, premise in enumerate(rule.premises):
 
-#             for i_premise, premise in enumerate(rule.premises):
+                if i_premise != 0:
+                    premise = premise[1:]
 
-#                 if i_premise == 0:
+                if len(premise) == 2:
+                    fuzzyvar, term = premise
+                    modifiers = None
+                else:
+                    fuzzyvar = premise[0]
+                    term = premise[-1]
+                    modifiers = premise[1:-1]
 
-#                     if len(premise) == 2:
-#                         fuzzyvar, term = premise
-#                         modifiers = None
-#                     else:
-#                         fuzzyvar = premise[0]
-#                         term = premise[-1]
-#                         modifiers = premise[1:-1]
-#                 else:
+                rule.modified_premise_memberships[fuzzyvar] = self.variables[
+                    fuzzyvar
+                ].get_modified_membeship(term=term, modifiers=modifiers)
 
-#                     if len(premise) == 3:
-#                         _, fuzzyvar, term = premise
-#                         modifiers = None
-#                     else:
-#                         fuzzyvar = premise[1]
-#                         term = premise[-1]
-#                         modifiers = premise[2:-1]
-
-#                 membership = fuzzyvar.terms[term]
-#                 rule.modified_premise_memberships[
-#                     fuzzyvar.name
-#                 ] = get_modified_membership(membership, modifiers)
-
-#                 rule.universes[fuzzyvar.name] = fuzzyvar.universe
 
 #     def compute_modified_consequence_membership(self):
 
