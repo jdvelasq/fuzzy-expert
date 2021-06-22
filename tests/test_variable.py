@@ -1,12 +1,15 @@
 """Tests
 """
+
+import numpy as np
+
 from fuzzy_expert.variable import FuzzyVariable
 
 
 def test_variable_init() -> None:
     """Test fuzzy variable creation"""
     name: str = "name"
-    universe_range: tuple(int, int) = (0, 100)
+    universe_range: tuple[int, int] = (0, 1)
     terms: dict = {}
 
     fuzzyvar: FuzzyVariable = FuzzyVariable(
@@ -16,6 +19,7 @@ def test_variable_init() -> None:
     assert fuzzyvar.name == name
     assert fuzzyvar.universe_range == universe_range
     assert fuzzyvar.terms == terms
+    assert (fuzzyvar.universe == np.linspace(start=0, stop=1, num=11)).all()
 
 
 # score = FuzzyVariable(

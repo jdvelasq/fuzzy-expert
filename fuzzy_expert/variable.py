@@ -3,17 +3,16 @@ Fuzzy Variables
 ===============================================================================
 
 """
+import numpy as np
 
 
 class FuzzyVariable:
     def __init__(
-        self, name: str, universe_range: tuple[int, int], terms: dict = None
-    ) -> None:
-
-        self.configure(name=name, universe_range=universe_range, terms=terms)
-
-    def configure(
-        self, name: str, universe_range: tuple[int, int], terms: dict
+        self,
+        name: str,
+        universe_range: tuple[int, int],
+        terms: dict = None,
+        step: float = 0.1,
     ) -> None:
 
         if terms is None:
@@ -21,6 +20,10 @@ class FuzzyVariable:
         self.name: str = name
         self.universe_range: tuple[int, int] = universe_range
         self.terms: dict = terms
+
+        self.min_u, self.max_u = universe_range
+        num = int((self.max_u - self.min_u) / step) + 1
+        self.universe = np.linspace(start=self.min_u, stop=self.max_u, num=num)
 
 
 #
