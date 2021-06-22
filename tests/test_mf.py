@@ -9,6 +9,28 @@ def test_gaussmf():
     Gaussian membersip function.
 
     """
+    obj: MembershipFunction = MembershipFunction(n_points=3)
+    cen = 0
+    wth = 1
+    result = obj(mfspec=("gaussmf", cen, wth))
+    comp_xp = [x for x, _ in result]
+    comp_fp = [y for _, y in result]
+
+    expected_xp = [-3.0, -2.0, -1.2, -0.4, 0.4, 1.2, 2.0, 3.0]
+    expected_xp = [pytest.approx(u) for u in expected_xp]
+    expected_fp = [
+        0.0,
+        0.13533528,
+        0.48675226,
+        0.92311635,
+        0.92311635,
+        0.48675226,
+        0.13533528,
+        0.0,
+    ]
+    expected_fp = [pytest.approx(u) for u in expected_fp]
+    assert expected_xp == comp_xp
+    assert expected_fp == comp_fp
 
 
 def test_gbellmf():

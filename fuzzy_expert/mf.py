@@ -40,9 +40,12 @@ class MembershipFunction:
             stop=center + 2 * sigma,
             num=2 * self.n_points,
         )
-        xp: np.ndarray = np.append(xp, [center - 3 * sigma, center * 3 + sigma])
         fp: np.ndarray = np.exp(-((xp - center) ** 2) / (2 * sigma))
-        return [(x, f) for x, f in zip(xp, fp)]
+        return (
+            [(center - 3 * sigma, 0)]
+            + [(x, f) for x, f in zip(xp, fp)]
+            + [(center + 3 * sigma, 0)]
+        )
 
     def gbellmf(
         self, center: float, width: float, shape: float
