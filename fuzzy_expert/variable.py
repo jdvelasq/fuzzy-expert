@@ -6,7 +6,18 @@ Fuzzy Variables
 
 
 class FuzzyVariable:
-    def __init__(self, name: str, universe_range: tuple[int, int], terms: dict) -> None:
+    def __init__(
+        self, name: str, universe_range: tuple[int, int], terms: dict = None
+    ) -> None:
+
+        self.configure(name=name, universe_range=universe_range, terms=terms)
+
+    def configure(
+        self, name: str, universe_range: tuple[int, int], terms: dict
+    ) -> None:
+
+        if terms is None:
+            terms: dict = {}
         self.name: str = name
         self.universe_range: tuple[int, int] = universe_range
         self.terms: dict = terms
@@ -14,7 +25,7 @@ class FuzzyVariable:
 
 #
 #
-# C O D E   T O   R E F A C T O R I N G
+#   C O D E   T O   R E F A C T O R I N G
 #
 #
 
