@@ -4,6 +4,7 @@ Fuzzy Variables
 
 """
 import numpy as np
+from typing import Union
 
 
 class FuzzyVariable:
@@ -11,7 +12,7 @@ class FuzzyVariable:
         self,
         name: str,
         universe_range: tuple[int, int],
-        terms: dict = None,
+        terms: Union[dict, tuple, None] = None,
         step: float = 0.1,
     ) -> None:
 
@@ -24,6 +25,76 @@ class FuzzyVariable:
         self.min_u, self.max_u = universe_range
         num = int((self.max_u - self.min_u) / step) + 1
         self.universe = np.linspace(start=self.min_u, stop=self.max_u, num=num)
+
+        for term in terms.keys():
+            self.__setitem__(term, terms[term])
+
+    def __setitem__(self, term: str, membership: Union[tuple, list]) -> None:
+        """Sets the membership function values for the specified fuzzy set."""
+
+        if isinstance(membership, tuple):
+            self.set_term_from_tuple(term=term, membership=membership)
+        if isinstance(membership, list):
+            self.set_term_from_list(term=term, membership=membership)
+
+    def set_term_from_tuple(self, term: str, membership: type) -> None:
+        """Sets the membership of a term when it is specified as a function"""
+        pass
+
+    def set_term_from_list(
+        self, term: str, membership: list[tuple[float, float]]
+    ) -> None:
+        """Sets the membership of a term when it is specified as a function"""
+
+        xp: list[float] = [xp for xp, _ in membership]
+        fp: list[float] = [fp for _, fp in membership]
+        self.add_points_to_universe(points=xp)
+        self.terms[term] = np.interp(x=self.universe, xp=xp, fp=fp)
+
+    def add_points_to_universe(self, points):
+
+        #
+        # Adds new points to the universe
+        #
+        universe = np.append(self.universe, points)
+        universe = np.where(universe < self.min_u, self.min_u, universe)
+        universe = np.where(universe > self.max_u, self.max_u, universe)
+        universe = np.unique(universe)
+        universe = np.sort(universe)
+
+        #
+        # Expand existent membership functions with the new points
+        #
+        for term in self.terms.keys():
+
+            if isinstance(self.terms[term], np.ndarray):
+                self.terms[term] = np.interp(
+                    x=universe, xp=self.universe, fp=self.terms[term]
+                )
+
+        #
+        # Update the universe with the new points
+        #
+        self.universe = universe
+
+
+#         if isinstance(membership, tuple):
+#             self.expand_fuzzyset_from_tuple(term, membership)
+
+#         if isinstance(membership, list):
+#             self.expand_fuzzyset_from_list(term, membership)
+
+# def __getitem__(self, term: str):
+#     """Returns the membership function for the specified fuzzy set.
+
+#     Args:
+#         term (string): Fuzzy set name
+
+#     Returns:
+#         A numpy array.
+
+#     """
+#     return self.terms_[term]
 
 
 #
@@ -237,32 +308,6 @@ class FuzzyVariable:
 
 #         return new_points
 
-#     def add_points_to_universe(self, points):
-
-#         #
-#         # Adds new points to the universe
-#         #
-#         #
-#         universe = np.append(self.universe, points)
-#         universe = np.where(universe < self.min_u, self.min_u, universe)
-#         universe = np.where(universe > self.max_u, self.max_u, universe)
-#         universe = np.unique(universe)
-#         universe = np.sort(universe)
-
-#         #
-#         # Expand existent membership functions with the new points
-#         #
-#         for term in self.terms.keys():
-
-#             if isinstance(self.terms[term], np.ndarray):
-#                 self.terms[term] = np.interp(
-#                     x=universe, xp=self.universe, fp=self.terms[term]
-#                 )
-
-#         #
-#         # Update the universe with the new points
-#         #
-#         self.universe = universe
 
 #     def plot(self, fmt="-", linewidth=3):
 #         """Plots the fuzzy sets defined for the variable.
