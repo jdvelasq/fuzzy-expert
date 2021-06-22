@@ -29,106 +29,70 @@ class MembershipFunction:
             "zmf": self.zmf,
         }[fn]
 
-        print(params)
-
         return fn(*params)
 
-    def gaussmf(self, center, sigma) -> list[tuple[float, float]]:
-        """Gaussian membership function.
-
-        This function computes fuzzy membership values using a Gaussian membership function using NumPy.
-
-        Args:
-            x (float, np.ndarray): input value.
-            center (float): Center of the distribution.
-            sigma (float): standard deviation.
-
-        Returns:
-            A float or numpy.ndarray.
+    def gaussmf(self, center: float, sigma) -> list[tuple[float, float]]:
         """
-        # center, sigma = params
-        xp = np.linspace(
+        Gaussian membership function.
+        """
+        xp: np.ndarray = np.linspace(
             start=center - 2 * sigma,
             stop=center + 2 * sigma,
             num=2 * self.n_points,
         )
-        xp = np.append(xp, [center - 3 * sigma, center * 3 + sigma])
-        fp = np.exp(-((xp - center) ** 2) / (2 * sigma))
+        xp: np.ndarray = np.append(xp, [center - 3 * sigma, center * 3 + sigma])
+        fp: np.ndarray = np.exp(-((xp - center) ** 2) / (2 * sigma))
         return [(x, f) for x, f in zip(xp, fp)]
 
-    def gbellmf(self, **params) -> list[tuple[float, float]]:
-        """Generalized bell-shaped membership function.
-
-        This function computes membership values using a generalized bell membership function using NumPy.
-
-        Args:
-            a (float): standard deviation.
-            b (float): exponent.
-            c (float): center.
-
-        Returns:
-            A numpy.array.
+    def gbellmf(
+        self, center: float, width: float, shape: float
+    ) -> list[tuple[float, float]]:
         """
-        center, sigma, b = params
-        xp = np.linspace(
-            start=center - 2 * sigma, stop=center + 2 * sigma, num=2 * self.n_points
+        Generalized bell-shaped membership function.
+
+        """
+        xp: np.ndarray = np.linspace(
+            start=center - 2 * width, stop=center + 2 * width, num=2 * self.n_points
         )
-        xp = np.append(xp, [center - 3 * sigma, center * 3 + sigma])
-        fp = 1 / (1 + np.abs((xp - center) / sigma) ** (2 * b))
+        xp: np.ndarray = np.append(xp, [center - 3 * width, center * 3 + width])
+        fp: np.ndarray = 1 / (1 + np.abs((xp - center) / width) ** (2 * shape))
         return [(x, f) for x, f in zip(xp, fp)]
 
-    def pimf(self, **params) -> list[tuple[float, float]]:
-        """Pi-shaped membership function.
-
-        This function computes membership values using a pi-shaped membership function using NumPy.
-
-        Args:
-            a (float): Left feet.
-            b (float): Left peak.
-            c (float): Right peak.
-            d (float): Right feet.
-
-        Returns:
-            A numpy.array.
+    def pimf(
+        self,
+        left_feet: float,
+        left_peak: float,
+        right_peak: float,
+        right_feet: float,
+    ) -> list[tuple[float, float]]:
         """
-        a, b, c, d = params
-        return self.smf(a=a, b=b) + self.zmf(a=c, b=d)
+        Pi-shaped membership function.
 
-    def sigmf(self, **params) -> list[tuple[float, float]]:
-        """Sigmoidal membership function.
-
-        This function computes fuzzy membership values using a sigmoidal membership function using NumPy.
-
-        Args:
-            x (float, np.array): input value.
-            a (float): slope.
-            c (float): center.
-
-        Returns:
-            A numpy.array.
         """
-        center, alpha = params
-        xp = np.linspace(
-            start=center - 5 * alpha, stop=center + 5 * alpha, num=2 * self.n_points
+        return self.smf(a=left_feet, b=left_peak) + self.zmf(a=right_peak, b=right_feet)
+
+    def sigmf(self, center: float, width: float) -> list[tuple[float, float]]:
+        """
+        Sigmoidal membership function.
+
+        """
+        xp: np.ndarray = np.linspace(
+            start=center - 5 * width, stop=center + 5 * width, num=2 * self.n_points
         )
-        fp = 1 / (1 + np.exp(-np.abs(alpha) * (xp - center)))
+        fp: np.ndarray = 1 / (1 + np.exp(-np.abs(width) * (xp - center)))
         return [(x, f) for x, f in zip(xp, fp)]
 
-    def smf(self, **params) -> list[tuple[float, float]]:
-        """S-shaped membership function
-
-        This function computes fuzzy membership values using a S-shaped membership function using NumPy.
-
-        Args:
-            a (float): Left feet.
-            b (float): Right peak.
-
-        Returns:
-            A numpy.array.
+    def smf(
+        self,
+        a: float,
+        b: float,
+    ) -> list[tuple[float, float]]:
         """
-        a, b = params
-        xp = np.linspace(start=a, stop=b, num=self.n_points)
-        fp = np.where(
+        S-shaped membership function.
+
+        """
+        xp: np.ndarray = np.linspace(start=a, stop=b, num=self.n_points)
+        fp: np.ndarray = np.where(
             xp <= a,
             0,
             np.where(
@@ -139,76 +103,80 @@ class MembershipFunction:
         )
         return [(x, f) for x, f in zip(xp, fp)]
 
-    def trapmf(self, **params) -> list[tuple[float, float]]:
-        """Trapezoida membership function
-
-        This function computes fuzzy membership values using a trapezoidal membership function using NumPy.
-
-        Args:
-            a (float): Left feet.
-            b (float): Left peak.
-            c (float): Right peak.
-            d (float): Right feet.
-
-        Returns:
-            A numpy.array.
+    def trapmf(
+        self,
+        left_feet: float,
+        left_peak: float,
+        right_peak: float,
+        right_feet: float,
+    ) -> list[tuple[float, float]]:
         """
-        a, b, c, d = params
-        a = np.where(a == b, a - 1e-4, a)
-        d = np.where(d == c, d + 1e-4, d)
-        xp = np.array([a, b, c, d])
-        fp = np.where(
-            xp <= a,
+        Trapezoidal membership function.
+
+        """
+        left_feet: np.ndarray = np.where(
+            left_feet == left_peak, left_feet - 1e-4, left_feet
+        )
+        right_feet: np.ndarray = np.where(
+            right_feet == right_peak, right_feet + 1e-4, right_feet
+        )
+        xp: np.ndarray = np.array([left_feet, left_peak, right_peak, right_feet])
+        fp: np.ndarray = np.where(
+            xp <= left_feet,
             0,
             np.where(
-                xp <= b,
-                (xp - a) / (b - a),
-                np.where(xp <= c, 1, np.where(xp <= d, (d - xp) / (d - c), 0)),
+                xp <= left_peak,
+                (xp - left_feet) / (left_peak - left_feet),
+                np.where(
+                    xp <= right_peak,
+                    1,
+                    np.where(
+                        xp <= right_feet,
+                        (right_feet - xp) / (right_feet - right_peak),
+                        0,
+                    ),
+                ),
             ),
         )
         return [(x, f) for x, f in zip(xp, fp)]
 
-    def trimf(self, a: float, b: float, c: float) -> list[tuple[float, float]]:
-        """Triangular membership function.
-
-        This function computes fuzzy membership values using a triangular membership function using NumPy.
-
-        Args:
-            a (float): Left feet.
-            b (float): center or peak.
-            c (float): right feet.
-
-        Returns:
-            A numpy.array.
+    def trimf(
+        self,
+        left_feet: float,
+        peak: float,
+        right_feet: float,
+    ) -> list[tuple[float, float]]:
         """
-        a = np.where(a == b, a - 1e-4, a)
-        c = np.where(b == c, c + 1e-4, c)
-        xp = np.array([a, b, c])
-        fp = np.where(
-            xp <= a,
+        Triangular membership function.
+
+        """
+        left_feet: np.ndarray = np.where(left_feet == peak, left_feet - 1e-4, left_feet)
+        right_feet: np.ndarray = np.where(
+            peak == right_feet, right_feet + 1e-4, right_feet
+        )
+        xp: np.ndarray = np.array([left_feet, peak, right_feet])
+        fp: np.ndarray = np.where(
+            xp <= left_feet,
             0,
             np.where(
-                xp <= b, (xp - a) / (b - a), np.where(xp <= c, (c - xp) / (c - b), 0)
+                xp <= peak,
+                (xp - left_feet) / (peak - left_feet),
+                np.where(xp <= right_feet, (right_feet - xp) / (right_feet - peak), 0),
             ),
         )
         return [(x, f) for x, f in zip(xp, fp)]
 
-    def zmf(self, **params) -> list[tuple[float, float]]:
-        """Z-shaped membership function
-
-        This function computes fuzzy membership values using a Z-shaped membership function using NumPy.
-
-        Args:
-            x (float, np.array): input value.
-            a (float): Left peak.
-            b (float): Right feet.
-
-        Returns:
-            A numpy.array.
+    def zmf(
+        self,
+        a: float,
+        b: float,
+    ) -> list[tuple[float, float]]:
         """
-        a, b = params
-        xp = np.linspace(start=a, stop=b, num=self.n_points)
-        fp = np.where(
+        Z-shaped membership function.
+
+        """
+        xp: np.ndarray = np.linspace(start=a, stop=b, num=self.n_points)
+        fp: np.ndarray = np.where(
             xp <= a,
             1,
             np.where(
