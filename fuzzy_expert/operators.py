@@ -2,10 +2,9 @@
 Modifiers and operators
 ===============================================================================
 
-Definition of inguistic modifers:
-
 """
-# import numpy as np
+
+import numpy as np
 
 
 # #############################################################################
@@ -17,48 +16,78 @@ Definition of inguistic modifers:
 # #############################################################################
 
 
-# def extremely(membership):
-#     return np.power(membership, 3)
+def extremely(membership: np.ndarray) -> np.ndarray:
+    return np.power(membership, 3)
 
 
-# def intensify(membership):
-#     return np.where(
-#         membership <= 0.5, np.power(membership, 2), 1 - 2 * np.power(1 - membership, 2)
-#     )
+def intensify(membership: np.ndarray) -> np.ndarray:
+    return np.where(
+        membership <= 0.5, np.power(membership, 2), 1 - 2 * np.power(1 - membership, 2)
+    )
 
 
-# def more_or_less(membership):
-#     return np.power(membership, 0.5)
+def more_or_less(membership: np.ndarray) -> np.ndarray:
+    return np.power(membership, 0.5)
 
 
-# def norm(membership):
-#     return membership / np.max(membership)
+def norm(membership: np.ndarray) -> np.ndarray:
+    return membership / np.max(membership)
 
 
-# def not_(membership):
-#     return 1 - membership
+def not_(membership: np.ndarray) -> np.ndarray:
+    return 1 - membership
 
 
-# def plus(membership):
-#     return np.power(membership, 1.25)
+def plus(membership: np.ndarray) -> np.ndarray:
+    return np.power(membership, 1.25)
 
 
-# def somewhat(membership):
-#     return np.power(membership, 1.0 / 3.0)
+def somewhat(membership: np.ndarray) -> np.ndarray:
+    return np.power(membership, 1.0 / 3.0)
 
 
-# def very(membership):
-#     return np.power(membership, 2)
+def very(membership: np.ndarray) -> np.ndarray:
+    return np.power(membership, 2)
 
 
-# def slightly(membership):
-#     plus_membership = np.power(membership, 1.25)
-#     not_very_membership = 1 - np.power(membership, 2)
-#     membership = np.where(
-#         membership < not_very_membership, plus_membership, not_very_membership
-#     )
-#     membership = membership / np.max(membership)
-#     return np.where(membership <= 0.5, membership ** 2, 1 - 2 * (1 - membership) ** 2)
+def slightly(membership: np.ndarray) -> np.ndarray:
+    plus_membership: np.ndarray = np.power(membership, 1.25)
+    not_very_membership: np.ndarray = 1 - np.power(membership, 2)
+    membership: np.ndarray = np.where(
+        membership < not_very_membership, plus_membership, not_very_membership
+    )
+    membership: np.ndarray = membership / np.max(membership)
+    return np.where(membership <= 0.5, membership ** 2, 1 - 2 * (1 - membership) ** 2)
+
+
+def apply_modifiers(membership: np.ndarray, modifiers: list[str]) -> np.ndarray:
+    """
+    Apply a list of modifiers or hedges to an array of memberships.
+
+    """
+    if modifiers is None:
+        return membership
+
+    fn = {
+        "EXTREMELY": extremely,
+        "INTENSIFY": intensify,
+        "MORE_OR_LESS": more_or_less,
+        "NORM": norm,
+        "NOT": not_,
+        "PLUS": plus,
+        "SLIGHTLY": slightly,
+        "SOMEWHAT": somewhat,
+        "VERY": very,
+    }
+
+    membership = membership.copy()
+    modifiers = list(modifiers)
+    modifiers.reverse()
+
+    for modifier in modifiers:
+        membership = fn[modifier.upper()](membership)
+
+    return membership
 
 
 # # #############################################################################
@@ -172,33 +201,6 @@ Definition of inguistic modifers:
 #         "lom": lom,
 #         "som": som,
 #     }[operator]()
-
-
-# def get_modified_membership(membership, modifiers):
-
-#     if modifiers is None:
-#         return membership
-
-#     fn = {
-#         "EXTREMELY": extremely,
-#         "INTENSIFY": intensify,
-#         "MORE_OR_LESS": more_or_less,
-#         "NORM": norm,
-#         "NOT": not_,
-#         "PLUS": plus,
-#         "SLIGHTLY": slightly,
-#         "SOMEWHAT": somewhat,
-#         "VERY": very,
-#     }
-
-#     membership = membership.copy()
-#     modifiers = list(modifiers)
-#     modifiers.reverse()
-
-#     for modifier in modifiers:
-#         membership = fn[modifier.upper()](membership)
-
-#     return membership
 
 
 # # from .connectors import not_

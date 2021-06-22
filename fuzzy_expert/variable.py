@@ -4,8 +4,10 @@ Fuzzy Variables
 
 """
 import numpy as np
-from typing import Union
+from typing import List, Union
 from fuzzy_expert.mf import MembershipFunction
+
+from fuzzy_expert.operators import apply_modifiers
 
 
 class FuzzyVariable:
@@ -80,43 +82,27 @@ class FuzzyVariable:
         #
         self.universe = universe
 
+    def __getitem__(self, term: str) -> np.ndarray:
+        """
+        Returns the membership function for the specified fuzzy set.
 
-def __getitem__(self, term: str) -> np.ndarray:
-    """Returns the membership function for the specified fuzzy set.
+        """
+        return self.terms[term]
 
-    Args:
-        term (string): Fuzzy set name
+    def get_modified_membeship(
+        self, term: str, modifiers: Union[None, List[str]] = None
+    ) -> np.ndarray:
+        """
+        Returns the membership modified values for the term.
 
-    Returns:
-        A numpy array.
+        """
 
-    """
-    return self.terms[term]
+        membership: np.ndarray = self.terms[term]
 
+        if modifiers is not None:
+            membership: np.ndarray = apply_modifiers(membership, modifiers)
 
-#     def fuzzificate(self, value, term, modifiers=None):
-#         """Computes the value of the membership function on a specifyied point of the universe for the fuzzy set.
-
-#         Args:
-#             value (float, numpy.array): point to evaluate the value of the membership function.
-#             fuzzyset (string): name of the fuzzy set.
-#             modifier (string): membership function modifier.
-#             negation (bool): returns the negation?.
-
-#         Returns:
-#             A float number or numpy.array.
-#         """
-
-#         membership = self.terms[term]
-
-#         if modifiers is not None:
-#             membership = get_modified_membership(membership, modifiers)
-
-#         return np.interp(
-#             x=value,
-#             xp=self.universe,
-#             fp=membership,
-#         )
+        return membership
 
 
 #
