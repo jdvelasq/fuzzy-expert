@@ -8,6 +8,7 @@ from typing import List, Union
 from fuzzy_expert.mf import MembershipFunction
 
 from fuzzy_expert.operators import apply_modifiers
+from fuzzy_expert.plots import plot_fuzzy_variable, plot_fuzzy_input, plot_crisp_input
 
 
 class FuzzyVariable:
@@ -104,6 +105,51 @@ class FuzzyVariable:
 
         return membership
 
+    def plot(self, fmt: str = "-", linewidth: float = 3) -> None:
+        """
+        Plots a fuzzy variable.
+
+        """
+        memberships = []
+
+        for term in self.terms.keys():
+            memberships.append(self.terms[term])
+
+        plot_fuzzy_variable(
+            universe=self.universe,
+            memberships=memberships,
+            labels=list(self.terms.keys()),
+            title=self.name,
+            fmt=fmt,
+            linewidth=linewidth,
+            view_xaxis=True,
+            view_yaxis="left",
+        )
+
+    def plot_input(self, value, fuzzyset, view_xaxis=True, view_yaxis="left"):
+
+        if isinstance(value, (np.ndarray, list)):
+
+            plot_fuzzy_input(
+                value=value,
+                universe=self.universe,
+                membership=self.terms[fuzzyset],
+                name=self.name,
+                view_xaxis=view_xaxis,
+                view_yaxis=view_yaxis,
+            )
+
+        else:
+
+            plot_crisp_input(
+                value=value,
+                universe=self.universe,
+                membership=self.terms[fuzzyset],
+                name=self.name,
+                view_xaxis=view_xaxis,
+                view_yaxis=view_yaxis,
+            )
+
 
 #
 #
@@ -115,7 +161,7 @@ class FuzzyVariable:
 # import numpy as np
 
 # from fuzzy_expert.mf import gaussmf, gbellmf, pimf, smf, sigmf, trimf, zmf, trapmf
-# from fuzzy_expert.plots import plot_fuzzy_variable, plot_fuzzy_input, plot_crisp_input
+#
 # from fuzzy_expert.operators import get_modified_membership
 
 
@@ -174,54 +220,6 @@ class FuzzyVariable:
 
 #             if isinstance(membership, list):
 #                 self.expand_fuzzyset_from_list(term, membership)
-
-
-#     def plot(self, fmt="-", linewidth=3):
-#         """Plots the fuzzy sets defined for the variable.
-
-#         Args:
-#             figsize (tuple): figure size.
-
-#         """
-#         memberships = []
-
-#         for term in self.terms.keys():
-#             memberships.append(self.terms[term])
-
-#         plot_fuzzy_variable(
-#             universe=self.universe,
-#             memberships=memberships,
-#             labels=list(self.terms.keys()),
-#             title=self.name,
-#             fmt=fmt,
-#             linewidth=linewidth,
-#             view_xaxis=True,
-#             view_yaxis="left",
-#         )
-
-#     def plot_input(self, value, fuzzyset, view_xaxis=True, view_yaxis="left"):
-
-#         if isinstance(value, (np.ndarray, list)):
-
-#             plot_fuzzy_input(
-#                 value=value,
-#                 universe=self.universe,
-#                 membership=self.terms[fuzzyset],
-#                 name=self.name,
-#                 view_xaxis=view_xaxis,
-#                 view_yaxis=view_yaxis,
-#             )
-
-#         else:
-
-#             plot_crisp_input(
-#                 value=value,
-#                 universe=self.universe,
-#                 membership=self.terms[fuzzyset],
-#                 name=self.name,
-#                 view_xaxis=view_xaxis,
-#                 view_yaxis=view_yaxis,
-#             )
 
 
 # # score = FuzzyVariable(
