@@ -20,11 +20,12 @@ from fuzzy_expert.operators import (
     defuzzificate,
 )
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
 # from fuzzy_expert.operators import get_modified_membership, probor, defuzzificate
 #
 
-# from fuzzy_expert.plots import plot_fuzzy_input, plot_crisp_input
+from fuzzy_expert.plots import plot_fuzzy_input, plot_crisp_input
 
 
 class DecompositionalInference:
@@ -114,11 +115,14 @@ class DecompositionalInference:
         Convert crisp facts (i.e., score = 123) to membership fuctiostions
 
         """
+        self.fact_types = {}
         for key in self.fact_values.keys():
             if isinstance(self.fact_values[key], (float, int)):
                 self.fuzzificate_crisp_fact(fact_name=key)
+                self.fact_types[key] = "crisp"
             elif isinstance(self.fact_values[key], list):
                 self.fuzzificate_fuzzy_fact(fact_name=key)
+                self.fact_types[key] = "fuzzy"
 
     def compute_modified_premise_memberships(self):
 
@@ -126,18 +130,18 @@ class DecompositionalInference:
 
             rule.modified_premise_memberships = {}
 
-            for i_premise, premise in enumerate(rule.premises):
+            for i_proposition, proposition in enumerate(rule.premise):
 
-                if i_premise != 0:
-                    premise = premise[1:]
+                if i_proposition != 0:
+                    proposition = proposition[1:]
 
-                if len(premise) == 2:
-                    fuzzyvar, term = premise
+                if len(proposition) == 2:
+                    fuzzyvar, term = proposition
                     modifiers = None
                 else:
-                    fuzzyvar = premise[0]
-                    term = premise[-1]
-                    modifiers = premise[1:-1]
+                    fuzzyvar = proposition[0]
+                    term = proposition[-1]
+                    modifiers = proposition[1:-1]
 
                 rule.modified_premise_memberships[fuzzyvar] = self.variables[
                     fuzzyvar
@@ -149,15 +153,15 @@ class DecompositionalInference:
 
             rule.modified_consequence_memberships = {}
 
-            for consequence in rule.consequences:
+            for premise in rule.consequence:
 
-                if len(consequence) == 2:
-                    fuzzyvar, term = consequence
+                if len(premise) == 2:
+                    fuzzyvar, term = premise
                     modifiers = None
                 else:
-                    fuzzyvar = consequence[0]
-                    term = consequence[-1]
-                    modifiers = consequence[1:-1]
+                    fuzzyvar = premise[0]
+                    term = premise[-1]
+                    modifiers = premise[1:-1]
 
                 rule.modified_consequence_memberships[fuzzyvar] = self.variables[
                     fuzzyvar
@@ -248,18 +252,18 @@ class DecompositionalInference:
 
                 combined_composition = None
 
-                for premise in rule.premises:
+                for proposition in rule.premise:
 
                     if combined_composition is None:
                         combined_composition = rule.fuzzy_compositions[
-                            (premise[0], consequence_name)
+                            (proposition[0], consequence_name)
                         ]
                     else:
                         other_composition = rule.fuzzy_compositions[
-                            (premise[1], consequence_name)
+                            (proposition[1], consequence_name)
                         ]
 
-                        operator = premise[0]
+                        operator = proposition[0]
 
                         if operator == "AND":
                             operator = self.and_operator
@@ -290,19 +294,19 @@ class DecompositionalInference:
 
             aggregated_premise_cf = None
 
-            for premise in rule.premises:
+            for proposition in rule.premise:
 
                 if aggregated_premise_cf is None:
-                    aggregated_premise_cf = self.fact_cf[premise[0]]
+                    aggregated_premise_cf = self.fact_cf[proposition[0]]
                 else:
-                    other_premise_cf = self.fact_cf[premise[1]]
+                    other_premise_cf = self.fact_cf[proposition[1]]
 
-                    if premise[0] == "AND":
+                    if proposition[0] == "AND":
                         aggregated_premise_cf = np.minimum(
                             aggregated_premise_cf, other_premise_cf
                         )
 
-                    if premise[0] == "OR":
+                    if proposition[0] == "OR":
                         aggregated_premise_cf = np.maximum(
                             aggregated_premise_cf, other_premise_cf
                         )
@@ -385,108 +389,116 @@ class DecompositionalInference:
                 operator=self.defuzzification_operator,
             )
 
+    def plot(self, variables, rules, **facts):
+        def get_position():
+            position = {name: i_name for i_name, name in enumerate(variables.keys())}
+            return position
 
-#     def plot(self, rules, **facts):
-#         def get_position():
-#             names = []
-#             for rule in rules:
-#                 for i_premise, premise in enumerate(rule.premises):
-#                     if i_premise == 0:
-#                         names.append(premise[0].name)
-#                     else:
-#                         names.append(premise[1].name)
-#             names = sorted(set(names))
-#             position = {name: i_name for i_name, name in enumerate(names)}
-#             return position
+        # computation
+        self.__call__(variables, rules, **facts)
 
-#         # computation
-#         self.__call__(rules, **facts)
+        n_rows = len(self.rules) + 1
+        n_variables = len(variables)
+        position = get_position()
 
-#         n_rows = len(self.rules) + 1
-#         position = get_position()
-#         n_variables = len(position.keys())
+        for i_rule, rule in enumerate(rules):
 
-#         for i_rule, rule in enumerate(rules):
+            #
+            # Plot premises
+            #
+            for i_proposition, proposition in enumerate(rule.premise):
 
-#             #
-#             # Plot premises
-#             #
-#             for i_premise, premise in enumerate(rule.premises):
+                if i_proposition == 0:
+                    varname = proposition[0]
+                else:
+                    varname = proposition[1]
 
-#                 if i_premise == 0:
-#                     varname = premise[0].name
-#                 else:
-#                     varname = premise[1].name
+                i_col = position[varname]
 
-#                 i_col = position[varname]
+                if i_col == 0:
+                    view_yaxis = "left"
+                else:
+                    view_yaxis = False
 
-#                 if i_col == 0:
-#                     view_yaxis = "left"
-#                 else:
-#                     view_yaxis = False
+                plt.subplot(
+                    n_rows,
+                    n_variables,
+                    i_rule * n_variables + i_col + 1,
+                )
 
-#                 plt.subplot(
-#                     n_rows,
-#                     n_variables + 1,
-#                     i_rule * (n_variables + 1) + i_col + 1,
-#                 )
+                view_xaxis = True if i_rule + 1 == len(rules) else False
+                title = varname if i_rule == 0 else None
 
-#                 view_xaxis = True if i_rule + 1 == len(rules) else False
-#                 title = varname if i_rule == 0 else None
+                if self.fact_types[varname] == "crisp":
+                    plot_crisp_input(
+                        value=facts[varname],
+                        universe=variables[varname].universe,
+                        membership=rule.modified_premise_memberships[varname],
+                        name=title,
+                        view_xaxis=view_xaxis,
+                        view_yaxis=view_yaxis,
+                    )
+                else:
+                    plot_fuzzy_input(
+                        value=self.fact_values[varname],
+                        universe=variables[varname].universe,
+                        membership=rule.modified_premise_memberships[varname],
+                        name=title,
+                        view_xaxis=view_xaxis,
+                        view_yaxis=view_yaxis,
+                    )
 
-#                 if self.fact_types[varname] == "crisp":
-#                     plot_crisp_input(
-#                         value=facts[varname],
-#                         universe=rule.universes[varname],
-#                         membership=rule.modified_premise_memberships[varname],
-#                         name=title,
-#                         view_xaxis=view_xaxis,
-#                         view_yaxis=view_yaxis,
-#                     )
-#                 else:
-#                     plot_fuzzy_input(
-#                         value=self.fuzzificated_fact_values[varname],
-#                         universe=rule.universes[varname],
-#                         membership=rule.modified_premise_memberships[varname],
-#                         name=title,
-#                         view_xaxis=view_xaxis,
-#                         view_yaxis=view_yaxis,
-#                     )
+            #
+            # Plot consesquence
+            #
+            for i_proposition, proposition in enumerate(rule.consequence):
 
-#             #
-#             # Plot consesquence
-#             #
-#             plt.subplot(
-#                 n_rows,
-#                 n_variables + 1,
-#                 i_rule * (n_variables + 1) + n_variables + 1,
-#             )
+                varname = proposition[0]
+                i_col = position[varname]
 
-#             plot_fuzzy_input(
-#                 value=rule.infered_membership,
-#                 universe=rule.consequence[0].universe,
-#                 membership=rule.modified_consequence_membership,
-#                 name=None,  # rule.consequence[0].name,
-#                 view_xaxis=False,
-#                 view_yaxis="right",
-#             )
+                if i_col + 1 == len(variables):
+                    view_yaxis = "right"
+                else:
+                    view_yaxis = False
 
-#         plt.subplot(
-#             n_rows,
-#             n_variables + 1,
-#             n_rows * (n_variables + 1),
-#         )
+                plt.subplot(
+                    n_rows,
+                    n_variables,
+                    i_rule * n_variables + i_col + 1,
+                )
 
-#         plot_crisp_input(
-#             value=self.defuzzificated_infered_membership,
-#             universe=self.infered_consequence.universe,
-#             membership=self.infered_membership,
-#             name=None,
-#             view_xaxis=True,
-#             view_yaxis="right",
-#         )
-#         plt.gca().set_xlabel(
-#             "{} = {:.2f}".format(
-#                 self.infered_consequence.name, self.defuzzificated_infered_membership
-#             )
-#         )
+                plot_fuzzy_input(
+                    value=rule.combined_composition[varname],
+                    universe=variables[varname].universe,
+                    membership=rule.modified_consequence_memberships[varname],
+                    name=None,  # rule.consequence[0].name,
+                    view_xaxis=False,
+                    view_yaxis="right",
+                )
+
+        for key in self.defuzzificated_infered_memberships.keys():
+
+            varname = key
+            i_col = position[varname]
+
+            plt.subplot(
+                n_rows,
+                n_variables,
+                (n_rows - 1) * n_variables + i_col + 1,
+            )
+
+            plot_crisp_input(
+                value=self.defuzzificated_infered_memberships[key],
+                universe=variables[varname].universe,
+                membership=self.aggregated_memberships[key],
+                name=None,
+                view_xaxis=True,
+                view_yaxis="right",
+            )
+
+            plt.gca().set_xlabel(
+                "{} = {:.2f}".format(
+                    key,
+                    self.defuzzificated_infered_memberships[key],
+                )
+            )
