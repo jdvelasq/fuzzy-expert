@@ -17,13 +17,13 @@ class FuzzyRule:
 
     def __init__(
         self,
-        premises,
-        consequences,
+        premise,
+        consequence,
         cf: float = 1.0,
         threshold_cf: float = 0,
     ):
-        self.premises = premises
-        self.consequences = consequences
+        self.premise = premise
+        self.consequence = consequence
         self.rule_cf: float = cf
         self.threshold_cf: float = threshold_cf
 
@@ -33,18 +33,18 @@ class FuzzyRule:
         space = " " * 4
 
         #
-        # Premises
+        # Premise
         #
-        for i_premise, premise in enumerate(self.premises):
+        for i_proposition, proposition in enumerate(self.premise):
 
-            if i_premise == 0:
-                text += premise[0] + " IS"
-                for t in premise[1:]:
+            if i_proposition == 0:
+                text += proposition[0] + " IS"
+                for t in proposition[1:]:
                     text += " " + t
                 text += "\n"
             else:
-                text += space + premise[0] + " " + premise[1] + " IS"
-                for t in premise[2:]:
+                text += space + proposition[0] + " " + proposition[1] + " IS"
+                for t in proposition[2:]:
                     text += " " + t
                 text += "\n"
 
@@ -53,9 +53,9 @@ class FuzzyRule:
         #
         # Consequences
         #
-        for consequence in self.consequences:
-            text += space + consequence[0] + " IS"
-            for t in consequence[1:]:
+        for proposition in self.consequence:
+            text += space + proposition[0] + " IS"
+            for t in proposition[1:]:
                 text += " " + t
             text += "\n"
         #
