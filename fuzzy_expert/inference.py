@@ -17,6 +17,7 @@ from fuzzy_expert.operators import (
     minimum,
     prob_or,
     product,
+    defuzzificate,
 )
 
 # import matplotlib.pyplot as plt
@@ -58,16 +59,14 @@ class DecompositionalInference:
         self.compute_modified_consequence_memberships()
         self.compute_fuzzy_implication()
         self.compute_fuzzy_composition()
-        self.combine_fuzzy_compositions()
+        self.combine_antecedents()
         self.compute_rule_infered_cf()
         self.collect_rule_memberships()
+        self.aggregate_collected_memberships()
+        self.aggregate_production_cf()
+        self.defuzzificate()
 
-        # self.aggregate_production_memberships()
-
-    #         self.aggregate_production_cf()
-    #         self.defuzzificate()
-
-    #         return self.defuzzificated_infered_membership, self.infered_cf
+        return self.defuzzificated_infered_memberships, self.infered_cf
 
     def convert_inputs_to_facts(self):
         """
@@ -239,7 +238,7 @@ class DecompositionalInference:
                         (premise_name, consequence_name)
                     ] = composition.max(axis=0)
 
-    def combine_fuzzy_compositions(self):
+    def combine_antecedents(self):
 
         for rule in self.rules:
 
@@ -252,9 +251,13 @@ class DecompositionalInference:
                 for premise in rule.premises:
 
                     if combined_composition is None:
-                        combined_composition = rule.fuzzy_compositions[premise[0]]
+                        combined_composition = rule.fuzzy_compositions[
+                            (premise[0], consequence_name)
+                        ]
                     else:
-                        other_composition = rule.fuzzy_compositions[premise[1]]
+                        other_composition = rule.fuzzy_compositions[
+                            (premise[1], consequence_name)
+                        ]
 
                         operator = premise[0]
 
@@ -308,65 +311,80 @@ class DecompositionalInference:
 
     def collect_rule_memberships(self):
 
-        self.rule_memberships = {}
+        self.collected_rule_memberships = {}
 
         for i_rule, rule in enumerate(self.rules):
 
             for key in rule.combined_composition.keys():
 
-                if key not in self.rule_memberships.keys():
+                if key not in self.collected_rule_memberships.keys():
 
-                    self.rule_memberships[key] = FuzzyVariable(
+                    self.collected_rule_memberships[key] = FuzzyVariable(
                         universe_range=(
                             min(self.variables[key].universe),
                             max(self.variables[key].universe),
                         )
                     )
-                    self.rule_memberships[key].universe = self.variables[key].universe
+                    self.collected_rule_memberships[key].universe = self.variables[
+                        key
+                    ].universe
 
                 if rule.infered_cf >= rule.threshold_cf:
-                    self.rule_memberships[key][
+
+                    self.collected_rule_memberships[key].terms[
                         "Rule-{}".format(i_rule)
-                    ] = rule.infered_membership[key]
+                    ] = rule.combined_composition[key]
 
+    def aggregate_collected_memberships(self):
+        """Computes the output fuzzy set of the inference system."""
 
-#     def aggregate_production_memberships(self):
-#         """Computes the output fuzzy set of the inference system."""
+        operator_fn = {
+            "min": minimum,
+            "prod": product,
+            "bunded_prod": bounded_prod,
+            "drastic_prod": drastic_prod,
+            "max": maximum,
+            "prob_or": prob_or,
+            "bounded_sum": bounded_sum,
+            "drastic_sum": drastic_sum,
+        }[self.production_link]
 
-#         infered_membership = None
+        aggregated_memberships = {}
 
-#         if self.production_link == "max":
+        for key in self.collected_rule_memberships.keys():
 
-#             for rule in self.rules:
-#                 if infered_membership is None:
-#                     infered_membership = rule.infered_membership
-#                 else:
-#                     infered_membership = np.maximum(
-#                         infered_membership, rule.infered_membership
-#                     )
+            fuzzyvar = self.collected_rule_memberships[key]
+            memberships = [fuzzyvar.terms[term] for term in fuzzyvar.terms.keys()]
 
-#         self.infered_membership = infered_membership
+            aggregated_memberships[key] = operator_fn(memberships)
 
-#     def aggregate_production_cf(self):
-#         """Computes the output fuzzy set of the inference system."""
+        self.aggregated_memberships = aggregated_memberships
 
-#         infered_cf = None
+    def aggregate_production_cf(self):
+        """Computes the output fuzzy set of the inference system."""
 
-#         for rule in self.rules:
-#             if infered_cf is None:
-#                 infered_cf = rule.infered_cf
-#             else:
-#                 infered_cf = np.maximum(infered_cf, rule.infered_cf)
+        infered_cf = None
 
-#         self.infered_cf = infered_cf
+        for rule in self.rules:
+            if infered_cf is None:
+                infered_cf = rule.infered_cf
+            else:
+                infered_cf = np.maximum(infered_cf, rule.infered_cf)
 
-#     def defuzzificate(self):
+        self.infered_cf = infered_cf
 
-#         self.defuzzificated_infered_membership = defuzzificate(
-#             universe=self.infered_consequence.universe,
-#             membership=self.infered_membership,
-#             operator=self.defuzzification_operator,
-#         )
+    def defuzzificate(self):
+
+        self.defuzzificated_infered_memberships = {}
+
+        for key in self.aggregated_memberships.keys():
+
+            self.defuzzificated_infered_memberships[key] = defuzzificate(
+                universe=self.variables[key].universe,
+                membership=self.aggregated_memberships[key],
+                operator=self.defuzzification_operator,
+            )
+
 
 #     def plot(self, rules, **facts):
 #         def get_position():
