@@ -183,32 +183,32 @@ def minimum(memberships: list[np.ndarray]) -> np.ndarray:
     return result
 
 
-def aggregate(operator: str, memberships: list[np.ndarray]) -> np.ndarray:
-    """Replace the fuzzy sets by a unique fuzzy set computed by the aggregation operator.
+# def aggregate(operator: str, memberships: list[np.ndarray]) -> np.ndarray:
+#     """Replace the fuzzy sets by a unique fuzzy set computed by the aggregation operator.
 
-    Args:
-        operator (string): {"max"|"sim"|"probor"} aggregation operator.
+#     Args:
+#         operator (string): {"max"|"sim"|"probor"} aggregation operator.
 
-    Returns:
-        A FuzzyVariable
+#     Returns:
+#         A FuzzyVariable
 
-    """
-    result: np.ndarray = memberships[0]
+#     """
+#     result: np.ndarray = memberships[0]
 
-    if operator == "max":
-        for membership in memberships[1:]:
-            result: np.ndarray = np.maximum(result, membership)
-        return result
+#     if operator == "max":
+#         for membership in memberships[1:]:
+#             result: np.ndarray = np.maximum(result, membership)
+#         return result
 
-    if operator == "sum":
-        for membership in memberships[1:]:
-            result: np.ndarray = result + membership
-        return np.minimum(1, result)
+#     if operator == "sum":
+#         for membership in memberships[1:]:
+#             result: np.ndarray = result + membership
+#         return np.minimum(1, result)
 
-    if operator == "probor":
-        for membership in memberships[1:]:
-            result: np.ndarray = result + membership - result * membership
-        return np.maximum(1, np.minimum(1, result))
+#     if operator == "probor":
+#         for membership in memberships[1:]:
+#             result: np.ndarray = result + membership - result * membership
+#         return np.maximum(1, np.minimum(1, result))
 
 
 def defuzzificate(universe, membership, operator="cog"):
