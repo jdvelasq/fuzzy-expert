@@ -7,6 +7,7 @@ from typing import List, Union
 
 import numpy as np
 
+from fuzzy_expert.variable import FuzzyVariable
 from fuzzy_expert.operators import (
     bounded_prod,
     bounded_sum,
@@ -20,7 +21,7 @@ from fuzzy_expert.operators import (
 
 # import matplotlib.pyplot as plt
 # from fuzzy_expert.operators import get_modified_membership, probor, defuzzificate
-# from fuzzy_expert.variable import FuzzyVariable
+#
 
 # from fuzzy_expert.plots import plot_fuzzy_input, plot_crisp_input
 
@@ -59,10 +60,10 @@ class DecompositionalInference:
         self.compute_fuzzy_composition()
         self.combine_fuzzy_compositions()
         self.compute_rule_infered_cf()
+        self.collect_rule_memberships()
 
-    #         self.compute_consequence_cf_aggregation()
-    #         self.build_infered_consequence()
-    #         self.aggregate_production_memberships()
+        # self.aggregate_production_memberships()
+
     #         self.aggregate_production_cf()
     #         self.defuzzificate()
 
@@ -234,45 +235,51 @@ class DecompositionalInference:
                     if self.composition_operator == "max-prod":
                         composition = fact_value * implication
 
-                    rule.fuzzy_compositions[premise_name] = composition.max(axis=0)
+                    rule.fuzzy_compositions[
+                        (premise_name, consequence_name)
+                    ] = composition.max(axis=0)
 
     def combine_fuzzy_compositions(self):
 
         for rule in self.rules:
 
-            combined_composition = None
+            rule.combined_composition = {}
 
-            for premise in rule.premises:
+            for consequence_name in rule.modified_consequence_memberships.keys():
 
-                if combined_composition is None:
-                    combined_composition = rule.fuzzy_compositions[premise[0]]
-                else:
-                    other_composition = rule.fuzzy_compositions[premise[1]]
+                combined_composition = None
 
-                    operator = premise[0]
+                for premise in rule.premises:
 
-                    if operator == "AND":
-                        operator = self.and_operator
+                    if combined_composition is None:
+                        combined_composition = rule.fuzzy_compositions[premise[0]]
+                    else:
+                        other_composition = rule.fuzzy_compositions[premise[1]]
 
-                    if operator == "OR":
-                        operator = self.or_operator
+                        operator = premise[0]
 
-                    operator_fn = {
-                        "min": minimum,
-                        "prod": product,
-                        "bunded_prod": bounded_prod,
-                        "drastic_prod": drastic_prod,
-                        "max": maximum,
-                        "prob_or": prob_or,
-                        "bounded_sum": bounded_sum,
-                        "drastic_sum": drastic_sum,
-                    }[operator]
+                        if operator == "AND":
+                            operator = self.and_operator
 
-                    combined_composition = operator_fn(
-                        [combined_composition, other_composition]
-                    )
+                        if operator == "OR":
+                            operator = self.or_operator
 
-            rule.combined_composition = combined_composition
+                        operator_fn = {
+                            "min": minimum,
+                            "prod": product,
+                            "bunded_prod": bounded_prod,
+                            "drastic_prod": drastic_prod,
+                            "max": maximum,
+                            "prob_or": prob_or,
+                            "bounded_sum": bounded_sum,
+                            "drastic_sum": drastic_sum,
+                        }[operator]
+
+                        combined_composition = operator_fn(
+                            [combined_composition, other_composition]
+                        )
+
+                rule.combined_composition[consequence_name] = combined_composition
 
     def compute_rule_infered_cf(self):
 
@@ -299,19 +306,29 @@ class DecompositionalInference:
 
             rule.infered_cf = aggregated_premise_cf * rule.rule_cf
 
+    def collect_rule_memberships(self):
 
-#     def build_infered_consequence(self):
+        self.rule_memberships = {}
 
-#         self.infered_consequence = FuzzyVariable(
-#             name=self.rules[0].consequence[0].name,
-#             universe=self.rules[0].consequence[0].universe,
-#         )
+        for i_rule, rule in enumerate(self.rules):
 
-#         for i_rule, rule in enumerate(self.rules):
-#             if rule.infered_cf >= rule.threshold_cf:
-#                 self.infered_consequence[
-#                     "Rule-{}".format(i_rule)
-#                 ] = rule.infered_membership
+            for key in rule.combined_composition.keys():
+
+                if key not in self.rule_memberships.keys():
+
+                    self.rule_memberships[key] = FuzzyVariable(
+                        universe_range=(
+                            min(self.variables[key].universe),
+                            max(self.variables[key].universe),
+                        )
+                    )
+                    self.rule_memberships[key].universe = self.variables[key].universe
+
+                if rule.infered_cf >= rule.threshold_cf:
+                    self.rule_memberships[key][
+                        "Rule-{}".format(i_rule)
+                    ] = rule.infered_membership[key]
+
 
 #     def aggregate_production_memberships(self):
 #         """Computes the output fuzzy set of the inference system."""
