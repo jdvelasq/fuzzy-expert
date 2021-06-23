@@ -4,7 +4,19 @@ Inference Method
 
 """
 from typing import List, Union
+
 import numpy as np
+
+from fuzzy_expert.operators import (
+    bounded_prod,
+    bounded_sum,
+    drastic_prod,
+    drastic_sum,
+    maximum,
+    minimum,
+    prob_or,
+    product,
+)
 
 # import matplotlib.pyplot as plt
 # from fuzzy_expert.operators import get_modified_membership, probor, defuzzificate
@@ -45,6 +57,7 @@ class DecompositionalInference:
         self.compute_modified_consequence_memberships()
         self.compute_fuzzy_implication()
         self.compute_fuzzy_composition()
+        self.combine_fuzzy_compositions()
 
     #         self.compute_consequence_membership_aggregation()
     #         self.compute_consequence_cf_aggregation()
@@ -223,41 +236,44 @@ class DecompositionalInference:
 
                     rule.fuzzy_compositions[premise_name] = composition.max(axis=0)
 
+    def combine_fuzzy_compositions(self):
 
-#     def compute_consequence_membership_aggregation(self):
+        for rule in self.rules:
 
-#         for rule in self.rules:
+            combined_composition = None
 
-#             aggregated_membership = None
+            for premise in rule.premises:
 
-#             for premise in rule.premises:
+                if combined_composition is None:
+                    combined_composition = rule.fuzzy_compositions[premise[0]]
+                else:
+                    other_composition = rule.fuzzy_compositions[premise[1]]
 
-#                 if aggregated_membership is None:
-#                     aggregated_membership = rule.fuzzy_compositions[premise[0].name]
-#                 else:
-#                     other_membership = rule.fuzzy_compositions[premise[1].name]
+                    operator = premise[0]
 
-#                     if premise[0] == "AND":
-#                         if self.and_operator == "min":
-#                             aggregated_membership = np.minimum(
-#                                 aggregated_membership, other_membership
-#                             )
-#                         if self.and_operator == "prod":
-#                             aggregated_membership = (
-#                                 aggregated_membership * other_membership
-#                             )
+                    if operator == "AND":
+                        operator = self.and_operator
 
-#                     if premise[0] == "OR":
-#                         if self.and_operator == "max":
-#                             aggregated_membership = np.maximum(
-#                                 aggregated_membership, other_membership
-#                             )
-#                         if self.and_operator == "probor":
-#                             aggregated_membership = probor(
-#                                 [aggregated_membership, other_membership]
-#                             )
+                    if operator == "OR":
+                        operator = self.or_operator
 
-#             rule.infered_membership = aggregated_membership
+                    operator_fn = {
+                        "min": minimum,
+                        "prod": product,
+                        "bunded_prod": bounded_prod,
+                        "drastic_prod": drastic_prod,
+                        "max": maximum,
+                        "prob_or": prob_or,
+                        "bounded_sum": bounded_sum,
+                        "drastic_sum": drastic_sum,
+                    }[operator]
+
+                    combined_composition = operator_fn(
+                        [combined_composition, other_composition]
+                    )
+
+            rule.combined_composition = combined_composition
+
 
 #     def compute_consequence_cf_aggregation(self):
 
