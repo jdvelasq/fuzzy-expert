@@ -18,6 +18,7 @@ setup(
         "matplotlib",
         "progressbar2",
         "pandas",
+        "ipywidgets",
     ],
     packages=find_packages(),
     package_dir={"fuzzy_expert": "fuzzy_expert"},
