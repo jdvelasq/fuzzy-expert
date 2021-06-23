@@ -184,34 +184,6 @@ def minimum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     return result
 
 
-# def aggregate(operator: str, memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
-#     """Replace the fuzzy sets by a unique fuzzy set computed by the aggregation operator.
-
-#     Args:
-#         operator (string): {"max"|"sim"|"probor"} aggregation operator.
-
-#     Returns:
-#         A FuzzyVariable
-
-#     """
-#     result: npt.ArrayLike = memberships[0]
-
-#     if operator == "max":
-#         for membership in memberships[1:]:
-#             result: npt.ArrayLike = np.maximum(result, membership)
-#         return result
-
-#     if operator == "sum":
-#         for membership in memberships[1:]:
-#             result: npt.ArrayLike = result + membership
-#         return np.minimum(1, result)
-
-#     if operator == "probor":
-#         for membership in memberships[1:]:
-#             result: npt.ArrayLike = result + membership - result * membership
-#         return np.maximum(1, np.minimum(1, result))
-
-
 def defuzzificate(universe, membership, operator="cog"):
     """Computes a representative crisp value for the fuzzy set.
 
@@ -256,7 +228,7 @@ def defuzzificate(universe, membership, operator="cog"):
         return np.min(maximum)
 
     if np.sum(membership) == 0.0:
-        return 0.0
+        return np.mean(universe)
 
     return {
         "cog": cog,

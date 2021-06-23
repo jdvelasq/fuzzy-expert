@@ -5,27 +5,26 @@ Inference Method
 """
 from typing import List, Union
 
+import matplotlib.pyplot as plt
 import numpy as np
+from ipywidgets import interact, widgets
 
-from fuzzy_expert.variable import FuzzyVariable
 from fuzzy_expert.operators import (
     bounded_prod,
     bounded_sum,
+    defuzzificate,
     drastic_prod,
     drastic_sum,
     maximum,
     minimum,
     prob_or,
     product,
-    defuzzificate,
 )
-
-import matplotlib.pyplot as plt
+from fuzzy_expert.plots import plot_crisp_input, plot_fuzzy_input
+from fuzzy_expert.variable import FuzzyVariable
 
 # from fuzzy_expert.operators import get_modified_membership, probor, defuzzificate
 #
-
-from fuzzy_expert.plots import plot_fuzzy_input, plot_crisp_input
 
 
 class DecompositionalInference:
@@ -107,7 +106,7 @@ class DecompositionalInference:
         fp = [fp for _, fp in fact_value]
         self.variables[fact_name].add_points_to_universe(xp)
         self.fact_values[fact_name] = np.interp(
-            x=self.variables[fact_name], xp=xp, fp=fp
+            x=self.variables[fact_name].universe, xp=xp, fp=fp
         )
 
     def fuzzificate_facts(self):
@@ -502,3 +501,39 @@ class DecompositionalInference:
                     self.defuzzificated_infered_memberships[key],
                 )
             )
+
+    # def interact_fn(self, variables, rules, figsize=(12, 8)):
+    #     def fn(**inputs):
+    #         plt.figure(figsize=figsize)
+    #         self.plot(variables, rules, **inputs)
+
+    #     return fn
+
+    # def interact_inputs(self, variables):
+    #     input_vars = []
+    #     for rule in self.rules:
+    #         for i_proposition, proposition in enumerate(rule.premise):
+    #             if i_proposition != 0:
+    #                 proposition = proposition[1:]
+    #             varname = proposition[0]
+    #             input_vars.append(varname)
+
+    #     input_vars = list(set(input_vars))
+
+    #     wdg = {}
+    #     for name in input_vars:
+    #         min_u, max_u = variables[name].universe_range
+    #         wdg[name] = widgets.FloatSlider(min=min_u, max=max_u)
+    #     return wdg
+
+    # def interact(self, variables, rules):
+    #     #
+    #     def fn(**inputs):
+    #         plt.figure(figsize=(13, 9))
+    #         self.plot(variables, rules, **inputs)
+
+    #     #
+    #     # Obtain vars in rule premise
+    #     #
+
+    #     interact(fn, **wdg)
