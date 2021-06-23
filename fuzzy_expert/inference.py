@@ -43,9 +43,9 @@ class DecompositionalInference:
         self.fuzzificate_facts()
         self.compute_modified_premise_memberships()
         self.compute_modified_consequence_memberships()
+        self.compute_fuzzy_implication()
+        self.compute_fuzzy_composition()
 
-    #         self.compute_fuzzy_implication()
-    #         self.compute_fuzzy_composition()
     #         self.compute_consequence_membership_aggregation()
     #         self.compute_consequence_cf_aggregation()
     #         self.build_infered_consequence()
@@ -150,87 +150,79 @@ class DecompositionalInference:
                     fuzzyvar
                 ].get_modified_membeship(term=term, modifiers=modifiers)
 
+    def compute_fuzzy_implication(self):
 
-#     def compute_modified_consequence_membership(self):
+        #
+        # Implication operators
+        # See Kasabov, pag. 185
+        #
+        Ra = lambda u, v: np.minimum(1, 1 - u + v)
+        Rm = lambda u, v: np.maximum(np.minimum(u, v), 1 - u)
+        Rc = lambda u, v: np.minimum(u, v)
+        Rb = lambda u, v: np.maximum(1 - u, v)
+        Rs = lambda u, v: np.where(u <= v, 1, 0)
+        Rg = lambda u, v: np.where(u <= v, 1, v)
+        Rsg = lambda u, v: np.minimum(Rs(u, v), Rg(1 - u, 1 - v))
+        Rgs = lambda u, v: np.minimum(Rg(u, v), Rs(1 - u, 1 - v))
+        Rgg = lambda u, v: np.minimum(Rg(u, v), Rg(1 - u, 1 - v))
+        Rss = lambda u, v: np.minimum(Rs(u, v), Rs(1 - u, 1 - v))
 
-#         for rule in self.rules:
+        implication_fn = {
+            "Ra": Ra,
+            "Rm": Rm,
+            "Rc": Rc,
+            "Rb": Rb,
+            "Rs": Rs,
+            "Rg": Rg,
+            "Rsg": Rsg,
+            "Rgs": Rgs,
+            "Rgg": Rgg,
+            "Rss": Rss,
+        }[self.implication_operator]
 
-#             if len(rule.consequence) == 2:
-#                 modifiers = None
-#             else:
-#                 modifiers = rule.consequence[1:-1]
+        for rule in self.rules:
 
-#             term = rule.consequence[-1]
-#             fuzzyvar = rule.consequence[0]
-#             membership = fuzzyvar.terms[term]
+            rule.fuzzy_implications = {}
 
-#             rule.modified_consequence_membership = get_modified_membership(
-#                 membership, modifiers
-#             )
+            for premise_name in rule.modified_premise_memberships.keys():
 
-#     def compute_fuzzy_implication(self):
+                for consequence_name in rule.modified_consequence_memberships.keys():
 
-#         #
-#         # Implication operators
-#         # See Kasabov, pag. 185
-#         #
-#         Ra = lambda u, v: np.minimum(1, 1 - u + v)
-#         Rm = lambda u, v: np.maximum(np.minimum(u, v), 1 - u)
-#         Rc = lambda u, v: np.minimum(u, v)
-#         Rb = lambda u, v: np.maximum(1 - u, v)
-#         Rs = lambda u, v: np.where(u <= v, 1, 0)
-#         Rg = lambda u, v: np.where(u <= v, 1, v)
-#         Rsg = lambda u, v: np.minimum(Rs(u, v), Rg(1 - u, 1 - v))
-#         Rgs = lambda u, v: np.minimum(Rg(u, v), Rs(1 - u, 1 - v))
-#         Rgg = lambda u, v: np.minimum(Rg(u, v), Rg(1 - u, 1 - v))
-#         Rss = lambda u, v: np.minimum(Rs(u, v), Rs(1 - u, 1 - v))
+                    premise_membership = rule.modified_premise_memberships[premise_name]
+                    consequence_membership = rule.modified_consequence_memberships[
+                        consequence_name
+                    ]
+                    V, U = np.meshgrid(consequence_membership, premise_membership)
+                    rule.fuzzy_implications[
+                        (premise_name, consequence_name)
+                    ] = implication_fn(U, V)
 
-#         implication_fn = {
-#             "Ra": Ra,
-#             "Rm": Rm,
-#             "Rc": Rc,
-#             "Rb": Rb,
-#             "Rs": Rs,
-#             "Rg": Rg,
-#             "Rsg": Rsg,
-#             "Rgs": Rgs,
-#             "Rgg": Rgg,
-#             "Rss": Rss,
-#         }[self.implication_operator]
+    def compute_fuzzy_composition(self):
 
-#         for rule in self.rules:
+        for rule in self.rules:
 
-#             rule.fuzzy_implications = {}
+            rule.fuzzy_compositions = {}
 
-#             for name in rule.modified_premise_memberships.keys():
+            for premise_name in rule.modified_premise_memberships.keys():
 
-#                 premise_membership = rule.modified_premise_memberships[name]
-#                 consequence_membership = rule.modified_consequence_membership
-#                 V, U = np.meshgrid(consequence_membership, premise_membership)
-#                 rule.fuzzy_implications[name] = implication_fn(U, V)
+                for consequence_name in rule.modified_consequence_memberships.keys():
 
-#     def compute_fuzzy_composition(self):
+                    implication = rule.fuzzy_implications[
+                        (premise_name, consequence_name)
+                    ]
+                    fact_value = self.fact_values[premise_name]
+                    n_dim = len(fact_value)
+                    fact_value = fact_value.reshape((n_dim, 1))
+                    fact_value = np.tile(fact_value, (1, implication.shape[1]))
 
-#         for rule in self.rules:
+                    if self.composition_operator == "max-min":
+                        composition = np.minimum(fact_value, implication)
 
-#             rule.fuzzy_compositions = {}
+                    if self.composition_operator == "max-prod":
+                        composition = fact_value * implication
 
-#             for name in rule.modified_premise_memberships.keys():
+                    rule.fuzzy_compositions[premise_name] = composition.max(axis=0)
 
-#                 implication = rule.fuzzy_implications[name]
-
-#                 value = self.fuzzificated_fact_values[name]
-#                 n_dim = len(value)
-#                 value = value.reshape((n_dim, 1))
-#                 value = np.tile(value, (1, implication.shape[1]))
-
-#                 if self.composition_operator == "min":
-#                     composition = np.minimum(value, implication)
-
-#                 if self.composition_operator == "prod":
-#                     composition = value * implication
-
-#                 rule.fuzzy_compositions[name] = composition.max(axis=0)
 
 #     def compute_consequence_membership_aggregation(self):
 
