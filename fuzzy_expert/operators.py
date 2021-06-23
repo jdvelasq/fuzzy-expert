@@ -5,7 +5,8 @@ Modifiers and operators
 """
 
 import numpy as np
-
+import numpy.typing as npt
+from typing import List
 
 # #############################################################################
 #
@@ -16,51 +17,51 @@ import numpy as np
 # #############################################################################
 
 
-def extremely(membership: np.ndarray) -> np.ndarray:
+def extremely(membership: npt.ArrayLike) -> npt.ArrayLike:
     return np.power(membership, 3)
 
 
-def intensify(membership: np.ndarray) -> np.ndarray:
+def intensify(membership: npt.ArrayLike) -> npt.ArrayLike:
     return np.where(
         membership <= 0.5, np.power(membership, 2), 1 - 2 * np.power(1 - membership, 2)
     )
 
 
-def more_or_less(membership: np.ndarray) -> np.ndarray:
+def more_or_less(membership: npt.ArrayLike) -> npt.ArrayLike:
     return np.power(membership, 0.5)
 
 
-def norm(membership: np.ndarray) -> np.ndarray:
+def norm(membership: npt.ArrayLike) -> npt.ArrayLike:
     return membership / np.max(membership)
 
 
-def not_(membership: np.ndarray) -> np.ndarray:
+def not_(membership: npt.ArrayLike) -> npt.ArrayLike:
     return 1 - membership
 
 
-def plus(membership: np.ndarray) -> np.ndarray:
+def plus(membership: npt.ArrayLike) -> npt.ArrayLike:
     return np.power(membership, 1.25)
 
 
-def somewhat(membership: np.ndarray) -> np.ndarray:
+def somewhat(membership: npt.ArrayLike) -> npt.ArrayLike:
     return np.power(membership, 1.0 / 3.0)
 
 
-def very(membership: np.ndarray) -> np.ndarray:
+def very(membership: npt.ArrayLike) -> npt.ArrayLike:
     return np.power(membership, 2)
 
 
-def slightly(membership: np.ndarray) -> np.ndarray:
-    plus_membership: np.ndarray = np.power(membership, 1.25)
-    not_very_membership: np.ndarray = 1 - np.power(membership, 2)
-    membership: np.ndarray = np.where(
+def slightly(membership: npt.ArrayLike) -> npt.ArrayLike:
+    plus_membership: npt.ArrayLike = np.power(membership, 1.25)
+    not_very_membership: npt.ArrayLike = 1 - np.power(membership, 2)
+    membership: npt.ArrayLike = np.where(
         membership < not_very_membership, plus_membership, not_very_membership
     )
-    membership: np.ndarray = membership / np.max(membership)
+    membership: npt.ArrayLike = membership / np.max(membership)
     return np.where(membership <= 0.5, membership ** 2, 1 - 2 * (1 - membership) ** 2)
 
 
-def apply_modifiers(membership: np.ndarray, modifiers: list[str]) -> np.ndarray:
+def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.ArrayLike:
     """
     Apply a list of modifiers or hedges to an array of memberships.
 
@@ -99,91 +100,91 @@ def apply_modifiers(membership: np.ndarray, modifiers: list[str]) -> np.ndarray:
 # #############################################################################
 
 
-def prob_or(memberships: list[np.ndarray]) -> np.ndarray:
+def prob_or(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     Probabilistic OR
 
     """
-    result: np.ndarray = memberships[0]
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = result + membership - result * membership
+        result: npt.ArrayLike = result + membership - result * membership
     return np.maximum(1, np.minimum(1, result))
 
 
-def bounded_prod(memberships: list[np.ndarray]) -> np.ndarray:
+def bounded_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     Bounded product: max(0, u + v - 1)
 
     """
-    result: np.ndarray = memberships[0]
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = np.maximum(0, result + membership - 1)
+        result: npt.ArrayLike = np.maximum(0, result + membership - 1)
     return result
 
 
-def bounded_sum(memberships: list[np.ndarray]) -> np.ndarray:
+def bounded_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     Bounded sum: min(1, u + v)
 
     """
-    result: np.ndarray = memberships[0]
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = np.minimum(1, result + membership)
+        result: npt.ArrayLike = np.minimum(1, result + membership)
     return result
 
 
-def drastic_prod(memberships: list[np.ndarray]) -> np.ndarray:
+def drastic_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     Drastic product: u if v == 0
                      v if u == 1
                      0 if a,v < 1
 
     """
-    result: np.ndarray = memberships[0]
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = np.where(
+        result: npt.ArrayLike = np.where(
             membership == 0, result, np.where(result == 1, membership, 0)
         )
     return result
 
 
-def drastic_sum(memberships: list[np.ndarray]) -> np.ndarray:
+def drastic_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     Drastic product: u if v == 0
                      v if u == 0
                      0 if a,v < 1
 
     """
-    result: np.ndarray = memberships[0]
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = np.where(
+        result: npt.ArrayLike = np.where(
             membership == 0, result, np.where(result == 1, membership, 1)
         )
     return result
 
 
-def product(memberships: list[np.ndarray]) -> np.ndarray:
-    result: np.ndarray = memberships[0]
+def product(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = result * membership
+        result: npt.ArrayLike = result * membership
     return result
 
 
-def maximum(memberships: list[np.ndarray]) -> np.ndarray:
-    result: np.ndarray = memberships[0]
+def maximum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = np.maximum(result, membership)
+        result: npt.ArrayLike = np.maximum(result, membership)
     return result
 
 
-def minimum(memberships: list[np.ndarray]) -> np.ndarray:
-    result: np.ndarray = memberships[0]
+def minimum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
+    result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = np.minimum(result, membership)
+        result: npt.ArrayLike = np.minimum(result, membership)
     return result
 
 
-# def aggregate(operator: str, memberships: list[np.ndarray]) -> np.ndarray:
+# def aggregate(operator: str, memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 #     """Replace the fuzzy sets by a unique fuzzy set computed by the aggregation operator.
 
 #     Args:
@@ -193,21 +194,21 @@ def minimum(memberships: list[np.ndarray]) -> np.ndarray:
 #         A FuzzyVariable
 
 #     """
-#     result: np.ndarray = memberships[0]
+#     result: npt.ArrayLike = memberships[0]
 
 #     if operator == "max":
 #         for membership in memberships[1:]:
-#             result: np.ndarray = np.maximum(result, membership)
+#             result: npt.ArrayLike = np.maximum(result, membership)
 #         return result
 
 #     if operator == "sum":
 #         for membership in memberships[1:]:
-#             result: np.ndarray = result + membership
+#             result: npt.ArrayLike = result + membership
 #         return np.minimum(1, result)
 
 #     if operator == "probor":
 #         for membership in memberships[1:]:
-#             result: np.ndarray = result + membership - result * membership
+#             result: npt.ArrayLike = result + membership - result * membership
 #         return np.maximum(1, np.minimum(1, result))
 
 
