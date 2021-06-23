@@ -11,8 +11,8 @@ def test_repr():
     """
 
     rule = FuzzyRule(
-        premises=[("score", "HIGH"), ("AND", "ratio", "very", "LOW")],
-        consequences=[("decision1", "BAD"), ("decision2", "very", "GOOD")],
+        premise=[("score", "HIGH"), ("AND", "ratio", "very", "LOW")],
+        consequence=[("decision1", "BAD"), ("decision2", "very", "GOOD")],
     )
 
     text = rule.__repr__()
