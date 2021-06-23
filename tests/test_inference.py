@@ -60,12 +60,12 @@ def test_loan_decision_problem() -> None:
         #
         FuzzyRule(
             cf=1.0,
-            premises=[
+            premise=[
                 ("score", "High"),
                 ("AND", "ratio", "Goodr"),
                 ("AND", "credit", "Goodc"),
             ],
-            consequences=[
+            consequence=[
                 ("decision", "Approve"),
                 ("other_decision", "Approve"),
             ],
@@ -75,12 +75,12 @@ def test_loan_decision_problem() -> None:
         #
         FuzzyRule(
             cf=1.0,
-            premises=[
+            premise=[
                 ("score", "Low"),
                 ("AND", "ratio", "Badr"),
                 ("OR", "credit", "Badc"),
             ],
-            consequences=[
+            consequence=[
                 ("decision", "Reject"),
                 ("other_decision", "Reject"),
             ],
