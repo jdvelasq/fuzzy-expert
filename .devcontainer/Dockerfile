@@ -19,7 +19,8 @@ RUN python3 -m pip install \
     progressbar2 \
     sphinx \
     sphinx-rtd-theme \ 
-    pytest
+    pytest \
+    ipywidgets
 
 # [Optional] If your pip requirements rarely change, uncomment this section to add them to the image.
 # COPY requirements.txt /tmp/pip-tmp/
