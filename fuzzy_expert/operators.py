@@ -99,11 +99,74 @@ def apply_modifiers(membership: np.ndarray, modifiers: list[str]) -> np.ndarray:
 # #############################################################################
 
 
-def probor(memberships: list[np.ndarray]) -> np.ndarray:
+def prob_or(memberships: list[np.ndarray]) -> np.ndarray:
+    """
+    Probabilistic OR
+
+    """
     result: np.ndarray = memberships[0]
     for membership in memberships[1:]:
         result: np.ndarray = result + membership - result * membership
     return np.maximum(1, np.minimum(1, result))
+
+
+def bounded_prod(memberships: list[np.ndarray]) -> np.ndarray:
+    """
+    Bounded product: max(0, u + v - 1)
+
+    """
+    result: np.ndarray = memberships[0]
+    for membership in memberships[1:]:
+        result: np.ndarray = np.maximum(0, result + membership - 1)
+    return result
+
+
+def bounded_sum(memberships: list[np.ndarray]) -> np.ndarray:
+    """
+    Bounded sum: min(1, u + v)
+
+    """
+    result: np.ndarray = memberships[0]
+    for membership in memberships[1:]:
+        result: np.ndarray = np.minimum(1, result + membership)
+    return result
+
+
+def drastic_prod(memberships: list[np.ndarray]) -> np.ndarray:
+    """
+    Drastic product: u if v == 0
+                     v if u == 1
+                     0 if a,v < 1
+
+    """
+    result: np.ndarray = memberships[0]
+    for membership in memberships[1:]:
+        result: np.ndarray = np.where(
+            membership == 0, result, np.where(result == 1, membership, 0)
+        )
+    return result
+
+
+def drastic_sum(memberships: list[np.ndarray]) -> np.ndarray:
+    """
+    Drastic product: u if v == 0
+                     v if u == 0
+                     0 if a,v < 1
+
+    """
+    result: np.ndarray = memberships[0]
+    for membership in memberships[1:]:
+        result: np.ndarray = np.where(
+            membership == 0, result, np.where(result == 1, membership, 1)
+        )
+    return result
+
+
+def product(memberships: list[np.ndarray]) -> np.ndarray:
+    result: np.ndarray = memberships[0]
+    for membership in memberships[1:]:
+        result: np.ndarray = result * membership
+    return result
 
 
 def maximum(memberships: list[np.ndarray]) -> np.ndarray:
@@ -116,7 +179,7 @@ def maximum(memberships: list[np.ndarray]) -> np.ndarray:
 def minimum(memberships: list[np.ndarray]) -> np.ndarray:
     result: np.ndarray = memberships[0]
     for membership in memberships[1:]:
-        result: np.ndarray = np.mminimum(result, membership)
+        result: np.ndarray = np.minimum(result, membership)
     return result
 
 
