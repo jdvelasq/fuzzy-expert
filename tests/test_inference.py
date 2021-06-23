@@ -44,6 +44,14 @@ def test_loan_decision_problem() -> None:
                 "Reject": [(2, 1), (3, 0.7), (4, 0.3), (5, 0)],
             },
         ),
+        #
+        "other_decision": FuzzyVariable(
+            universe_range=(0, 10),
+            terms={
+                "Approve": [(5, 0), (6, 0.3), (7, 0.7), (8, 1)],
+                "Reject": [(2, 1), (3, 0.7), (4, 0.3), (5, 0)],
+            },
+        ),
     }
 
     rules = [
@@ -51,7 +59,7 @@ def test_loan_decision_problem() -> None:
         # Rule 1
         #
         FuzzyRule(
-            cf=0.8,
+            cf=1.0,
             premises=[
                 ("score", "High"),
                 ("AND", "ratio", "Goodr"),
@@ -59,13 +67,14 @@ def test_loan_decision_problem() -> None:
             ],
             consequences=[
                 ("decision", "Approve"),
+                ("other_decision", "Approve"),
             ],
         ),
         #
         # Rule 2
         #
         FuzzyRule(
-            cf=0.7,
+            cf=1.0,
             premises=[
                 ("score", "Low"),
                 ("AND", "ratio", "Badr"),
@@ -73,6 +82,7 @@ def test_loan_decision_problem() -> None:
             ],
             consequences=[
                 ("decision", "Reject"),
+                ("other_decision", "Reject"),
             ],
         ),
     ]
@@ -81,15 +91,17 @@ def test_loan_decision_problem() -> None:
         and_operator="min",
         or_operator="max",
         implication_operator="Rc",
-        composition_operator="max-min",  # min / prod
+        composition_operator="max-min",
         production_link="max",
         defuzzification_operator="cog",
     )
 
-    model(
+    result = model(
         variables=variables,
         rules=rules,
-        score=(190, 0.9),
+        score=(190, 1),
         ratio=(0.39, 1),
         credit=(1.5, 1),
     )
+
+    assert result == None
