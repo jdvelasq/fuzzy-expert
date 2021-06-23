@@ -58,8 +58,8 @@ class DecompositionalInference:
         self.compute_fuzzy_implication()
         self.compute_fuzzy_composition()
         self.combine_fuzzy_compositions()
+        self.compute_rule_infered_cf()
 
-    #         self.compute_consequence_membership_aggregation()
     #         self.compute_consequence_cf_aggregation()
     #         self.build_infered_consequence()
     #         self.aggregate_production_memberships()
@@ -274,27 +274,31 @@ class DecompositionalInference:
 
             rule.combined_composition = combined_composition
 
+    def compute_rule_infered_cf(self):
 
-#     def compute_consequence_cf_aggregation(self):
+        for rule in self.rules:
 
-#         for rule in self.rules:
+            aggregated_premise_cf = None
 
-#             aggregated_cf = None
+            for premise in rule.premises:
 
-#             for premise in rule.premises:
+                if aggregated_premise_cf is None:
+                    aggregated_premise_cf = self.fact_cf[premise[0]]
+                else:
+                    other_premise_cf = self.fact_cf[premise[1]]
 
-#                 if aggregated_cf is None:
-#                     aggregated_cf = self.fact_cf[premise[0].name]
-#                 else:
-#                     other_cf = self.fact_cf[premise[1].name]
+                    if premise[0] == "AND":
+                        aggregated_premise_cf = np.minimum(
+                            aggregated_premise_cf, other_premise_cf
+                        )
 
-#                     if premise[0] == "AND":
-#                         aggregated_cf = np.minimum(aggregated_cf, other_cf)
+                    if premise[0] == "OR":
+                        aggregated_premise_cf = np.maximum(
+                            aggregated_premise_cf, other_premise_cf
+                        )
 
-#                     if premise[0] == "OR":
-#                         aggregated_cf = np.maximum(aggregated_cf, other_cf)
+            rule.infered_cf = aggregated_premise_cf * rule.rule_cf
 
-#             rule.infered_cf = aggregated_cf * rule.rule_cf
 
 #     def build_infered_consequence(self):
 
