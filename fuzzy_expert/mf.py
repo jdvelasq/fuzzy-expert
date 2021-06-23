@@ -5,7 +5,9 @@ Membership Functions
 Functions to compute fuzzy membership values for numpy.arrays.
 
 """
+from typing import Tuple, List
 import numpy as np
+
 
 ## pag. 27, FuzzyCLIPS
 
@@ -31,7 +33,7 @@ class MembershipFunction:
 
         return fn(*params)
 
-    def gaussmf(self, center: float, sigma) -> list[tuple[float, float]]:
+    def gaussmf(self, center: float, sigma: float) -> List[Tuple[float, float]]:
         """
         Gaussian membership function.
         """
@@ -49,7 +51,7 @@ class MembershipFunction:
 
     def gbellmf(
         self, center: float, width: float, shape: float
-    ) -> list[tuple[float, float]]:
+    ) -> List[Tuple[float, float]]:
         """
         Generalized bell-shaped membership function.
 
@@ -74,7 +76,7 @@ class MembershipFunction:
         left_peak: float,
         right_peak: float,
         right_feet: float,
-    ) -> list[tuple[float, float]]:
+    ) -> List[Tuple[float, float]]:
         """
         Pi-shaped membership function.
 
@@ -87,7 +89,7 @@ class MembershipFunction:
         self,
         center: float,
         width: float,
-    ) -> list[tuple[float, float]]:
+    ) -> List[Tuple[float, float]]:
         """
         Sigmoidal membership function.
 
@@ -102,7 +104,7 @@ class MembershipFunction:
         self,
         foot: float,
         shoulder: float,
-    ) -> list[tuple[float, float]]:
+    ) -> List[Tuple[float, float]]:
         """
         S-shaped membership function.
 
@@ -129,7 +131,7 @@ class MembershipFunction:
         left_peak: float,
         right_peak: float,
         right_feet: float,
-    ) -> list[tuple[float, float]]:
+    ) -> List[Tuple[float, float]]:
         """
         Trapezoidal membership function.
 
@@ -165,7 +167,7 @@ class MembershipFunction:
         left_feet: float,
         peak: float,
         right_feet: float,
-    ) -> list[tuple[float, float]]:
+    ) -> List[Tuple[float, float]]:
         """
         Triangular membership function.
 
@@ -190,7 +192,7 @@ class MembershipFunction:
         self,
         a: float,
         b: float,
-    ) -> list[tuple[float, float]]:
+    ) -> List[Tuple[float, float]]:
         """
         Z-shaped membership function.
 
