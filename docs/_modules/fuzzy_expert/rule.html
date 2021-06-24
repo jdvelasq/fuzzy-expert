@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.rule &mdash; Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>fuzzy_expert.rule &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python
+            <a href="../../index.html" class="icon icon-home"> Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python
           
 
           
@@ -109,7 +109,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python</a>
+          <a href="../../index.html">Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python</a>
         
       </nav>
 
@@ -172,10 +172,28 @@
 <div class="viewcode-block" id="FuzzyRule"><a class="viewcode-back" href="../../rule.html#fuzzy_expert.rule.FuzzyRule">[docs]</a><span class="k">class</span> <span class="nc">FuzzyRule</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Creates a Zadeh-Mamdani fuzzy rule.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        antecedents (list of tuples): Fuzzy variables in the rule antecedent.</span>
-<span class="sd">        consequent (tuple): Fuzzy variable in the consequence.</span>
-<span class="sd">        is_and (bool): When True, membership values are combined using the specified AND operator; when False, the OR operator is used.</span>
+<span class="sd">    :param premise: List of propositions in rule premise.</span>
+<span class="sd">    :param consequence: List of propositions in rule consequence.</span>
+<span class="sd">    :param cf: Certainty factor of the rule.</span>
+<span class="sd">    :param threshold_cf: Minimum certainty factor for rule firing.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.rule import FuzzyRule</span>
+<span class="sd">    &gt;&gt;&gt; rule = FuzzyRule(</span>
+<span class="sd">    ...     premise=[</span>
+<span class="sd">    ...         (&quot;score&quot;, &quot;High&quot;),</span>
+<span class="sd">    ...         (&quot;AND&quot;, &quot;ratio&quot;, &quot;Goodr&quot;),</span>
+<span class="sd">    ...         (&quot;AND&quot;, &quot;credit&quot;, &quot;Goodc&quot;),</span>
+<span class="sd">    ...     ],</span>
+<span class="sd">    ...     consequence=[(&quot;decision&quot;, &quot;Approve&quot;)],</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; rule</span>
+<span class="sd">    IF  score IS High</span>
+<span class="sd">        AND ratio IS Goodr</span>
+<span class="sd">        AND credit IS Goodc</span>
+<span class="sd">    THEN</span>
+<span class="sd">        decision IS Approve</span>
+<span class="sd">    CF = 1.00</span>
+<span class="sd">    Threshold-CF = 1.00</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 

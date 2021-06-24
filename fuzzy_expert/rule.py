@@ -10,10 +10,28 @@ from __future__ import annotations
 class FuzzyRule:
     """Creates a Zadeh-Mamdani fuzzy rule.
 
-    Args:
-        antecedents (list of tuples): Fuzzy variables in the rule antecedent.
-        consequent (tuple): Fuzzy variable in the consequence.
-        is_and (bool): When True, membership values are combined using the specified AND operator; when False, the OR operator is used.
+    :param premise: List of propositions in rule premise.
+    :param consequence: List of propositions in rule consequence.
+    :param cf: Certainty factor of the rule.
+    :param threshold_cf: Minimum certainty factor for rule firing.
+
+    >>> from fuzzy_expert.rule import FuzzyRule
+    >>> rule = FuzzyRule(
+    ...     premise=[
+    ...         ("score", "High"),
+    ...         ("AND", "ratio", "Goodr"),
+    ...         ("AND", "credit", "Goodc"),
+    ...     ],
+    ...     consequence=[("decision", "Approve")],
+    ... )
+    >>> rule
+    IF  score IS High
+        AND ratio IS Goodr
+        AND credit IS Goodc
+    THEN
+        decision IS Approve
+    CF = 1.00
+    Threshold-CF = 0.00
 
     """
 
@@ -64,6 +82,6 @@ class FuzzyRule:
         # Certainty factors
         #
         text += "CF = {:.2f}\n".format(self.rule_cf)
-        text += "Threshold-CF = {:.2f}\n".format(self.rule_cf)
+        text += "Threshold-CF = {:.2f}\n".format(self.threshold_cf)
 
         return text
