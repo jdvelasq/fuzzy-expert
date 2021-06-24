@@ -24,6 +24,6 @@ THEN
     decision1 IS BAD
     decision2 IS very GOOD
 CF = 1.00
-Threshold-CF = 1.00
+Threshold-CF = 0.00
 """
     )

@@ -239,10 +239,10 @@
 
         <span class="n">xp</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">xp</span> <span class="k">for</span> <span class="n">xp</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">membership</span><span class="p">]</span>
         <span class="n">fp</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">fp</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">fp</span> <span class="ow">in</span> <span class="n">membership</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_add_points_to_universe</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">xp</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_points_to_universe</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">xp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">fp</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_points_to_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+<div class="viewcode-block" id="FuzzyVariable.add_points_to_universe"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.add_points_to_universe">[docs]</a>    <span class="k">def</span> <span class="nf">add_points_to_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
 
         <span class="c1">#</span>
         <span class="c1"># Adds new points to the universe</span>
@@ -266,7 +266,7 @@
         <span class="c1">#</span>
         <span class="c1"># Update the universe with the new points</span>
         <span class="c1">#</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">universe</span> <span class="o">=</span> <span class="n">universe</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">universe</span> <span class="o">=</span> <span class="n">universe</span></div>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -293,9 +293,10 @@
 <span class="sd">        ...     },</span>
 <span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; y = v.get_modified_membeship(&#39;High&#39; ,[&#39;extremely&#39;])</span>
-<span class="sd">        &gt;&gt;&gt; plt.plot(v.universe, v[&#39;High&#39;], label=&#39;High&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; plt.plot(v.universe, y, label=&#39;extremely High&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; plt.legend()</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.plot(v.universe, v[&#39;High&#39;], label=&#39;High&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.plot(v.universe, y, label=&#39;extremely High&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; _ = plt.legend()</span>
+<span class="sd">        &gt;&gt;&gt; plt.show()</span>
 
 <span class="sd">        .. image:: ./images/hedges.png</span>
 <span class="sd">            :width: 350px</span>

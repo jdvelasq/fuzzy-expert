@@ -9,6 +9,12 @@ ARG INSTALL_NODE="true"
 ARG NODE_VERSION="lts/*"
 RUN if [ "${INSTALL_NODE}" = "true" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
 
+RUN apt-get update \
+    && apt-get -yq --no-install-recommends install  pandoc  make \
+    && apt-get clean \
+    && apt-get autoremove -yq \
+    && rm -rf /var/lib/apt/lists/* 
+
 RUN python3 -m pip install \
     numpy \
     pandas \
@@ -18,9 +24,12 @@ RUN python3 -m pip install \
     scikit-learn \
     progressbar2 \
     sphinx \
+    nbsphinx \
     sphinx-rtd-theme \ 
+    sphinx_copybutton \
     pytest \
-    ipywidgets
+    ipywidgets \
+    pygments 
 
 # RUN python3 -m pip install \
 #    jupyterlab 

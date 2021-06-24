@@ -414,10 +414,10 @@ def defuzzificate(universe, membership, operator="cog") -> dict:
     3.5
 
     >>> defuzzificate(u, m, "lom")
-    4.0
+    4
 
     >>> defuzzificate(u, m, "som")
-    3.0
+    3
 
     """
 

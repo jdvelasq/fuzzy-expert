@@ -77,10 +77,10 @@ class FuzzyVariable:
 
         xp: list[float] = [xp for xp, _ in membership]
         fp: list[float] = [fp for _, fp in membership]
-        self._add_points_to_universe(points=xp)
+        self.add_points_to_universe(points=xp)
         self.terms[term] = np.interp(x=self.universe, xp=xp, fp=fp)
 
-    def _add_points_to_universe(self, points):
+    def add_points_to_universe(self, points):
 
         #
         # Adds new points to the universe
@@ -131,9 +131,10 @@ class FuzzyVariable:
         ...     },
         ... )
         >>> y = v.get_modified_membeship('High' ,['extremely'])
-        >>> plt.plot(v.universe, v['High'], label='High')
-        >>> plt.plot(v.universe, y, label='extremely High')
-        >>> plt.legend()
+        >>> _ = plt.plot(v.universe, v['High'], label='High')
+        >>> _ = plt.plot(v.universe, y, label='extremely High')
+        >>> _ = plt.legend()
+        >>> plt.show()
 
         .. image:: ./images/hedges.png
             :width: 350px

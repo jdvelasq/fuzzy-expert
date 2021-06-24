@@ -158,7 +158,7 @@ class DecompositionalInference:
         fact_value = self.fact_values[fact_name]
         xp = [xp for xp, _ in fact_value]
         fp = [fp for _, fp in fact_value]
-        self.variables[fact_name].add_points_to_universe(xp)
+        self.variables[fact_name]._add_points_to_universe(xp)
         self.fact_values[fact_name] = np.interp(
             x=self.variables[fact_name].universe, xp=xp, fp=fp
         )

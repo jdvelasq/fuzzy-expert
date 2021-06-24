@@ -16,17 +16,28 @@ def test_gaussmf():
     comp_xp = [x for x, _ in result]
     comp_fp = [y for _, y in result]
 
-    expected_xp = [-3.0, -2.0, -1.2, -0.4, 0.4, 1.2, 2.0, 3.0]
+    expected_xp = [
+        -3,
+        -2.0,
+        -1.2,
+        -0.3999999999999999,
+        0.0,
+        0.40000000000000036,
+        1.2000000000000002,
+        2.0,
+        3,
+    ]
     expected_xp = [pytest.approx(u) for u in expected_xp]
     expected_fp = [
-        0.0,
-        0.13533528,
-        0.48675226,
-        0.92311635,
-        0.92311635,
-        0.48675226,
-        0.13533528,
-        0.0,
+        0,
+        0.1353352832366127,
+        0.4867522559599717,
+        0.9231163463866359,
+        1.0,
+        0.9231163463866356,
+        0.48675225595997157,
+        0.1353352832366127,
+        0,
     ]
     expected_fp = [pytest.approx(u) for u in expected_fp]
     assert expected_xp == comp_xp
@@ -128,15 +139,18 @@ def test_sigmf():
     comp_xp = [x for x, _ in result]
     comp_fp = [y for _, y in result]
 
-    expected_xp = [-5.0, -3.0, -1.0, 1.0, 3.0, 5.0]
+    expected_xp = [-6, -5.0, -3.0, -1.0, 0.0, 1.0, 3.0, 5.0, 6]
     expected_xp = [pytest.approx(u) for u in expected_xp]
     expected_fp = [
-        0.00669285,
-        0.04742587,
-        0.26894142,
-        0.73105858,
-        0.95257413,
-        0.99330715,
+        0,
+        0.0066928509242848554,
+        0.04742587317756678,
+        0.2689414213699951,
+        0.5,
+        0.7310585786300049,
+        0.9525741268224334,
+        0.9933071490757153,
+        1,
     ]
     expected_fp = [pytest.approx(u) for u in expected_fp]
 

@@ -104,4 +104,7 @@ def test_loan_decision_problem() -> None:
         credit=(1.5, 1),
     )
 
-    assert result == None
+    assert result == (
+        {"decision": 8.010492631084489, "other_decision": 8.010492631084489},
+        1.0,
+    )

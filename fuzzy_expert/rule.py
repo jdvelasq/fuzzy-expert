@@ -32,7 +32,7 @@ class FuzzyRule:
         decision IS Approve
     CF = 1.00
     Threshold-CF = 0.00
-
+    <BLANKLINE>
     """
 
     def __init__(
