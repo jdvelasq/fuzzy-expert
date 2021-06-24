@@ -3,6 +3,7 @@ Modifiers and operators
 ===============================================================================
 
 """
+from __future__ import annotations
 
 import numpy as np
 import numpy.typing as npt
@@ -17,53 +18,12 @@ from typing import List
 # #############################################################################
 
 
-def extremely(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return np.power(membership, 3)
-
-
-def intensify(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return np.where(
-        membership <= 0.5, np.power(membership, 2), 1 - 2 * np.power(1 - membership, 2)
-    )
-
-
-def more_or_less(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return np.power(membership, 0.5)
-
-
-def norm(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return membership / np.max(membership)
-
-
-def not_(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return 1 - membership
-
-
-def plus(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return np.power(membership, 1.25)
-
-
-def somewhat(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return np.power(membership, 1.0 / 3.0)
-
-
-def very(membership: npt.ArrayLike) -> npt.ArrayLike:
-    return np.power(membership, 2)
-
-
-def slightly(membership: npt.ArrayLike) -> npt.ArrayLike:
-    plus_membership: npt.ArrayLike = np.power(membership, 1.25)
-    not_very_membership: npt.ArrayLike = 1 - np.power(membership, 2)
-    membership: npt.ArrayLike = np.where(
-        membership < not_very_membership, plus_membership, not_very_membership
-    )
-    membership: npt.ArrayLike = membership / np.max(membership)
-    return np.where(membership <= 0.5, membership ** 2, 1 - 2 * (1 - membership) ** 2)
-
-
 def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.ArrayLike:
     """
     Apply a list of modifiers or hedges to an array of memberships.
+
+    :param membership: Membership function to be modified.
+    :param modifiers: List of modifiers or hedges.
 
     """
     if modifiers is None:
@@ -91,6 +51,144 @@ def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.Arra
     return membership
 
 
+def extremely(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u^3, element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import extremely
+    >>> extremely([0, 0.25, 0.5, 0.75, 1])
+    array([0.      , 0.015625, 0.125   , 0.421875, 1.      ])
+
+    """
+    return np.power(membership, 3)
+
+
+def intensify(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u^2 if u <= 0.5 else 1 - 2 * (1 - u)**2, element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import intensify
+    >>> intensify([0, 0.25, 0.5, 0.75, 1])
+    array([0.    , 0.0625, 0.25  , 0.875 , 1.    ])
+
+    """
+    membership = np.array(membership)
+    return np.where(
+        membership <= 0.5,
+        np.power(membership, 2),
+        1 - 2 * np.power(1 - membership, 2),
+    )
+
+
+def more_or_less(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u^(1/2), element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import more_or_less
+    >>> more_or_less([0, 0.25, 0.5, 0.75, 1])
+    array([0.        , 0.5       , 0.70710678, 0.8660254 , 1.        ])
+
+    """
+    return np.power(membership, 0.5)
+
+
+def norm(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u / max(u), element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import norm
+    >>> norm([0, 0.25, 0.5])
+    array([0. , 0.5, 1. ])
+
+    """
+    return membership / np.max(membership)
+
+
+def not_(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = 1 - u, element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import not_
+    >>> not_([0, 0.25, 0.5, 0.75, 1])
+    array([1.  , 0.75, 0.5 , 0.25, 0.  ])
+
+    """
+    return 1 - np.array(membership)
+
+
+def plus(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u^1.25, element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import plus
+    >>> plus([0, 0.25, 0.5, 0.75, 1])
+    array([0.        , 0.1767767 , 0.42044821, 0.69795364, 1.        ])
+
+
+    """
+    return np.power(membership, 1.25)
+
+
+def somewhat(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u^(1/3), element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import somewhat
+    >>> somewhat([0, 0.25, 0.5, 0.75, 1])
+    array([0.        , 0.62996052, 0.79370053, 0.9085603 , 1.        ])
+
+    """
+    return np.power(membership, 1.0 / 3.0)
+
+
+def very(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u^2, element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import very
+    >>> very([0, 0.25, 0.5, 0.75, 1])
+    array([0.    , 0.0625, 0.25  , 0.5625, 1.    ])
+
+    """
+    return np.power(membership, 2)
+
+
+def slightly(membership: npt.ArrayLike) -> npt.ArrayLike:
+    """
+    Returns an array after applying the function fn(u) = u^(1/2), element-wise.
+
+    :param membership: Membership function to be modified.
+
+    >>> from fuzzy_expert.operators import slightly
+    >>> slightly([0, 0.25, 0.5, 0.75, 1])
+    array([0.        , 0.16326531, 0.99696182, 1.        , 0.        ])
+
+    """
+    plus_membership: npt.ArrayLike = np.power(membership, 1.25)
+    not_very_membership: npt.ArrayLike = 1 - np.power(membership, 2)
+    membership: npt.ArrayLike = np.where(
+        membership < not_very_membership, plus_membership, not_very_membership
+    )
+    membership: npt.ArrayLike = membership / np.max(membership)
+    return np.where(membership <= 0.5, membership ** 2, 1 - 2 * (1 - membership) ** 2)
+
+
 # #############################################################################
 #
 #
@@ -102,7 +200,19 @@ def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.Arra
 
 def prob_or(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Probabilistic OR
+    Returns an array after applying the probabilisic OR (also known as the algebraic sum) over the elements of `memberships`.
+
+    :param membership: Membership functions.
+
+    For a list of memberships the function is calculated as:
+
+    .. code-block:: python
+
+       R = memberships[0]
+       for e in memberships[1:]:
+           R = R + e - R * e  # (element-wise)
+
+
 
     """
     result: npt.ArrayLike = memberships[0]
@@ -113,7 +223,18 @@ def prob_or(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def bounded_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Bounded product: max(0, u + v - 1)
+    Returns an array after applying the bounded-product over the elements of `memberships`.
+
+    :param membership: Membership functions.
+
+    For `memberships = [A, B, C, ...]`, the function is calculated as:
+
+    .. code-block:: python
+
+       R = memberships[0]
+       for e in memberships[1:]:
+           R = maximum(0, R + e - 1)  # (element-wise)
+
 
     """
     result: npt.ArrayLike = memberships[0]
@@ -126,9 +247,16 @@ def bounded_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     Bounded sum: min(1, u + v)
 
+
+    >>> from fuzzy_expert.operators import bounded_sum
+    >>> x = [0, 0.25, 0.5, 0.75, 1]
+    >>> bounded_sum([x, x, x])
+    array([0.  , 0.75, 1.  , 1.  , 1.  ])
+
     """
-    result: npt.ArrayLike = memberships[0]
+    result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
+        membership = np.array(membership)
         result: npt.ArrayLike = np.minimum(1, result + membership)
     return result
 
@@ -139,11 +267,20 @@ def drastic_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
                      v if u == 1
                      0 if a,v < 1
 
+    >>> from fuzzy_expert.operators import drastic_prod
+    >>> x = [0, 0.25, 0.5, 0.75, 1]
+    >>> y = [1, 0.75, 0.5, 0.25, 0]
+    >>> drastic_prod([x, y])
+    array([0., 0., 0., 0., 1.])
+
     """
-    result: npt.ArrayLike = memberships[0]
+    result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
+        membership = np.array(membership)
         result: npt.ArrayLike = np.where(
-            membership == 0, result, np.where(result == 1, membership, 0)
+            membership == np.float64(0),
+            result,
+            np.where(result == np.float64(1), membership, 0),
         )
     return result
 
@@ -152,34 +289,71 @@ def drastic_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     Drastic product: u if v == 0
                      v if u == 0
-                     0 if a,v < 1
+                     1 if u,v > 0
+
+    >>> from fuzzy_expert.operators import drastic_sum
+    >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
+    >>> y = [0, 0.75, 0.5, 0.25, 0]
+    >>> drastic_sum([x, y])
+    array([0.1, 1. , 1. , 1. , 0.3])
 
     """
     result: npt.ArrayLike = memberships[0]
     for membership in memberships[1:]:
         result: npt.ArrayLike = np.where(
-            membership == 0, result, np.where(result == 1, membership, 1)
+            membership == np.float64(0),
+            result,
+            np.where(result == np.float64(0), membership, 1),
         )
     return result
 
 
 def product(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
-    result: npt.ArrayLike = memberships[0]
+    """
+
+    >>> from fuzzy_expert.operators import product
+    >>> x = [0, 0.25, 0.5, 0.75, 1]
+    >>> product([x, x, x])
+    array([0.      , 0.015625, 0.125   , 0.421875, 1.      ])
+
+    """
+    result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
+        membership = np.array(membership)
         result: npt.ArrayLike = result * membership
     return result
 
 
 def maximum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
-    result: npt.ArrayLike = memberships[0]
+    """
+
+    >>> from fuzzy_expert.operators import maximum
+    >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
+    >>> y = [0, 0.75, 0.5, 0.25, 0]
+    >>> maximum([x, y])
+    array([0.1 , 0.75, 0.5 , 0.75, 0.3 ])
+
+    """
+    result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
+        membership = np.array(membership)
         result: npt.ArrayLike = np.maximum(result, membership)
     return result
 
 
 def minimum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
-    result: npt.ArrayLike = memberships[0]
+    """
+
+    >>> from fuzzy_expert.operators import minimum
+    >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
+    >>> y = [0, 0.75, 0.5, 0.25, 0]
+    >>> minimum([x, y])
+    array([0.  , 0.25, 0.5 , 0.25, 0.  ])
+
+    """
+    result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
+        membership = np.array(membership)
         result: npt.ArrayLike = np.minimum(result, membership)
     return result
 

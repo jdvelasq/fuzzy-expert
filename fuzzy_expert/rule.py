@@ -4,6 +4,8 @@ Zadeh-Mamdani Rules
 
 """
 
+from __future__ import annotations
+
 
 class FuzzyRule:
     """Creates a Zadeh-Mamdani fuzzy rule.
