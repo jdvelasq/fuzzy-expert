@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>fuzzy_expert.operators &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Library reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>fuzzy_expert.operators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fuzzy_expert.operators</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Modifiers and operators</span>
+<span class="sd">===============================================================================</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="c1"># #############################################################################</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Unary operators</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># #############################################################################</span>
+
+
+<div class="viewcode-block" id="apply_modifiers"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.apply_modifiers">[docs]</a><span class="k">def</span> <span class="nf">apply_modifiers</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply a list of modifiers or hedges to an array of memberships.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+<span class="sd">    :param modifiers: List of modifiers or hedges.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import apply_modifiers</span>
+<span class="sd">    &gt;&gt;&gt; x = [0.0, 0.25, 0.5, 0.75, 1]</span>
+<span class="sd">    &gt;&gt;&gt; apply_modifiers(x, (&#39;not&#39;, &#39;very&#39;))</span>
+<span class="sd">    array([1.    , 0.9375, 0.75  , 0.4375, 0.    ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">modifiers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">membership</span>
+
+    <span class="n">fn</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;EXTREMELY&quot;</span><span class="p">:</span> <span class="n">extremely</span><span class="p">,</span>
+        <span class="s2">&quot;INTENSIFY&quot;</span><span class="p">:</span> <span class="n">intensify</span><span class="p">,</span>
+        <span class="s2">&quot;MORE_OR_LESS&quot;</span><span class="p">:</span> <span class="n">more_or_less</span><span class="p">,</span>
+        <span class="s2">&quot;NORM&quot;</span><span class="p">:</span> <span class="n">norm</span><span class="p">,</span>
+        <span class="s2">&quot;NOT&quot;</span><span class="p">:</span> <span class="n">not_</span><span class="p">,</span>
+        <span class="s2">&quot;PLUS&quot;</span><span class="p">:</span> <span class="n">plus</span><span class="p">,</span>
+        <span class="s2">&quot;SLIGHTLY&quot;</span><span class="p">:</span> <span class="n">slightly</span><span class="p">,</span>
+        <span class="s2">&quot;SOMEWHAT&quot;</span><span class="p">:</span> <span class="n">somewhat</span><span class="p">,</span>
+        <span class="s2">&quot;VERY&quot;</span><span class="p">:</span> <span class="n">very</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">membership</span> <span class="o">=</span> <span class="n">membership</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">modifiers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">modifiers</span><span class="p">)</span>
+    <span class="n">modifiers</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">modifier</span> <span class="ow">in</span> <span class="n">modifiers</span><span class="p">:</span>
+        <span class="n">membership</span> <span class="o">=</span> <span class="n">fn</span><span class="p">[</span><span class="n">modifier</span><span class="o">.</span><span class="n">upper</span><span class="p">()](</span><span class="n">membership</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">membership</span></div>
+
+
+<div class="viewcode-block" id="extremely"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.extremely">[docs]</a><span class="k">def</span> <span class="nf">extremely</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u^3, element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import extremely</span>
+<span class="sd">    &gt;&gt;&gt; extremely([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([0.      , 0.015625, 0.125   , 0.421875, 1.      ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="intensify"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.intensify">[docs]</a><span class="k">def</span> <span class="nf">intensify</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u^2 if u &lt;= 0.5 else 1 - 2 * (1 - u)**2, element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import intensify</span>
+<span class="sd">    &gt;&gt;&gt; intensify([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([0.    , 0.0625, 0.25  , 0.875 , 1.    ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">membership</span> <span class="o">&lt;=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">membership</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="more_or_less"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.more_or_less">[docs]</a><span class="k">def</span> <span class="nf">more_or_less</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u^(1/2), element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import more_or_less</span>
+<span class="sd">    &gt;&gt;&gt; more_or_less([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([0.        , 0.5       , 0.70710678, 0.8660254 , 1.        ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="norm"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.norm">[docs]</a><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u / max(u), element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import norm</span>
+<span class="sd">    &gt;&gt;&gt; norm([0, 0.25, 0.5])</span>
+<span class="sd">    array([0. , 0.5, 1. ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">membership</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="not_"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.not_">[docs]</a><span class="k">def</span> <span class="nf">not_</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = 1 - u, element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import not_</span>
+<span class="sd">    &gt;&gt;&gt; not_([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([1.  , 0.75, 0.5 , 0.25, 0.  ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plus"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.plus">[docs]</a><span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u^1.25, element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import plus</span>
+<span class="sd">    &gt;&gt;&gt; plus([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([0.        , 0.1767767 , 0.42044821, 0.69795364, 1.        ])</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="somewhat"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.somewhat">[docs]</a><span class="k">def</span> <span class="nf">somewhat</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u^(1/3), element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import somewhat</span>
+<span class="sd">    &gt;&gt;&gt; somewhat([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([0.        , 0.62996052, 0.79370053, 0.9085603 , 1.        ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="very"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.very">[docs]</a><span class="k">def</span> <span class="nf">very</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u^2, element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import very</span>
+<span class="sd">    &gt;&gt;&gt; very([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([0.    , 0.0625, 0.25  , 0.5625, 1.    ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="slightly"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.slightly">[docs]</a><span class="k">def</span> <span class="nf">slightly</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the function fn(u) = u^(1/2), element-wise.</span>
+
+<span class="sd">    :param membership: Membership function to be modified.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import slightly</span>
+<span class="sd">    &gt;&gt;&gt; slightly([0, 0.25, 0.5, 0.75, 1])</span>
+<span class="sd">    array([0.        , 0.16326531, 0.99696182, 1.        , 0.        ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plus_membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">)</span>
+    <span class="n">not_very_membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="n">membership</span> <span class="o">&lt;</span> <span class="n">not_very_membership</span><span class="p">,</span> <span class="n">plus_membership</span><span class="p">,</span> <span class="n">not_very_membership</span>
+    <span class="p">)</span>
+    <span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">membership</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">membership</span> <span class="o">&lt;=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">membership</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">membership</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+<span class="c1"># #############################################################################</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Advanced operators</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># #############################################################################</span>
+
+
+<div class="viewcode-block" id="prob_or"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.prob_or">[docs]</a><span class="k">def</span> <span class="nf">prob_or</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an array after applying the probabilisic OR (also known as the algebraic sum) over the elements of `memberships`.</span>
+
+<span class="sd">    :param membership: Membership functions.</span>
+
+<span class="sd">    For a list of memberships the function is calculated as:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">       r = memberships[0]</span>
+<span class="sd">       for e in memberships[1:]:</span>
+<span class="sd">           r = r + e - R * e  # (element-wise)</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import prob_or</span>
+<span class="sd">    &gt;&gt;&gt; x = [0.1, 0.25, 0.5, 0.75, 0.3]</span>
+<span class="sd">    &gt;&gt;&gt; y = [0, 0.75, 0.5, 0.25, 0]</span>
+<span class="sd">    &gt;&gt;&gt; prob_or([x, y])</span>
+<span class="sd">    array([0.1   , 0.8125, 0.75  , 0.8125, 0.3   ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">membership</span> <span class="o">-</span> <span class="n">result</span> <span class="o">*</span> <span class="n">membership</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="bounded_prod"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_prod">[docs]</a><span class="k">def</span> <span class="nf">bounded_prod</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply the function max(0, u + v - 1).</span>
+
+<span class="sd">    :param membership: Membership functions.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import bounded_prod</span>
+<span class="sd">    &gt;&gt;&gt; x = [0.1, 0.25, 0.5, 0.75, 1]</span>
+<span class="sd">    &gt;&gt;&gt; bounded_prod([x, x])</span>
+<span class="sd">    array([0. , 0. , 0. , 0.5, 1. ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">result</span> <span class="o">+</span> <span class="n">membership</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="bounded_sum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_sum">[docs]</a><span class="k">def</span> <span class="nf">bounded_sum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply the function min(1, u + v)</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import bounded_sum</span>
+<span class="sd">    &gt;&gt;&gt; x = [0, 0.25, 0.5, 0.75, 1]</span>
+<span class="sd">    &gt;&gt;&gt; bounded_sum([x, x, x])</span>
+<span class="sd">    array([0.  , 0.75, 1.  , 1.  , 1.  ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">result</span> <span class="o">+</span> <span class="n">membership</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="bounded_diff"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_diff">[docs]</a><span class="k">def</span> <span class="nf">bounded_diff</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply the function max(0, u - v)</span>
+
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import bounded_diff</span>
+<span class="sd">    &gt;&gt;&gt; x = [0, 0.25, 0.5, 0.75, 1]</span>
+<span class="sd">    &gt;&gt;&gt; y = [0, 0.25, 0.5, 0.6, 0.7]</span>
+<span class="sd">    &gt;&gt;&gt; bounded_diff([x, y])</span>
+<span class="sd">    array([0.  , 0.  , 0.  , 0.15, 0.3 ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">result</span> <span class="o">-</span> <span class="n">membership</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="drastic_prod"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.drastic_prod">[docs]</a><span class="k">def</span> <span class="nf">drastic_prod</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Drastic product: u if v == 0</span>
+<span class="sd">                     v if u == 1</span>
+<span class="sd">                     0 if a,v &lt; 1</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import drastic_prod</span>
+<span class="sd">    &gt;&gt;&gt; x = [0, 0.25, 0.5, 0.75, 1]</span>
+<span class="sd">    &gt;&gt;&gt; y = [1, 0.75, 0.5, 0.25, 0]</span>
+<span class="sd">    &gt;&gt;&gt; drastic_prod([x, y])</span>
+<span class="sd">    array([0., 0., 0., 0., 1.])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">membership</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">result</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">membership</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="drastic_sum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.drastic_sum">[docs]</a><span class="k">def</span> <span class="nf">drastic_sum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Drastic product: u if v == 0</span>
+<span class="sd">                     v if u == 0</span>
+<span class="sd">                     1 if u,v &gt; 0</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import drastic_sum</span>
+<span class="sd">    &gt;&gt;&gt; x = [0.1, 0.25, 0.5, 0.75, 0.3]</span>
+<span class="sd">    &gt;&gt;&gt; y = [0, 0.75, 0.5, 0.25, 0]</span>
+<span class="sd">    &gt;&gt;&gt; drastic_sum([x, y])</span>
+<span class="sd">    array([0.1, 1. , 1. , 1. , 0.3])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">membership</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">result</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">membership</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="product"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.product">[docs]</a><span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import product</span>
+<span class="sd">    &gt;&gt;&gt; x = [0, 0.25, 0.5, 0.75, 1]</span>
+<span class="sd">    &gt;&gt;&gt; product([x, x, x])</span>
+<span class="sd">    array([0.      , 0.015625, 0.125   , 0.421875, 1.      ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="n">membership</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="maximum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.maximum">[docs]</a><span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import maximum</span>
+<span class="sd">    &gt;&gt;&gt; x = [0.1, 0.25, 0.5, 0.75, 0.3]</span>
+<span class="sd">    &gt;&gt;&gt; y = [0, 0.75, 0.5, 0.25, 0]</span>
+<span class="sd">    &gt;&gt;&gt; maximum([x, y])</span>
+<span class="sd">    array([0.1 , 0.75, 0.5 , 0.75, 0.3 ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">membership</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="minimum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.minimum">[docs]</a><span class="k">def</span> <span class="nf">minimum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.operators import minimum</span>
+<span class="sd">    &gt;&gt;&gt; x = [0.1, 0.25, 0.5, 0.75, 0.3]</span>
+<span class="sd">    &gt;&gt;&gt; y = [0, 0.75, 0.5, 0.25, 0]</span>
+<span class="sd">    &gt;&gt;&gt; minimum([x, y])</span>
+<span class="sd">    array([0.  , 0.25, 0.5 , 0.25, 0.  ])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">memberships</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">membership</span> <span class="ow">in</span> <span class="n">memberships</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">membership</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">membership</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="defuzzificate"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.defuzzificate">[docs]</a><span class="k">def</span> <span class="nf">defuzzificate</span><span class="p">(</span><span class="n">universe</span><span class="p">,</span> <span class="n">membership</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="s2">&quot;cog&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes a representative crisp value for the fuzzy set.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fuzzyset (string): Fuzzy set to defuzzify</span>
+<span class="sd">        operator (string): {&quot;cog&quot;|&quot;bisection&quot;|&quot;mom&quot;|&quot;lom&quot;|&quot;som&quot;}</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A float value.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">cog</span><span class="p">():</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">universe</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">universe</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">universe</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">membership</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">coa</span><span class="p">():</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">universe</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">universe</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">universe</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">cum_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">area</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">cum_area</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">mom</span><span class="p">():</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">universe</span><span class="p">,</span> <span class="n">membership</span><span class="p">)</span> <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="n">maximum</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">maximum</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">lom</span><span class="p">():</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">universe</span><span class="p">,</span> <span class="n">membership</span><span class="p">)</span> <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="n">maximum</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">maximum</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">som</span><span class="p">():</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span>
+        <span class="n">maximum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">universe</span><span class="p">,</span> <span class="n">membership</span><span class="p">)</span> <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="n">maximum</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">maximum</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">universe</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;cog&quot;</span><span class="p">:</span> <span class="n">cog</span><span class="p">,</span>
+        <span class="s2">&quot;coa&quot;</span><span class="p">:</span> <span class="n">coa</span><span class="p">,</span>
+        <span class="s2">&quot;mom&quot;</span><span class="p">:</span> <span class="n">mom</span><span class="p">,</span>
+        <span class="s2">&quot;lom&quot;</span><span class="p">:</span> <span class="n">lom</span><span class="p">,</span>
+        <span class="s2">&quot;som&quot;</span><span class="p">:</span> <span class="n">som</span><span class="p">,</span>
+    <span class="p">}[</span><span class="n">operator</span><span class="p">]()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

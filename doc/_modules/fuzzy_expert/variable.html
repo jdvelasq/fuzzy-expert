@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>fuzzy_expert.variable &mdash; Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Library reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>fuzzy_expert.variable</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fuzzy_expert.variable</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Fuzzy Variables</span>
+<span class="sd">===============================================================================</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">apply_modifiers</span>
+<span class="kn">from</span> <span class="nn">fuzzy_expert.plots</span> <span class="kn">import</span> <span class="n">plot_crisp_input</span><span class="p">,</span> <span class="n">plot_fuzzy_input</span><span class="p">,</span> <span class="n">plot_fuzzy_variable</span>
+
+
+<div class="viewcode-block" id="FuzzyVariable"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable">[docs]</a><span class="k">class</span> <span class="nc">FuzzyVariable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">universe_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">terms</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">terms</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">terms</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">universe_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">universe_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">terms</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_u</span> <span class="o">=</span> <span class="n">universe_range</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_u</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_u</span><span class="p">)</span> <span class="o">/</span> <span class="n">step</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">universe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_u</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_u</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">membership</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets the membership function values for the specified fuzzy set.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_term_from_tuple</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">,</span> <span class="n">membership</span><span class="o">=</span><span class="n">membership</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_term_from_list</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">,</span> <span class="n">membership</span><span class="o">=</span><span class="n">membership</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FuzzyVariable.set_term_from_tuple"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.set_term_from_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">set_term_from_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">membership</span><span class="p">:</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets the membership of a term when it is specified as a function&quot;&quot;&quot;</span>
+
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_term_from_list</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">,</span> <span class="n">membership</span><span class="o">=</span><span class="n">mf</span><span class="p">(</span><span class="n">membership</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="FuzzyVariable.set_term_from_list"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.set_term_from_list">[docs]</a>    <span class="k">def</span> <span class="nf">set_term_from_list</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">membership</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets the membership of a term when it is specified as a function&quot;&quot;&quot;</span>
+
+        <span class="n">xp</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">xp</span> <span class="k">for</span> <span class="n">xp</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">membership</span><span class="p">]</span>
+        <span class="n">fp</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">fp</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">fp</span> <span class="ow">in</span> <span class="n">membership</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_points_to_universe</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">xp</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">fp</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FuzzyVariable.add_points_to_universe"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.add_points_to_universe">[docs]</a>    <span class="k">def</span> <span class="nf">add_points_to_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Adds new points to the universe</span>
+        <span class="c1">#</span>
+        <span class="n">universe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+        <span class="n">universe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">universe</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_u</span><span class="p">,</span> <span class="n">universe</span><span class="p">)</span>
+        <span class="n">universe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">universe</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_u</span><span class="p">,</span> <span class="n">universe</span><span class="p">)</span>
+        <span class="n">universe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">universe</span><span class="p">)</span>
+        <span class="n">universe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">universe</span><span class="p">)</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Expand existent membership functions with the new points</span>
+        <span class="c1">#</span>
+        <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
+                    <span class="n">x</span><span class="o">=</span><span class="n">universe</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span>
+                <span class="p">)</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Update the universe with the new points</span>
+        <span class="c1">#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">universe</span> <span class="o">=</span> <span class="n">universe</span></div>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the membership function for the specified fuzzy set.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span>
+
+<div class="viewcode-block" id="FuzzyVariable.get_modified_membeship"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.get_modified_membeship">[docs]</a>    <span class="k">def</span> <span class="nf">get_modified_membeship</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the membership modified values for the term.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">membership</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">modifiers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">membership</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">apply_modifiers</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">membership</span></div>
+
+<div class="viewcode-block" id="FuzzyVariable.plot"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plots a fuzzy variable.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">memberships</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">memberships</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">])</span>
+
+        <span class="n">plot_fuzzy_variable</span><span class="p">(</span>
+            <span class="n">universe</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span>
+            <span class="n">memberships</span><span class="o">=</span><span class="n">memberships</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+            <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">fmt</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span>
+            <span class="n">view_xaxis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">view_yaxis</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="FuzzyVariable.plot_input"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.plot_input">[docs]</a>    <span class="k">def</span> <span class="nf">plot_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">fuzzyset</span><span class="p">,</span> <span class="n">view_xaxis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">view_yaxis</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+
+            <span class="n">plot_fuzzy_input</span><span class="p">(</span>
+                <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
+                <span class="n">universe</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span>
+                <span class="n">membership</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">fuzzyset</span><span class="p">],</span>
+                <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">view_xaxis</span><span class="o">=</span><span class="n">view_xaxis</span><span class="p">,</span>
+                <span class="n">view_yaxis</span><span class="o">=</span><span class="n">view_yaxis</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">plot_crisp_input</span><span class="p">(</span>
+                <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
+                <span class="n">universe</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span>
+                <span class="n">membership</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">fuzzyset</span><span class="p">],</span>
+                <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">view_xaxis</span><span class="o">=</span><span class="n">view_xaxis</span><span class="p">,</span>
+                <span class="n">view_yaxis</span><span class="o">=</span><span class="n">view_yaxis</span><span class="p">,</span>
+            <span class="p">)</span></div></div>
+
+
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#   C O D E   T O   R E F A C T O R I N G</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+
+
+<span class="c1"># import numpy as np</span>
+
+<span class="c1"># from fuzzy_expert.mf import gaussmf, gbellmf, pimf, smf, sigmf, trimf, zmf, trapmf</span>
+<span class="c1">#</span>
+<span class="c1"># from fuzzy_expert.operators import get_modified_membership</span>
+
+
+<span class="c1"># # score = FuzzyVariable(</span>
+<span class="c1"># #     name=&quot;score&quot;,</span>
+<span class="c1"># #     n_points=20,</span>
+<span class="c1"># #     universe=(150, 200),</span>
+<span class="c1"># #     terms={</span>
+<span class="c1"># #         &quot;High&quot;: [(175, 0), (180, 0.2), (185, 0.7), (190, 1)],</span>
+<span class="c1"># #         &quot;Low&quot;: [(155, 1), (160, 0.8), (165, 0.5), (170, 0.2), (175, 0)],</span>
+<span class="c1"># #         &quot;test&quot;: (&quot;trimf&quot;, 170, 180, 190),</span>
+<span class="c1"># #     },</span>
+<span class="c1"># # )</span>
+<span class="c1"># # score.plot()</span>
+
+<span class="c1"># #</span>
+<span class="c1"># #</span>
+<span class="c1"># #</span>
+<span class="c1"># #</span>
+
+
+<span class="c1"># # def expand_(self):</span>
+
+<span class="c1"># #     for key, value in self.terms.items():</span>
+<span class="c1"># #         if isinstance(value, tuple):</span>
+<span class="c1"># #             self[key] = self.evaluate_tuple(expression=value)</span>
+
+
+<span class="c1"># # def evaluate_tuple(self, expression):</span>
+
+<span class="c1"># #     fn, *params = expression</span>
+
+<span class="c1"># #     if fn == &quot;gaussmf&quot;:</span>
+<span class="c1"># #         return gaussmf(center=params[0], sigma=params[1])</span>
+
+<span class="c1"># #     if fn == &quot;gbellmf&quot;:</span>
+<span class="c1"># #         return gbellmf(center=params[0], sigma=params[1], b=params[2])</span>
+
+<span class="c1"># #     if fn == &quot;pimf&quot;:</span>
+<span class="c1"># #         return pimf(a=params[0], b=params[1], c=params[2], d=params[3])</span>
+
+<span class="c1"># #     if fn == &quot;sigmf&quot;:</span>
+<span class="c1"># #         return sigmf(center=params[0], alpha=params[1])</span>
+
+<span class="c1"># #     if fn == &quot;smf&quot;:</span>
+<span class="c1"># #         return smf(a=params[0], b=params[1])</span>
+
+<span class="c1"># #     if fn == &quot;trapmf&quot;:</span>
+<span class="c1"># #         return trapmf(a=params[0], b=params[1], c=params[2], d=params[3])</span>
+
+<span class="c1"># #     if fn == &quot;trimf&quot;:</span>
+<span class="c1"># #         return trimf(a=params[0], b=params[1], c=params[2])</span>
+
+<span class="c1"># #     if fn == &quot;zmf&quot;:</span>
+<span class="c1"># #         return zmf(a=params[0], b=params[1])</span>
+
+<span class="c1"># # def evaluate_membeships(self):</span>
+<span class="c1"># #     &quot;&quot;&quot;Transforms fuzzysets specified using membership functions to tuples&quot;&quot;&quot;</span>
+
+<span class="c1"># #     for key, value in self.terms.items():</span>
+<span class="c1"># #         if isinstance(value, tuple):</span>
+<span class="c1"># #             self[key] = self.evaluate_tuple(expression=value)</span>
+
+
+<span class="c1"># # def __getitem__(self, term):</span>
+<span class="c1"># #     &quot;&quot;&quot;Returns the membership function for the specified fuzzy set.</span>
+
+<span class="c1"># #     Args:</span>
+<span class="c1"># #         term (string): primary term</span>
+
+<span class="c1"># #     Returns:</span>
+<span class="c1"># #         A numpy array.</span>
+
+<span class="c1"># #     &quot;&quot;&quot;</span>
+<span class="c1"># #     return self.terms[term]</span>
+
+<span class="c1"># # def __setitem__(self, term, membership):</span>
+<span class="c1"># #     &quot;&quot;&quot;Sets the membership function values for the specified fuzzy set.</span>
+
+<span class="c1"># #     Args:</span>
+<span class="c1"># #         term (string): Fuzzy set name.</span>
+<span class="c1"># #         memberships (list, numpy.array): membership values.</span>
+
+<span class="c1"># #     &quot;&quot;&quot;</span>
+<span class="c1"># #     self.terms[term] = membership</span>
+
+<span class="c1"># # def fuzzificate(self, value, term, modifiers):</span>
+<span class="c1"># #     &quot;&quot;&quot;Computes the value of the membership function on a specifyied point of the universe for the fuzzy set.</span>
+
+<span class="c1"># #     Args:</span>
+<span class="c1"># #         value (float, numpy.array): point to evaluate the value of the membership function.</span>
+<span class="c1"># #         term (string): name of the fuzzy set.</span>
+<span class="c1"># #         modifiers (string): membership function modifier.</span>
+
+
+<span class="c1"># #     Returns:</span>
+<span class="c1"># #         A float number or numpy.array.</span>
+<span class="c1"># #     &quot;&quot;&quot;</span>
+
+<span class="c1"># #     membership = self.terms[term]</span>
+<span class="c1"># #     membership = apply_modifiers(membership=membership, modifiers=modifiers)</span>
+
+<span class="c1"># #     xp = [xp for xp, _ in membership]</span>
+<span class="c1"># #     fp = [fp for _, fp in membership]</span>
+
+<span class="c1"># #     return np.interp(</span>
+<span class="c1"># #         x=value,</span>
+<span class="c1"># #         xp=xp,</span>
+<span class="c1"># #         fp=fp,</span>
+<span class="c1"># #     )</span>
+
+<span class="c1"># # def plot(self, fmt=&quot;-&quot;, linewidth=2, num=100):</span>
+<span class="c1"># #     &quot;&quot;&quot;Plots the fuzzy sets defined for the variable.</span>
+
+<span class="c1"># #     Args:</span>
+<span class="c1"># #         figsize (tuple): figure size.</span>
+
+<span class="c1"># #     &quot;&quot;&quot;</span>
+<span class="c1"># #     memberships = []</span>
+<span class="c1"># #     universe = np.linspace(start=self.universe[0], stop=self.universe[1], num=num)</span>
+
+<span class="c1"># #     for term in self.terms.keys():</span>
+<span class="c1"># #         memberships.append(self.fuzzificate(universe, term, None))</span>
+
+<span class="c1"># #     plot_fuzzyvariable(</span>
+<span class="c1"># #         universe=universe,</span>
+<span class="c1"># #         memberships=memberships,</span>
+<span class="c1"># #         labels=list(self.terms.keys()),</span>
+<span class="c1"># #         title=self.name,</span>
+<span class="c1"># #         fmt=fmt,</span>
+<span class="c1"># #         linewidth=linewidth,</span>
+<span class="c1"># #         view_xaxis=True,</span>
+<span class="c1"># #         view_yaxis=True,</span>
+<span class="c1"># #     )</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -25,6 +25,11 @@ def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.Arra
     :param membership: Membership function to be modified.
     :param modifiers: List of modifiers or hedges.
 
+    >>> from fuzzy_expert.operators import apply_modifiers
+    >>> x = [0.0, 0.25, 0.5, 0.75, 1]
+    >>> apply_modifiers(x, ('not', 'very'))
+    array([1.    , 0.9375, 0.75  , 0.4375, 0.    ])
+
     """
     if modifiers is None:
         return membership
@@ -208,45 +213,46 @@ def prob_or(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
     .. code-block:: python
 
-       R = memberships[0]
+       r = memberships[0]
        for e in memberships[1:]:
-           R = R + e - R * e  # (element-wise)
+           r = r + e - R * e  # (element-wise)
 
-
+    >>> from fuzzy_expert.operators import prob_or
+    >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
+    >>> y = [0, 0.75, 0.5, 0.25, 0]
+    >>> prob_or([x, y])
+    array([0.1   , 0.8125, 0.75  , 0.8125, 0.3   ])
 
     """
-    result: npt.ArrayLike = memberships[0]
+    result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
+        membership = np.array(membership)
         result: npt.ArrayLike = result + membership - result * membership
-    return np.maximum(1, np.minimum(1, result))
+    return np.maximum(0, np.minimum(1, result))
 
 
 def bounded_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Returns an array after applying the bounded-product over the elements of `memberships`.
+    Apply the function max(0, u + v - 1).
 
     :param membership: Membership functions.
 
-    For `memberships = [A, B, C, ...]`, the function is calculated as:
-
-    .. code-block:: python
-
-       R = memberships[0]
-       for e in memberships[1:]:
-           R = maximum(0, R + e - 1)  # (element-wise)
-
+    >>> from fuzzy_expert.operators import bounded_prod
+    >>> x = [0.1, 0.25, 0.5, 0.75, 1]
+    >>> bounded_prod([x, x])
+    array([0. , 0. , 0. , 0.5, 1. ])
 
     """
-    result: npt.ArrayLike = memberships[0]
+    result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
+        membership: npt.ArrayLike = np.array(membership)
         result: npt.ArrayLike = np.maximum(0, result + membership - 1)
     return result
 
 
 def bounded_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Bounded sum: min(1, u + v)
-
+    Apply the function min(1, u + v)
 
     >>> from fuzzy_expert.operators import bounded_sum
     >>> x = [0, 0.25, 0.5, 0.75, 1]
@@ -256,8 +262,27 @@ def bounded_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
     result: npt.ArrayLike = np.array(memberships[0])
     for membership in memberships[1:]:
-        membership = np.array(membership)
+        membership: npt.ArrayLike = np.array(membership)
         result: npt.ArrayLike = np.minimum(1, result + membership)
+    return result
+
+
+def bounded_diff(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
+    """
+    Apply the function max(0, u - v)
+
+
+    >>> from fuzzy_expert.operators import bounded_diff
+    >>> x = [0, 0.25, 0.5, 0.75, 1]
+    >>> y = [0, 0.25, 0.5, 0.6, 0.7]
+    >>> bounded_diff([x, y])
+    array([0.  , 0.  , 0.  , 0.15, 0.3 ])
+
+    """
+    result: npt.ArrayLike = np.array(memberships[0])
+    for membership in memberships[1:]:
+        membership = np.array(membership)
+        result: npt.ArrayLike = np.maximum(0, result - membership)
     return result
 
 
