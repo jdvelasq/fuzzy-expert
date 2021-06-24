@@ -3,12 +3,15 @@ Fuzzy Variables
 ===============================================================================
 
 """
-import numpy as np
-from typing import List, Union
-from fuzzy_expert.mf import MembershipFunction
+from __future__ import annotations
 
+from typing import List, Union
+
+import numpy as np
+
+from fuzzy_expert.mf import MembershipFunction
 from fuzzy_expert.operators import apply_modifiers
-from fuzzy_expert.plots import plot_fuzzy_variable, plot_fuzzy_input, plot_crisp_input
+from fuzzy_expert.plots import plot_crisp_input, plot_fuzzy_input, plot_fuzzy_variable
 
 
 class FuzzyVariable:
