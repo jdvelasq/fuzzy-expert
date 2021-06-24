@@ -35,9 +35,11 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
-    # "nbsphinx",
+    "nbsphinx",
     "sphinx.ext.imgmath",
 ]
+
+autodoc_typehints = "description"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -53,7 +55,9 @@ source_suffix = [".rst", ".md"]
 master_doc = "index"
 
 # General information about the project.
-project = "Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python"
+project = (
+    "Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python"
+)
 copyright = "2021, Juan D. Velasquez"
 author = "Juan D. Velasquez"
 
@@ -228,7 +232,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "biblio.tex", "Fuzzy-Toolbox Documentation", "Author", "manual"),
+    (master_doc, "biblio.tex", "Fuzzy-Expert Documentation", "Author", "manual"),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -256,7 +260,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "Fuzzy-Toolbox", "Fuzzy-Toolbox Documentation", [author], 1)]
+man_pages = [(master_doc, "Fuzzy-Expert", "Fuzzy-Expert Documentation", [author], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -270,11 +274,11 @@ man_pages = [(master_doc, "Fuzzy-Toolbox", "Fuzzy-Toolbox Documentation", [autho
 texinfo_documents = [
     (
         master_doc,
-        "Fuzzy-Toolbox",
-        "Fuzzy-Toolbox Documentation",
+        "Fuzzy-Expert",
+        "Fuzzy-Expert Documentation",
         author,
-        "Fuzzy-Toolbox",
-        "A Package for building fuzzy inference systems in Python",
+        "Fuzzy-Expert",
+        "A Package for building Mamdani fuzzy inference systems in Python",
         "Miscellaneous",
     ),
 ]
