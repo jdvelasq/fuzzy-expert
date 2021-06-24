@@ -198,16 +198,23 @@
 </style>
 <span class="target" id="module-fuzzy_expert.mf"></span><div class="section" id="membership-functions">
 <h1>Membership Functions<a class="headerlink" href="#membership-functions" title="Permalink to this headline">¶</a></h1>
-<p>Functions to compute fuzzy membership values for numpy.arrays.</p>
+<p>Functions in this module returns a standard membership function specificaion as a list of points (x_i, u_i).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.mf.</span></span><span class="sig-name descname"><span class="pre">MembershipFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Membership function constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>n_points</strong> (<em>int</em>) – </p>
+<dd class="field-odd"><p><strong>n_points</strong> (<em>int</em>) – Number base point for building the approximations.</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="p">((</span><span class="s1">&#39;gaussmf&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="go">[(2, 0), (3.0, 0.1353352832366127), (3.8, 0.48675225595997157), (4.6, 0.9231163463866356), (5.0, 1.0), (5.4, 0.9231163463866356), (6.2, 0.48675225595997157), (7.0, 0.1353352832366127), (8, 0)]</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.gaussmf">
 <span class="sig-name descname"><span class="pre">gaussmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.gaussmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.gaussmf" title="Permalink to this definition">¶</a></dt>
@@ -215,14 +222,20 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>center</strong> (<em>float</em>) – </p></li>
-<li><p><strong>sigma</strong> (<em>float</em>) – </p></li>
+<li><p><strong>center</strong> (<em>float</em>) – Defines the center of the membership function.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Defines the width of the membership function, where a larger value creates a wider membership function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">gaussmf</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">[(2, 0), (3.0, 0.1353352832366127), (3.8, 0.48675225595997157), (4.6, 0.9231163463866356), (5.0, 1.0), (5.4, 0.9231163463866356), (6.2, 0.48675225595997157), (7.0, 0.1353352832366127), (8, 0)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -232,15 +245,21 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>center</strong> (<em>float</em>) – </p></li>
-<li><p><strong>width</strong> (<em>float</em>) – </p></li>
-<li><p><strong>shape</strong> (<em>float</em>) – </p></li>
+<li><p><strong>center</strong> (<em>float</em>) – Defines the center of the membership function.</p></li>
+<li><p><strong>width</strong> (<em>float</em>) – Defines the width of the membership function, where a larger value creates a wider membership function.</p></li>
+<li><p><strong>shape</strong> (<em>float</em>) – Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">gbellmf</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="go">[(-1, 0), (0.0, 0.16666666666666666), (1.0, 0.2), (2.0, 0.25), (3.0, 0.3333333333333333), (3.8, 0.45454545454545453), (4.0, 0.5), (4.6, 0.7142857142857141), (5.0, 1.0), (5.4, 0.7142857142857141), (6.0, 0.5), (6.2, 0.45454545454545453), (7.0, 0.3333333333333333), (8.0, 0.25), (9.0, 0.2), (10.0, 0.16666666666666666), (11, 0)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -250,16 +269,22 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>left_feet</strong> (<em>float</em>) – </p></li>
-<li><p><strong>left_peak</strong> (<em>float</em>) – </p></li>
-<li><p><strong>right_peak</strong> (<em>float</em>) – </p></li>
-<li><p><strong>right_feet</strong> (<em>float</em>) – </p></li>
+<li><p><strong>left_feet</strong> (<em>float</em>) – Defines the left feet of the membership function.</p></li>
+<li><p><strong>left_peak</strong> (<em>float</em>) – Defines the left peak of the membership function.</p></li>
+<li><p><strong>right_peak</strong> (<em>float</em>) – Defines the right peak of the membership function.</p></li>
+<li><p><strong>right_feet</strong> (<em>float</em>) – Defines the right feet of the membership function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">pimf</span><span class="p">(</span><span class="n">left_feet</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_peak</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">right_peak</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">right_feet</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">[(1.0, 0.0), (1.3333333333333333, 0.22222222222222213), (1.6666666666666665, 0.7777777777777776), (2.0, 1.0), (3.0, 1.0), (3.3333333333333335, 0.7777777777777776), (3.6666666666666665, 0.22222222222222243), (4.0, 0.0)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -269,14 +294,20 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>center</strong> (<em>float</em>) – </p></li>
-<li><p><strong>width</strong> (<em>float</em>) – </p></li>
+<li><p><strong>center</strong> (<em>float</em>) – Defines the center of the membership function.</p></li>
+<li><p><strong>width</strong> (<em>float</em>) – Defines the width of the membership function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">sigmf</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">[(-1, 0), (0.0, 0.0066928509242848554), (2.0, 0.04742587317756678), (4.0, 0.2689414213699951), (5.0, 0.5), (6.0, 0.7310585786300049), (8.0, 0.9525741268224334), (10.0, 0.9933071490757153), (11, 1)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -286,14 +317,20 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>foot</strong> (<em>float</em>) – </p></li>
-<li><p><strong>shoulder</strong> (<em>float</em>) – </p></li>
+<li><p><strong>foot</strong> (<em>float</em>) – Defines the foot of the membership function.</p></li>
+<li><p><strong>shoulder</strong> (<em>float</em>) – Defines the shoulder of the membership function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">smf</span><span class="p">(</span><span class="n">foot</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shoulder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[(1.0, 0.0), (1.3333333333333333, 0.22222222222222213), (1.6666666666666665, 0.7777777777777776), (2.0, 1.0)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -303,16 +340,22 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>left_feet</strong> (<em>float</em>) – </p></li>
-<li><p><strong>left_peak</strong> (<em>float</em>) – </p></li>
-<li><p><strong>right_peak</strong> (<em>float</em>) – </p></li>
-<li><p><strong>right_feet</strong> (<em>float</em>) – </p></li>
+<li><p><strong>left_feet</strong> (<em>float</em>) – Defines the left feet of the membership function.</p></li>
+<li><p><strong>left_peak</strong> (<em>float</em>) – Defines the left peak of the membership function.</p></li>
+<li><p><strong>right_peak</strong> (<em>float</em>) – Defines the right peak of the membership function.</p></li>
+<li><p><strong>right_feet</strong> (<em>float</em>) – Defines the right feet of the membership function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">trapmf</span><span class="p">(</span><span class="n">left_feet</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_peak</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">right_peak</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">right_feet</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">[(1.0, 0.0), (2.0, 1.0), (3.0, 1.0), (4.0, 0.0)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -322,32 +365,44 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>left_feet</strong> (<em>float</em>) – </p></li>
-<li><p><strong>peak</strong> (<em>float</em>) – </p></li>
-<li><p><strong>right_feet</strong> (<em>float</em>) – </p></li>
+<li><p><strong>left_feet</strong> (<em>float</em>) – Defines the left feet of the membership function.</p></li>
+<li><p><strong>peak</strong> (<em>float</em>) – Defines the peak of the membership function.</p></li>
+<li><p><strong>right_feet</strong> (<em>float</em>) – Defines the right feet of the membership function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">trimf</span><span class="p">(</span><span class="n">left_feet</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">peak</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">right_feet</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">[(1.0, 0.0), (2.0, 1.0), (4.0, 0.0)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.zmf">
-<span class="sig-name descname"><span class="pre">zmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.zmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.zmf" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">zmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shoulder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.zmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.zmf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Z-shaped membership function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<em>float</em>) – </p></li>
-<li><p><strong>b</strong> (<em>float</em>) – </p></li>
+<li><p><strong>shoulder</strong> (<em>float</em>) – Defines the shoulder of the membership function.</p></li>
+<li><p><strong>feet</strong> (<em>float</em>) – Defines the feet of the membership function.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span> <span class="o">=</span> <span class="n">MembershipFunction</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mf</span><span class="o">.</span><span class="n">zmf</span><span class="p">(</span><span class="n">shoulder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">feet</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[(1.0, 1.0), (1.3333333333333333, 0.7777777777777779), (1.6666666666666665, 0.22222222222222243), (2.0, 0.0)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>

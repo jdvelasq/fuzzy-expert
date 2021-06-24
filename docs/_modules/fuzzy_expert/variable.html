@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.variable &mdash; Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>fuzzy_expert.variable &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python
+            <a href="../../index.html" class="icon icon-home"> Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python
           
 
           
@@ -109,7 +109,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python</a>
+          <a href="../../index.html">Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python</a>
         
       </nav>
 
@@ -220,7 +220,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_points_to_universe</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">xp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">fp</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="FuzzyVariable.add_points_to_universe"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.add_points_to_universe">[docs]</a>    <span class="k">def</span> <span class="nf">add_points_to_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add_points_to_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
 
         <span class="c1">#</span>
         <span class="c1"># Adds new points to the universe</span>
@@ -244,7 +244,7 @@
         <span class="c1">#</span>
         <span class="c1"># Update the universe with the new points</span>
         <span class="c1">#</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">universe</span> <span class="o">=</span> <span class="n">universe</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">universe</span> <span class="o">=</span> <span class="n">universe</span>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.mf &mdash; Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>fuzzy_expert.mf &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python
+            <a href="../../index.html" class="icon icon-home"> Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python
           
 
           
@@ -109,7 +109,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python</a>
+          <a href="../../index.html">Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python</a>
         
       </nav>
 
@@ -164,7 +164,7 @@
 <span class="sd">Membership Functions</span>
 <span class="sd">==============================================================================</span>
 
-<span class="sd">Functions to compute fuzzy membership values for numpy.arrays.</span>
+<span class="sd">Functions in this module returns a standard membership function specificaion as a list of points (x_i, u_i).</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
@@ -176,11 +176,31 @@
 
 
 <div class="viewcode-block" id="MembershipFunction"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction">[docs]</a><span class="k">class</span> <span class="nc">MembershipFunction</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Membership function constructor.</span>
+
+<span class="sd">    :param n_points: Number base point for building the approximations.</span>
+
+<span class="sd">    &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">    &gt;&gt;&gt; mf = MembershipFunction(n_points=3)</span>
+<span class="sd">    &gt;&gt;&gt; mf((&#39;gaussmf&#39;, 5, 1))</span>
+<span class="sd">    [(2, 0), (3.0, 0.1353352832366127), (3.8, 0.48675225595997157), (4.6, 0.9231163463866356), (5.0, 1.0), (5.4, 0.9231163463866356), (6.2, 0.48675225595997157), (7.0, 0.1353352832366127), (8, 0)]</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">n_points</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mfspec</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates a list of poinnts representing the membership function.</span>
 
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=3)</span>
+<span class="sd">        &gt;&gt;&gt; mf((&#39;gaussmf&#39;, 5, 1))</span>
+<span class="sd">        [(2, 0), (3.0, 0.1353352832366127), (3.8, 0.48675225595997157), (4.6, 0.9231163463866356), (5.0, 1.0), (5.4, 0.9231163463866356), (6.2, 0.48675225595997157), (7.0, 0.1353352832366127), (8, 0)]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">params</span> <span class="o">=</span> <span class="n">mfspec</span>
 
         <span class="n">fn</span> <span class="o">=</span> <span class="p">{</span>
@@ -197,14 +217,25 @@
         <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MembershipFunction.gaussmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.gaussmf">[docs]</a>    <span class="k">def</span> <span class="nf">gaussmf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gaussian membership function.</span>
+        <span class="sd">&quot;&quot;&quot;Gaussian membership function.</span>
+
+<span class="sd">        :param center: Defines the center of the membership function.</span>
+<span class="sd">        :param sigma: Defines the width of the membership function, where a larger value creates a wider membership function.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=3)</span>
+<span class="sd">        &gt;&gt;&gt; mf.gaussmf(center=5, sigma=1)</span>
+<span class="sd">        [(2, 0), (3.0, 0.1353352832366127), (3.8, 0.48675225595997157), (4.6, 0.9231163463866356), (5.0, 1.0), (5.4, 0.9231163463866356), (6.2, 0.48675225595997157), (7.0, 0.1353352832366127), (8, 0)]</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">xp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
             <span class="n">start</span><span class="o">=</span><span class="n">center</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span>
             <span class="n">stop</span><span class="o">=</span><span class="n">center</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span>
             <span class="n">num</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
+        <span class="n">xp</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="n">fp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">xp</span> <span class="o">-</span> <span class="n">center</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">))</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="p">[(</span><span class="n">center</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
@@ -213,10 +244,21 @@
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="MembershipFunction.gbellmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.gbellmf">[docs]</a>    <span class="k">def</span> <span class="nf">gbellmf</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">shape</span><span class="p">:</span> <span class="nb">float</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">shape</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generalized bell-shaped membership function.</span>
+        <span class="sd">&quot;&quot;&quot;Generalized bell-shaped membership function.</span>
+
+<span class="sd">        :param center: Defines the center of the membership function.</span>
+<span class="sd">        :param width: Defines the width of the membership function, where a larger value creates a wider membership function.</span>
+<span class="sd">        :param shape: Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=3)</span>
+<span class="sd">        &gt;&gt;&gt; mf.gbellmf(center=5, width=1, shape=0.5)</span>
+<span class="sd">        [(-1, 0), (0.0, 0.16666666666666666), (1.0, 0.2), (2.0, 0.25), (3.0, 0.3333333333333333), (3.8, 0.45454545454545453), (4.0, 0.5), (4.6, 0.7142857142857141), (5.0, 1.0), (5.4, 0.7142857142857141), (6.0, 0.5), (6.2, 0.45454545454545453), (7.0, 0.3333333333333333), (8.0, 0.25), (9.0, 0.2), (10.0, 0.16666666666666666), (11, 0)]</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">xp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
@@ -240,12 +282,21 @@
         <span class="n">right_peak</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">right_feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Pi-shaped membership function.</span>
+        <span class="sd">&quot;&quot;&quot;Pi-shaped membership function.</span>
+
+<span class="sd">        :param left_feet: Defines the left feet of the membership function.</span>
+<span class="sd">        :param left_peak: Defines the left peak of the membership function.</span>
+<span class="sd">        :param right_peak: Defines the right peak of the membership function.</span>
+<span class="sd">        :param right_feet: Defines the right feet of the membership function.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
+<span class="sd">        &gt;&gt;&gt; mf.pimf(left_feet=1, left_peak=2, right_peak=3, right_feet=4)</span>
+<span class="sd">        [(1.0, 0.0), (1.3333333333333333, 0.22222222222222213), (1.6666666666666665, 0.7777777777777776), (2.0, 1.0), (3.0, 1.0), (3.3333333333333335, 0.7777777777777776), (3.6666666666666665, 0.22222222222222243), (4.0, 0.0)]</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">smf</span><span class="p">(</span><span class="n">foot</span><span class="o">=</span><span class="n">left_feet</span><span class="p">,</span> <span class="n">shoulder</span><span class="o">=</span><span class="n">left_peak</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">zmf</span><span class="p">(</span>
-            <span class="n">a</span><span class="o">=</span><span class="n">right_peak</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">right_feet</span>
+            <span class="n">shoulder</span><span class="o">=</span><span class="n">right_peak</span><span class="p">,</span> <span class="n">feet</span><span class="o">=</span><span class="n">right_feet</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="MembershipFunction.sigmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.sigmf">[docs]</a>    <span class="k">def</span> <span class="nf">sigmf</span><span class="p">(</span>
@@ -253,23 +304,44 @@
         <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Sigmoidal membership function.</span>
+        <span class="sd">&quot;&quot;&quot;Sigmoidal membership function.</span>
+
+<span class="sd">        :param center: Defines the center of the membership function.</span>
+<span class="sd">        :param width: Defines the width of the membership function.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=3)</span>
+<span class="sd">        &gt;&gt;&gt; mf.sigmf(center=5, width=1)</span>
+<span class="sd">        [(-1, 0), (0.0, 0.0066928509242848554), (2.0, 0.04742587317756678), (4.0, 0.2689414213699951), (5.0, 0.5), (6.0, 0.7310585786300049), (8.0, 0.9525741268224334), (10.0, 0.9933071490757153), (11, 1)]</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">xp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
             <span class="n">start</span><span class="o">=</span><span class="n">center</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">center</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_points</span>
         <span class="p">)</span>
+        <span class="n">xp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
+        <span class="n">xp</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="n">fp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">xp</span> <span class="o">-</span> <span class="n">center</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="p">)]</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">[(</span><span class="n">center</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+            <span class="o">+</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="p">)]</span>
+            <span class="o">+</span> <span class="p">[(</span><span class="n">center</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="MembershipFunction.smf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.smf">[docs]</a>    <span class="k">def</span> <span class="nf">smf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">foot</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">shoulder</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        S-shaped membership function.</span>
+        <span class="sd">&quot;&quot;&quot;S-shaped membership function.</span>
+
+<span class="sd">        :param foot: Defines the foot of the membership function.</span>
+<span class="sd">        :param shoulder: Defines the shoulder of the membership function.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
+<span class="sd">        &gt;&gt;&gt; mf.smf(foot=1, shoulder=2)</span>
+<span class="sd">        [(1.0, 0.0), (1.3333333333333333, 0.22222222222222213), (1.6666666666666665, 0.7777777777777776), (2.0, 1.0)]</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">xp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">foot</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">shoulder</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">)</span>
@@ -295,8 +367,18 @@
         <span class="n">right_peak</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">right_feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Trapezoidal membership function.</span>
+        <span class="sd">&quot;&quot;&quot;Trapezoidal membership function.</span>
+
+<span class="sd">        :param left_feet: Defines the left feet of the membership function.</span>
+<span class="sd">        :param left_peak: Defines the left peak of the membership function.</span>
+<span class="sd">        :param right_peak: Defines the right peak of the membership function.</span>
+<span class="sd">        :param right_feet: Defines the right feet of the membership function.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
+<span class="sd">        &gt;&gt;&gt; mf.trapmf(left_feet=1, left_peak=2, right_peak=3, right_feet=4)</span>
+<span class="sd">        [(1.0, 0.0), (2.0, 1.0), (3.0, 1.0), (4.0, 0.0)]</span>
+
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">left_feet</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
@@ -331,8 +413,16 @@
         <span class="n">peak</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">right_feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Triangular membership function.</span>
+        <span class="sd">&quot;&quot;&quot;Triangular membership function.</span>
+
+<span class="sd">        :param left_feet: Defines the left feet of the membership function.</span>
+<span class="sd">        :param peak: Defines the peak of the membership function.</span>
+<span class="sd">        :param right_feet: Defines the right feet of the membership function.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
+<span class="sd">        &gt;&gt;&gt; mf.trimf(left_feet=1, peak=2, right_feet=4)</span>
+<span class="sd">        [(1.0, 0.0), (2.0, 1.0), (4.0, 0.0)]</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">left_feet</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">left_feet</span> <span class="o">==</span> <span class="n">peak</span><span class="p">,</span> <span class="n">left_feet</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="n">left_feet</span><span class="p">)</span>
@@ -353,21 +443,28 @@
 
 <div class="viewcode-block" id="MembershipFunction.zmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.zmf">[docs]</a>    <span class="k">def</span> <span class="nf">zmf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-        <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">shoulder</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Z-shaped membership function.</span>
+        <span class="sd">&quot;&quot;&quot;Z-shaped membership function.</span>
+
+<span class="sd">        :param shoulder: Defines the shoulder of the membership function.</span>
+<span class="sd">        :param feet: Defines the feet of the membership function.</span>
+
+<span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
+<span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
+<span class="sd">        &gt;&gt;&gt; mf.zmf(shoulder=1, feet=2)</span>
+<span class="sd">        [(1.0, 1.0), (1.3333333333333333, 0.7777777777777779), (1.6666666666666665, 0.22222222222222243), (2.0, 0.0)]</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">xp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">)</span>
+        <span class="n">xp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">shoulder</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">feet</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_points</span><span class="p">)</span>
         <span class="n">fp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-            <span class="n">xp</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">,</span>
+            <span class="n">xp</span> <span class="o">&lt;=</span> <span class="n">shoulder</span><span class="p">,</span>
             <span class="mi">1</span><span class="p">,</span>
             <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-                <span class="n">xp</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="n">xp</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xp</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="n">xp</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                <span class="n">xp</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">shoulder</span> <span class="o">+</span> <span class="n">feet</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="n">xp</span> <span class="o">-</span> <span class="n">shoulder</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">feet</span> <span class="o">-</span> <span class="n">shoulder</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xp</span> <span class="o">&lt;=</span> <span class="n">feet</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">((</span><span class="n">xp</span> <span class="o">-</span> <span class="n">feet</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">feet</span> <span class="o">-</span> <span class="n">shoulder</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="p">)]</span></div></div>
