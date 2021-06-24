@@ -1,11 +1,14 @@
-# Installation
+Installation
+===============================================================================
 
-## Requeriments
+Requeriments
+-------------------------------------------------------------------------------
 
 **Fuzzy-Expert** was developed in Python 3.9, and requires `Numpy` version 1.20 or higher. 
 
 
-## How to install 
+How to install 
+-------------------------------------------------------------------------------
 
 The current stable version can be installed from the command line using:
 
@@ -15,7 +18,7 @@ The current stable version can be installed from the command line using:
 
 
 The current development version can be installed by clonning the GitHub repo 
-`<https://github.com/jdvelasq/fuzzy_expert>`_ and executing 
+`<https://github.com/jdvelasq/fuzzy-expert>`_ and executing 
 
 .. code:: bash
 

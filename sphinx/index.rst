@@ -1,94 +1,62 @@
-# Fuzzy-Toolbox: Fuzzy Inference Systems in Python
+Fuzzy-Expert: Mamdani Fuzzy Inference Systems in Python
+===============================================================================
 
-*Fuzzy-Toolbox* is a package for building fuzzy inference systems in Python, including:
+| Prof. Juan David Velásquez-Henao, MSc, PhD
+| Universidad Nacional de Colombia, Sede Medellín.
+| jdvelasq@unal.edu.co
 
-* Mamdani inferece systems.
+What is it?
+------------------------------------------------------------------------------------
 
-* Sugeno models. 
-
-
-Getting Started
----------------------------------------------------------
-
-The current stable version can be installed from the command line using:
-
-.. code:: bash
-
-    $ pip install fuzzy_toolbox
+**Fuzzy-Expert** is a Python package for building Mamdani Fuzzy Inference Systems. **Fuzzy-Expert** admits a mix of fuzzy and crisp values and associated certainty values. The inference system returns crisp values and certainty factors for the conclusions of the rules.
 
 
-The current development version can be installed by clonning the GitHub repo 
-`<https://github.com/jdvelasq/fuzzy_toolbox>`_ and executing 
+Main Features
+------------------------------------------------------------------------------------
 
-.. code:: bash
+* Specification of membership functions using standard functions or as a list of points.
 
-    $ python3 setup.py install develop
 
-at the command prompt.
+* Different functions for specifying T-norms and Conorms.
+
+
+* Different implication operators.
+
+
+* Composition using `max-min` or `max-prod` rules.
+
+
+* Most common functions for production aggregation.
+
+
+* Different operators to defuzzificate fuzzy sets.
 
 
 Release Information
----------------------------------------------------
+-------------------------------------------------------------------------------
 
-* **Author**:
-
-    | Prof. Juan David Velásquez-Henao, MSc, PhD
-    | Universidad Nacional de Colombia, Sede Medellín.
-    | jdvelasq@unal.edu.co
+* **Date**:   June 24, 2021  **Version**: 0.1.0
 
 
-* **Date**: 
+* **Binary Installers:**  `<https://pypi.org/project/fuzzy_expert>`_
 
-    June 9, 2021  **Version**: 0.0.0
 
-* **Binary Installers:** 
-   
-    `<https://pypi.org/project/fuzzy_toolbox>`_
+* **Source Repository**:  `<https://github.com/jdvelasq/fuzzy-expert>`_
 
-* **Source Repository**: 
 
-    `<https://github.com/jdvelasq/fuzzy_toolbox>`_
-
-* **Documentation**: 
-
-    `<https://jdvelasq.github.io/fuzzy_toolbox/>`_
+* **Documentation**:  `<https://jdvelasq.github.io/fuzzy-expert/>`_
 
 
 Table of Contents
-------------------------------------------------------------------------------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   mf
-   variable
-   rule
-   mamdani
-   sugeno
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-MIT license
 -------------------------------------------------------------------------------
 
-Copyright (c) 2021 Juan David Velásquez-Henao
+.. toctree::
+   :maxdepth: 1
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+   installation
+   tutorials
+   reference
+   
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+
