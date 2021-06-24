@@ -15,10 +15,32 @@ from fuzzy_expert.plots import plot_crisp_input, plot_fuzzy_input, plot_fuzzy_va
 
 
 class FuzzyVariable:
+    """Creates a fuzzy variable.
+
+    :param unverse_range: Limits of the universe of discourse.
+    :param terms: Dictionary where each term is the key of the dictionary, and the values is the membership function.
+    :param step: Value controling the resolution for the discrete representation of the universe.
+
+    >>> from fuzzy_expert.variable import FuzzyVariable
+    >>> v = FuzzyVariable(
+    ...     universe_range=(150, 200),
+    ...     terms={
+    ...         "High": [(175, 0), (180, 0.2), (185, 0.7), (190, 1)],
+    ...         "Low": [(155, 1), (160, 0.8), (165, 0.5), (170, 0.2), (175, 0)],
+    ...     },
+    ... )
+    >>> v.plot()
+
+    .. image:: ./images/fuzzyvar.png
+        :width: 350px
+        :align: center
+
+    """
+
     def __init__(
         self,
         universe_range: tuple[float, float],
-        terms: Union[dict, tuple, None] = None,
+        terms: Union[dict, None] = None,
         step: float = 0.1,
     ) -> None:
 
@@ -38,17 +60,17 @@ class FuzzyVariable:
         """Sets the membership function values for the specified fuzzy set."""
 
         if isinstance(membership, tuple):
-            self.set_term_from_tuple(term=term, membership=membership)
+            self._set_term_from_tuple(term=term, membership=membership)
         if isinstance(membership, list):
-            self.set_term_from_list(term=term, membership=membership)
+            self._set_term_from_list(term=term, membership=membership)
 
-    def set_term_from_tuple(self, term: str, membership: type) -> None:
+    def _set_term_from_tuple(self, term: str, membership: type) -> None:
         """Sets the membership of a term when it is specified as a function"""
 
         mf = MembershipFunction()
-        self.set_term_from_list(term=term, membership=mf(membership))
+        self._set_term_from_list(term=term, membership=mf(membership))
 
-    def set_term_from_list(
+    def _set_term_from_list(
         self, term: str, membership: list[tuple[float, float]]
     ) -> None:
         """Sets the membership of a term when it is specified as a function"""
@@ -94,8 +116,28 @@ class FuzzyVariable:
     def get_modified_membeship(
         self, term: str, modifiers: Union[None, List[str]] = None
     ) -> np.ndarray:
-        """
-        Returns the membership modified values for the term.
+        """Returns the membership modified values for the term.
+
+        :param term: Name of the fuzzy set.
+        :param modifiers: List of modifiers.
+
+        >>> import matplotlib.pyplot as plt
+        >>> from fuzzy_expert.variable import FuzzyVariable
+        >>> v = FuzzyVariable(
+        ...     universe_range=(150, 200),
+        ...     terms={
+        ...         "High": [(175, 0), (180, 0.2), (185, 0.7), (190, 1)],
+        ...         "Low": [(155, 1), (160, 0.8), (165, 0.5), (170, 0.2), (175, 0)],
+        ...     },
+        ... )
+        >>> y = v.get_modified_membeship('High' ,['extremely'])
+        >>> plt.plot(v.universe, v['High'], label='High')
+        >>> plt.plot(v.universe, y, label='extremely High')
+        >>> plt.legend()
+
+        .. image:: ./images/hedges.png
+            :width: 350px
+            :align: center
 
         """
 
@@ -109,6 +151,9 @@ class FuzzyVariable:
     def plot(self, fmt: str = "-", linewidth: float = 3) -> None:
         """
         Plots a fuzzy variable.
+
+        :param fmt: Format string passed to Matplotlib.pyplot.
+        :param linewidth: Width of lines.
 
         """
         memberships = []
@@ -128,6 +173,29 @@ class FuzzyVariable:
         )
 
     def plot_input(self, value, fuzzyset, view_xaxis=True, view_yaxis="left"):
+        """Plots the fuzzy set, and the input.
+
+        :param value: Crisp or fuzzy input value.
+        :param fuzzyset: Term to plot.
+        :param view_xaxis: Draw the x-axis of plot
+        :param view_yaxis: Draw the y-axis of plot at left or right side.
+
+        >>> from fuzzy_expert.variable import FuzzyVariable
+        >>> v = FuzzyVariable(
+        ...     universe_range=(150, 200),
+        ...     terms={
+        ...         "High": [(175, 0), (180, 0.2), (185, 0.7), (190, 1)],
+        ...         "Low": [(155, 1), (160, 0.8), (165, 0.5), (170, 0.2), (175, 0)],
+        ...     },
+        ... )
+        >>> v.plot_input(value=185, fuzzyset='High', view_xaxis=True, view_yaxis='right')
+
+
+        .. image:: ./images/plot_crisp_input.png
+            :width: 350px
+            :align: center
+
+        """
 
         if isinstance(value, (np.ndarray, list)):
 
