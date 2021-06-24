@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.inference &mdash; Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>fuzzy_expert.inference &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python
+            <a href="../../index.html" class="icon icon-home"> Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python
           
 
           
@@ -109,7 +109,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Fuzzy-Toolbox: A Package for building fuzzy inference systems in Python</a>
+          <a href="../../index.html">Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python</a>
         
       </nav>
 
@@ -192,6 +192,58 @@
 
 
 <div class="viewcode-block" id="DecompositionalInference"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference">[docs]</a><span class="k">class</span> <span class="nc">DecompositionalInference</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decompositional inference method.</span>
+
+
+<span class="sd">    :param and_operator: AND operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:</span>
+
+<span class="sd">        * `&quot;min&quot;`.</span>
+<span class="sd">        * `&quot;prod&quot;`.</span>
+<span class="sd">        * `&quot;bunded_prod&quot;`.</span>
+<span class="sd">        * `&quot;drastic_prod&quot;`.</span>
+
+<span class="sd">    :param or_operator: OR operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:</span>
+
+<span class="sd">        * `&quot;max&quot;`.</span>
+<span class="sd">        * `&quot;prob_or&quot;`.</span>
+<span class="sd">        * `&quot;bounded_sum&quot;`.</span>
+<span class="sd">        * `&quot;drastic_sum&quot;`.</span>
+
+<span class="sd">    :param implication_operator: method for computing the compositions of propositions in a fuzzy rule premise, specified as one of the following:</span>
+
+<span class="sd">        * `&quot;Ra&quot;`.</span>
+<span class="sd">        * `&quot;Rm&quot;`.</span>
+<span class="sd">        * `&quot;Rc&quot;`.</span>
+<span class="sd">        * `&quot;Rb&quot;`.</span>
+<span class="sd">        * `&quot;Rs&quot;`.</span>
+<span class="sd">        * `&quot;Rg&quot;`.</span>
+<span class="sd">        * `&quot;Rsg&quot;`.</span>
+<span class="sd">        * `&quot;Rgs&quot;`.</span>
+<span class="sd">        * `&quot;Rgg&quot;`.</span>
+<span class="sd">        * `&quot;Rss&quot;`.</span>
+
+<span class="sd">    :param production_link: method for aggregating the consequences of the fuzzy rules, specified as one of the following:</span>
+
+<span class="sd">        *  `&quot;min&quot;`.</span>
+<span class="sd">        * `&quot;prod&quot;`.</span>
+<span class="sd">        * `&quot;bunded_prod&quot;`.</span>
+<span class="sd">        * `&quot;drastic_prod&quot;`.</span>
+<span class="sd">        * `&quot;max&quot;`.</span>
+<span class="sd">        * `&quot;prob_or&quot;`.</span>
+<span class="sd">        * `&quot;bounded_sum&quot;`.</span>
+<span class="sd">        * `&quot;drastic_sum&quot;`.</span>
+
+<span class="sd">    :param defuzzification_operator: Method for defuzzificate the resulting membership function, specified as one of the following:</span>
+
+<span class="sd">        * `&quot;cog&quot;`: Center of gravity.</span>
+<span class="sd">        * `&quot;boa&quot;`: Bisector of area.</span>
+<span class="sd">        * `&quot;mom&quot;`: Mean of the values for which the membership function is maximum.</span>
+<span class="sd">        * `&quot;lom&quot;`: Largest value for which the membership function is maximum.</span>
+<span class="sd">        * `&quot;som&quot;`: Smallest value for which the membership function is minimum.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">and_operator</span><span class="p">,</span>
@@ -217,22 +269,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="n">rules</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_values</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">input_values</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">convert_inputs_to_facts</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fuzzificate_facts</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">compute_modified_premise_memberships</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">compute_modified_consequence_memberships</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">compute_fuzzy_implication</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">compute_fuzzy_composition</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">combine_antecedents</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">compute_rule_infered_cf</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collect_rule_memberships</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">aggregate_collected_memberships</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">aggregate_production_cf</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">defuzzificate</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_convert_inputs_to_facts</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fuzzificate_facts</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_modified_premise_memberships</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_modified_consequence_memberships</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_fuzzy_implication</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_fuzzy_composition</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_combine_antecedents</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_rule_infered_cf</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_collect_rule_memberships</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aggregate_collected_memberships</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aggregate_production_cf</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_defuzzificate</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">defuzzificated_infered_memberships</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">infered_cf</span>
 
-<div class="viewcode-block" id="DecompositionalInference.convert_inputs_to_facts"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.convert_inputs_to_facts">[docs]</a>    <span class="k">def</span> <span class="nf">convert_inputs_to_facts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_convert_inputs_to_facts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts input values to FIS facts (fact_values, fact_cf=1.0).</span>
 
@@ -247,9 +299,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">fact_cf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">fact_values</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_value</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fact_cf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fact_cf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
 
-<div class="viewcode-block" id="DecompositionalInference.fuzzificate_crisp_fact"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.fuzzificate_crisp_fact">[docs]</a>    <span class="k">def</span> <span class="nf">fuzzificate_crisp_fact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fact_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_fuzzificate_crisp_fact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fact_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fuzzificate a fact with a crisp value (i.e., fact: float)</span>
 
@@ -258,9 +310,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">fact_name</span><span class="p">]</span><span class="o">.</span><span class="n">add_points_to_universe</span><span class="p">([</span><span class="n">fact_value</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fact_values</span><span class="p">[</span><span class="n">fact_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="n">fact_value</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">fact_name</span><span class="p">]</span><span class="o">.</span><span class="n">universe</span><span class="p">]</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="DecompositionalInference.fuzzificate_fuzzy_fact"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.fuzzificate_fuzzy_fact">[docs]</a>    <span class="k">def</span> <span class="nf">fuzzificate_fuzzy_fact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fact_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_fuzzificate_fuzzy_fact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fact_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fuzzificate a fact specified as a membership function (i.e., fact: List[Tuple(float, float), ...])</span>
 
@@ -271,9 +323,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">fact_name</span><span class="p">]</span><span class="o">.</span><span class="n">add_points_to_universe</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fact_values</span><span class="p">[</span><span class="n">fact_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">fact_name</span><span class="p">]</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">fp</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="DecompositionalInference.fuzzificate_facts"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.fuzzificate_facts">[docs]</a>    <span class="k">def</span> <span class="nf">fuzzificate_facts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_fuzzificate_facts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert crisp facts (i.e., score = 123) to membership fuctiostions</span>
 
@@ -281,13 +333,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fact_types</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fact_values</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fact_values</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fuzzificate_crisp_fact</span><span class="p">(</span><span class="n">fact_name</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_fuzzificate_crisp_fact</span><span class="p">(</span><span class="n">fact_name</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">fact_types</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;crisp&quot;</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fact_values</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fuzzificate_fuzzy_fact</span><span class="p">(</span><span class="n">fact_name</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">fact_types</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fuzzy&quot;</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_fuzzificate_fuzzy_fact</span><span class="p">(</span><span class="n">fact_name</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fact_types</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fuzzy&quot;</span>
 
-<div class="viewcode-block" id="DecompositionalInference.compute_modified_premise_memberships"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.compute_modified_premise_memberships">[docs]</a>    <span class="k">def</span> <span class="nf">compute_modified_premise_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_compute_modified_premise_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
 
@@ -308,9 +360,9 @@
 
                 <span class="n">rule</span><span class="o">.</span><span class="n">modified_premise_memberships</span><span class="p">[</span><span class="n">fuzzyvar</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span>
                     <span class="n">fuzzyvar</span>
-                <span class="p">]</span><span class="o">.</span><span class="n">get_modified_membeship</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="n">modifiers</span><span class="p">)</span></div>
+                <span class="p">]</span><span class="o">.</span><span class="n">get_modified_membeship</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="n">modifiers</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DecompositionalInference.compute_modified_consequence_memberships"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.compute_modified_consequence_memberships">[docs]</a>    <span class="k">def</span> <span class="nf">compute_modified_consequence_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_compute_modified_consequence_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
 
@@ -328,9 +380,9 @@
 
                 <span class="n">rule</span><span class="o">.</span><span class="n">modified_consequence_memberships</span><span class="p">[</span><span class="n">fuzzyvar</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span>
                     <span class="n">fuzzyvar</span>
-                <span class="p">]</span><span class="o">.</span><span class="n">get_modified_membeship</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="n">modifiers</span><span class="p">)</span></div>
+                <span class="p">]</span><span class="o">.</span><span class="n">get_modified_membeship</span><span class="p">(</span><span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="n">modifiers</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DecompositionalInference.compute_fuzzy_implication"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.compute_fuzzy_implication">[docs]</a>    <span class="k">def</span> <span class="nf">compute_fuzzy_implication</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_compute_fuzzy_implication</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="c1">#</span>
         <span class="c1"># Implication operators</span>
@@ -375,9 +427,9 @@
                     <span class="n">V</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">consequence_membership</span><span class="p">,</span> <span class="n">premise_membership</span><span class="p">)</span>
                     <span class="n">rule</span><span class="o">.</span><span class="n">fuzzy_implications</span><span class="p">[</span>
                         <span class="p">(</span><span class="n">premise_name</span><span class="p">,</span> <span class="n">consequence_name</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">implication_fn</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span></div>
+                    <span class="p">]</span> <span class="o">=</span> <span class="n">implication_fn</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DecompositionalInference.compute_fuzzy_composition"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.compute_fuzzy_composition">[docs]</a>    <span class="k">def</span> <span class="nf">compute_fuzzy_composition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_compute_fuzzy_composition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
 
@@ -403,9 +455,9 @@
 
                     <span class="n">rule</span><span class="o">.</span><span class="n">fuzzy_compositions</span><span class="p">[</span>
                         <span class="p">(</span><span class="n">premise_name</span><span class="p">,</span> <span class="n">consequence_name</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">composition</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+                    <span class="p">]</span> <span class="o">=</span> <span class="n">composition</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DecompositionalInference.combine_antecedents"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.combine_antecedents">[docs]</a>    <span class="k">def</span> <span class="nf">combine_antecedents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_combine_antecedents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
 
@@ -449,9 +501,9 @@
                             <span class="p">[</span><span class="n">combined_composition</span><span class="p">,</span> <span class="n">other_composition</span><span class="p">]</span>
                         <span class="p">)</span>
 
-                <span class="n">rule</span><span class="o">.</span><span class="n">combined_composition</span><span class="p">[</span><span class="n">consequence_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">combined_composition</span></div>
+                <span class="n">rule</span><span class="o">.</span><span class="n">combined_composition</span><span class="p">[</span><span class="n">consequence_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">combined_composition</span>
 
-<div class="viewcode-block" id="DecompositionalInference.compute_rule_infered_cf"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.compute_rule_infered_cf">[docs]</a>    <span class="k">def</span> <span class="nf">compute_rule_infered_cf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_compute_rule_infered_cf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
 
@@ -474,9 +526,9 @@
                             <span class="n">aggregated_premise_cf</span><span class="p">,</span> <span class="n">other_premise_cf</span>
                         <span class="p">)</span>
 
-            <span class="n">rule</span><span class="o">.</span><span class="n">infered_cf</span> <span class="o">=</span> <span class="n">aggregated_premise_cf</span> <span class="o">*</span> <span class="n">rule</span><span class="o">.</span><span class="n">rule_cf</span></div>
+            <span class="n">rule</span><span class="o">.</span><span class="n">infered_cf</span> <span class="o">=</span> <span class="n">aggregated_premise_cf</span> <span class="o">*</span> <span class="n">rule</span><span class="o">.</span><span class="n">rule_cf</span>
 
-<div class="viewcode-block" id="DecompositionalInference.collect_rule_memberships"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.collect_rule_memberships">[docs]</a>    <span class="k">def</span> <span class="nf">collect_rule_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_collect_rule_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">collected_rule_memberships</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -500,9 +552,9 @@
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">collected_rule_memberships</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span>
                         <span class="s2">&quot;Rule-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i_rule</span><span class="p">)</span>
-                    <span class="p">]</span> <span class="o">=</span> <span class="n">rule</span><span class="o">.</span><span class="n">combined_composition</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+                    <span class="p">]</span> <span class="o">=</span> <span class="n">rule</span><span class="o">.</span><span class="n">combined_composition</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
-<div class="viewcode-block" id="DecompositionalInference.aggregate_collected_memberships"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.aggregate_collected_memberships">[docs]</a>    <span class="k">def</span> <span class="nf">aggregate_collected_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_aggregate_collected_memberships</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Computes the output fuzzy set of the inference system.&quot;&quot;&quot;</span>
 
         <span class="n">operator_fn</span> <span class="o">=</span> <span class="p">{</span>
@@ -525,9 +577,9 @@
 
             <span class="n">aggregated_memberships</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">operator_fn</span><span class="p">(</span><span class="n">memberships</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">aggregated_memberships</span> <span class="o">=</span> <span class="n">aggregated_memberships</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregated_memberships</span> <span class="o">=</span> <span class="n">aggregated_memberships</span>
 
-<div class="viewcode-block" id="DecompositionalInference.aggregate_production_cf"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.aggregate_production_cf">[docs]</a>    <span class="k">def</span> <span class="nf">aggregate_production_cf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_aggregate_production_cf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Computes the output fuzzy set of the inference system.&quot;&quot;&quot;</span>
 
         <span class="n">infered_cf</span> <span class="o">=</span> <span class="kc">None</span>
@@ -538,9 +590,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">infered_cf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">infered_cf</span><span class="p">,</span> <span class="n">rule</span><span class="o">.</span><span class="n">infered_cf</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">infered_cf</span> <span class="o">=</span> <span class="n">infered_cf</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">infered_cf</span> <span class="o">=</span> <span class="n">infered_cf</span>
 
-<div class="viewcode-block" id="DecompositionalInference.defuzzificate"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.defuzzificate">[docs]</a>    <span class="k">def</span> <span class="nf">defuzzificate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_defuzzificate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">defuzzificated_infered_memberships</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -550,7 +602,7 @@
                 <span class="n">universe</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span>
                 <span class="n">membership</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">aggregated_memberships</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
                 <span class="n">operator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">defuzzification_operator</span><span class="p">,</span>
-            <span class="p">)</span></div>
+            <span class="p">)</span>
 
 <div class="viewcode-block" id="DecompositionalInference.plot"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="o">**</span><span class="n">facts</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">get_position</span><span class="p">():</span>
@@ -665,42 +717,6 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">defuzzificated_infered_memberships</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
                 <span class="p">)</span>
             <span class="p">)</span></div></div>
-
-    <span class="c1"># def interact_fn(self, variables, rules, figsize=(12, 8)):</span>
-    <span class="c1">#     def fn(**inputs):</span>
-    <span class="c1">#         plt.figure(figsize=figsize)</span>
-    <span class="c1">#         self.plot(variables, rules, **inputs)</span>
-
-    <span class="c1">#     return fn</span>
-
-    <span class="c1"># def interact_inputs(self, variables):</span>
-    <span class="c1">#     input_vars = []</span>
-    <span class="c1">#     for rule in self.rules:</span>
-    <span class="c1">#         for i_proposition, proposition in enumerate(rule.premise):</span>
-    <span class="c1">#             if i_proposition != 0:</span>
-    <span class="c1">#                 proposition = proposition[1:]</span>
-    <span class="c1">#             varname = proposition[0]</span>
-    <span class="c1">#             input_vars.append(varname)</span>
-
-    <span class="c1">#     input_vars = list(set(input_vars))</span>
-
-    <span class="c1">#     wdg = {}</span>
-    <span class="c1">#     for name in input_vars:</span>
-    <span class="c1">#         min_u, max_u = variables[name].universe_range</span>
-    <span class="c1">#         wdg[name] = widgets.FloatSlider(min=min_u, max=max_u)</span>
-    <span class="c1">#     return wdg</span>
-
-    <span class="c1"># def interact(self, variables, rules):</span>
-    <span class="c1">#     #</span>
-    <span class="c1">#     def fn(**inputs):</span>
-    <span class="c1">#         plt.figure(figsize=(13, 9))</span>
-    <span class="c1">#         self.plot(variables, rules, **inputs)</span>
-
-    <span class="c1">#     #</span>
-    <span class="c1">#     # Obtain vars in rule premise</span>
-    <span class="c1">#     #</span>
-
-    <span class="c1">#     interact(fn, **wdg)</span>
 </pre></div>
 
            </div>

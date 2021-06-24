@@ -30,6 +30,58 @@ from fuzzy_expert.variable import FuzzyVariable
 
 
 class DecompositionalInference:
+    """
+    Decompositional inference method.
+
+
+    :param and_operator: AND operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:
+
+        * `"min"`.
+        * `"prod"`.
+        * `"bunded_prod"`.
+        * `"drastic_prod"`.
+
+    :param or_operator: OR operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:
+
+        * `"max"`.
+        * `"prob_or"`.
+        * `"bounded_sum"`.
+        * `"drastic_sum"`.
+
+    :param implication_operator: method for computing the compositions of propositions in a fuzzy rule premise, specified as one of the following:
+
+        * `"Ra"`.
+        * `"Rm"`.
+        * `"Rc"`.
+        * `"Rb"`.
+        * `"Rs"`.
+        * `"Rg"`.
+        * `"Rsg"`.
+        * `"Rgs"`.
+        * `"Rgg"`.
+        * `"Rss"`.
+
+    :param production_link: method for aggregating the consequences of the fuzzy rules, specified as one of the following:
+
+        *  `"min"`.
+        * `"prod"`.
+        * `"bunded_prod"`.
+        * `"drastic_prod"`.
+        * `"max"`.
+        * `"prob_or"`.
+        * `"bounded_sum"`.
+        * `"drastic_sum"`.
+
+    :param defuzzification_operator: Method for defuzzificate the resulting membership function, specified as one of the following:
+
+        * `"cog"`: Center of gravity.
+        * `"boa"`: Bisector of area.
+        * `"mom"`: Mean of the values for which the membership function is maximum.
+        * `"lom"`: Largest value for which the membership function is maximum.
+        * `"som"`: Smallest value for which the membership function is minimum.
+
+    """
+
     def __init__(
         self,
         and_operator,
@@ -55,22 +107,22 @@ class DecompositionalInference:
         self.rules = rules
         self.input_values: dict = input_values
 
-        self.convert_inputs_to_facts()
-        self.fuzzificate_facts()
-        self.compute_modified_premise_memberships()
-        self.compute_modified_consequence_memberships()
-        self.compute_fuzzy_implication()
-        self.compute_fuzzy_composition()
-        self.combine_antecedents()
-        self.compute_rule_infered_cf()
-        self.collect_rule_memberships()
-        self.aggregate_collected_memberships()
-        self.aggregate_production_cf()
-        self.defuzzificate()
+        self._convert_inputs_to_facts()
+        self._fuzzificate_facts()
+        self._compute_modified_premise_memberships()
+        self._compute_modified_consequence_memberships()
+        self._compute_fuzzy_implication()
+        self._compute_fuzzy_composition()
+        self._combine_antecedents()
+        self._compute_rule_infered_cf()
+        self._collect_rule_memberships()
+        self._aggregate_collected_memberships()
+        self._aggregate_production_cf()
+        self._defuzzificate()
 
         return self.defuzzificated_infered_memberships, self.infered_cf
 
-    def convert_inputs_to_facts(self):
+    def _convert_inputs_to_facts(self):
         """
         Converts input values to FIS facts (fact_values, fact_cf=1.0).
 
@@ -87,7 +139,7 @@ class DecompositionalInference:
                 self.fact_values[key] = input_value
                 self.fact_cf[key] = 1.0
 
-    def fuzzificate_crisp_fact(self, fact_name: str) -> None:
+    def _fuzzificate_crisp_fact(self, fact_name: str) -> None:
         """
         Fuzzificate a fact with a crisp value (i.e., fact: float)
 
@@ -98,7 +150,7 @@ class DecompositionalInference:
             [1 if u == fact_value else 0 for u in self.variables[fact_name].universe]
         )
 
-    def fuzzificate_fuzzy_fact(self, fact_name: str) -> None:
+    def _fuzzificate_fuzzy_fact(self, fact_name: str) -> None:
         """
         Fuzzificate a fact specified as a membership function (i.e., fact: List[Tuple(float, float), ...])
 
@@ -111,7 +163,7 @@ class DecompositionalInference:
             x=self.variables[fact_name].universe, xp=xp, fp=fp
         )
 
-    def fuzzificate_facts(self):
+    def _fuzzificate_facts(self):
         """
         Convert crisp facts (i.e., score = 123) to membership fuctiostions
 
@@ -119,13 +171,13 @@ class DecompositionalInference:
         self.fact_types = {}
         for key in self.fact_values.keys():
             if isinstance(self.fact_values[key], (float, int)):
-                self.fuzzificate_crisp_fact(fact_name=key)
+                self._fuzzificate_crisp_fact(fact_name=key)
                 self.fact_types[key] = "crisp"
             elif isinstance(self.fact_values[key], list):
-                self.fuzzificate_fuzzy_fact(fact_name=key)
+                self._fuzzificate_fuzzy_fact(fact_name=key)
                 self.fact_types[key] = "fuzzy"
 
-    def compute_modified_premise_memberships(self):
+    def _compute_modified_premise_memberships(self):
 
         for rule in self.rules:
 
@@ -148,7 +200,7 @@ class DecompositionalInference:
                     fuzzyvar
                 ].get_modified_membeship(term=term, modifiers=modifiers)
 
-    def compute_modified_consequence_memberships(self):
+    def _compute_modified_consequence_memberships(self):
 
         for rule in self.rules:
 
@@ -168,7 +220,7 @@ class DecompositionalInference:
                     fuzzyvar
                 ].get_modified_membeship(term=term, modifiers=modifiers)
 
-    def compute_fuzzy_implication(self):
+    def _compute_fuzzy_implication(self):
 
         #
         # Implication operators
@@ -215,7 +267,7 @@ class DecompositionalInference:
                         (premise_name, consequence_name)
                     ] = implication_fn(U, V)
 
-    def compute_fuzzy_composition(self):
+    def _compute_fuzzy_composition(self):
 
         for rule in self.rules:
 
@@ -243,7 +295,7 @@ class DecompositionalInference:
                         (premise_name, consequence_name)
                     ] = composition.max(axis=0)
 
-    def combine_antecedents(self):
+    def _combine_antecedents(self):
 
         for rule in self.rules:
 
@@ -289,7 +341,7 @@ class DecompositionalInference:
 
                 rule.combined_composition[consequence_name] = combined_composition
 
-    def compute_rule_infered_cf(self):
+    def _compute_rule_infered_cf(self):
 
         for rule in self.rules:
 
@@ -314,7 +366,7 @@ class DecompositionalInference:
 
             rule.infered_cf = aggregated_premise_cf * rule.rule_cf
 
-    def collect_rule_memberships(self):
+    def _collect_rule_memberships(self):
 
         self.collected_rule_memberships = {}
 
@@ -340,7 +392,7 @@ class DecompositionalInference:
                         "Rule-{}".format(i_rule)
                     ] = rule.combined_composition[key]
 
-    def aggregate_collected_memberships(self):
+    def _aggregate_collected_memberships(self):
         """Computes the output fuzzy set of the inference system."""
 
         operator_fn = {
@@ -365,7 +417,7 @@ class DecompositionalInference:
 
         self.aggregated_memberships = aggregated_memberships
 
-    def aggregate_production_cf(self):
+    def _aggregate_production_cf(self):
         """Computes the output fuzzy set of the inference system."""
 
         infered_cf = None
@@ -378,7 +430,7 @@ class DecompositionalInference:
 
         self.infered_cf = infered_cf
 
-    def defuzzificate(self):
+    def _defuzzificate(self):
 
         self.defuzzificated_infered_memberships = {}
 
@@ -503,39 +555,3 @@ class DecompositionalInference:
                     self.defuzzificated_infered_memberships[key],
                 )
             )
-
-    # def interact_fn(self, variables, rules, figsize=(12, 8)):
-    #     def fn(**inputs):
-    #         plt.figure(figsize=figsize)
-    #         self.plot(variables, rules, **inputs)
-
-    #     return fn
-
-    # def interact_inputs(self, variables):
-    #     input_vars = []
-    #     for rule in self.rules:
-    #         for i_proposition, proposition in enumerate(rule.premise):
-    #             if i_proposition != 0:
-    #                 proposition = proposition[1:]
-    #             varname = proposition[0]
-    #             input_vars.append(varname)
-
-    #     input_vars = list(set(input_vars))
-
-    #     wdg = {}
-    #     for name in input_vars:
-    #         min_u, max_u = variables[name].universe_range
-    #         wdg[name] = widgets.FloatSlider(min=min_u, max=max_u)
-    #     return wdg
-
-    # def interact(self, variables, rules):
-    #     #
-    #     def fn(**inputs):
-    #         plt.figure(figsize=(13, 9))
-    #         self.plot(variables, rules, **inputs)
-
-    #     #
-    #     # Obtain vars in rule premise
-    #     #
-
-    #     interact(fn, **wdg)

@@ -193,7 +193,7 @@
 <span class="sd">    THEN</span>
 <span class="sd">        decision IS Approve</span>
 <span class="sd">    CF = 1.00</span>
-<span class="sd">    Threshold-CF = 1.00</span>
+<span class="sd">    Threshold-CF = 0.00</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -244,7 +244,7 @@
         <span class="c1"># Certainty factors</span>
         <span class="c1">#</span>
         <span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;CF = </span><span class="si">{:.2f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rule_cf</span><span class="p">)</span>
-        <span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;Threshold-CF = </span><span class="si">{:.2f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rule_cf</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="s2">&quot;Threshold-CF = </span><span class="si">{:.2f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold_cf</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">text</span></div>
 </pre></div>
