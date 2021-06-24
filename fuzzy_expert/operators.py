@@ -20,9 +20,9 @@ from typing import List
 
 def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.ArrayLike:
     """
-    Apply a list of modifiers or hedges to an array of memberships.
+    Apply a list of modifiers or hedges to a numpy array.
 
-    :param membership: Membership function to be modified.
+    :param membership: Membership values to be modified.
     :param modifiers: List of modifiers or hedges.
 
     >>> from fuzzy_expert.operators import apply_modifiers
@@ -58,7 +58,7 @@ def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.Arra
 
 def extremely(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u^3, element-wise.
+    Applies the element-wise function fn(u) = u^3.
 
     :param membership: Membership function to be modified.
 
@@ -72,7 +72,7 @@ def extremely(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def intensify(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u^2 if u <= 0.5 else 1 - 2 * (1 - u)**2, element-wise.
+    Applies the element-wise function fn(u) = u^2 if u <= 0.5 else 1 - 2 * (1 - u)^2.
 
     :param membership: Membership function to be modified.
 
@@ -91,7 +91,7 @@ def intensify(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def more_or_less(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u^(1/2), element-wise.
+    Applies the element-wise function  fn(u) = u^(1/2).
 
     :param membership: Membership function to be modified.
 
@@ -105,7 +105,7 @@ def more_or_less(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def norm(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u / max(u), element-wise.
+    Applies the element-wise function  fn(u) = u / max(u).
 
     :param membership: Membership function to be modified.
 
@@ -119,7 +119,7 @@ def norm(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def not_(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = 1 - u, element-wise.
+    Applies the element-wise function fn(u) = 1 - u.
 
     :param membership: Membership function to be modified.
 
@@ -133,7 +133,7 @@ def not_(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def plus(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u^1.25, element-wise.
+    Applies the element-wise function fn(u) = u^1.25.
 
     :param membership: Membership function to be modified.
 
@@ -148,7 +148,7 @@ def plus(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def somewhat(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u^(1/3), element-wise.
+    Applies the element-wise function fn(u) = u^(1/3).
 
     :param membership: Membership function to be modified.
 
@@ -162,7 +162,7 @@ def somewhat(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def very(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u^2, element-wise.
+    Applies the element-wise function fn(u) = u^2.
 
     :param membership: Membership function to be modified.
 
@@ -176,7 +176,7 @@ def very(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def slightly(membership: npt.ArrayLike) -> npt.ArrayLike:
     """
-    Returns an array after applying the function fn(u) = u^(1/2), element-wise.
+    Applies the element-wise function fn(u) = u^(1/2).
 
     :param membership: Membership function to be modified.
 
@@ -205,17 +205,9 @@ def slightly(membership: npt.ArrayLike) -> npt.ArrayLike:
 
 def prob_or(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Returns an array after applying the probabilisic OR (also known as the algebraic sum) over the elements of `memberships`.
+    Applies the element-wise function fn(u, v) = u + v - u * v. Also known as algebraic-sum.
 
-    :param membership: Membership functions.
-
-    For a list of memberships the function is calculated as:
-
-    .. code-block:: python
-
-       r = memberships[0]
-       for e in memberships[1:]:
-           r = r + e - R * e  # (element-wise)
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import prob_or
     >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
@@ -233,9 +225,9 @@ def prob_or(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def bounded_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Apply the function max(0, u + v - 1).
+    Applies the element-wise function max(0, u + v - 1).
 
-    :param membership: Membership functions.
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import bounded_prod
     >>> x = [0.1, 0.25, 0.5, 0.75, 1]
@@ -252,7 +244,9 @@ def bounded_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def bounded_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Apply the function min(1, u + v)
+    Applies the element-wise function min(1, u + v).
+
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import bounded_sum
     >>> x = [0, 0.25, 0.5, 0.75, 1]
@@ -269,8 +263,9 @@ def bounded_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def bounded_diff(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Apply the function max(0, u - v)
+    Applies the element-wise function max(0, u - v).
 
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import bounded_diff
     >>> x = [0, 0.25, 0.5, 0.75, 1]
@@ -288,9 +283,10 @@ def bounded_diff(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def drastic_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Drastic product: u if v == 0
-                     v if u == 1
-                     0 if a,v < 1
+    Applies the element-wise function f(u, v) = u if v == 0 else v if u == 1 else 0.
+
+    :param memberships: List of arrays of membership values.
+
 
     >>> from fuzzy_expert.operators import drastic_prod
     >>> x = [0, 0.25, 0.5, 0.75, 1]
@@ -312,9 +308,9 @@ def drastic_prod(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def drastic_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
-    Drastic product: u if v == 0
-                     v if u == 0
-                     1 if u,v > 0
+    Applies the element-wise function f(u, v) = u if v == 0 else v if u == 0 else 1.
+
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import drastic_sum
     >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
@@ -335,6 +331,9 @@ def drastic_sum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def product(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
+    Applies the element-wise function f(u, v) = u * v.
+
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import product
     >>> x = [0, 0.25, 0.5, 0.75, 1]
@@ -351,6 +350,9 @@ def product(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def maximum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
+    Applies the element-wise function f(u, v) = max(u, v).
+
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import maximum
     >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
@@ -368,6 +370,9 @@ def maximum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
 
 def minimum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     """
+    Applies the element-wise function f(u, v) = min(u, v).
+
+    :param memberships: List of arrays of membership values.
 
     >>> from fuzzy_expert.operators import minimum
     >>> x = [0.1, 0.25, 0.5, 0.75, 0.3]
@@ -383,33 +388,100 @@ def minimum(memberships: List[npt.ArrayLike]) -> npt.ArrayLike:
     return result
 
 
-def defuzzificate(universe, membership, operator="cog"):
+def defuzzificate(universe, membership, operator="cog") -> dict:
     """Computes a representative crisp value for the fuzzy set.
 
-    Args:
-        fuzzyset (string): Fuzzy set to defuzzify
-        operator (string): {"cog"|"bisection"|"mom"|"lom"|"som"}
+    :param universe: Array of values representing the universe of discourse.
+    :param membership: Array of values representing the membership function.
+    :param operator: Method used for computing the crisp representative value of the fuzzy set.
 
-    Returns:
-        A float value.
+        * `"cog"`: Center of gravity.
+        * `"boa"`: Bisector of area.
+        * `"mom"`: Mean of the values for which the membership function is maximum.
+        * `"lom"`: Largest value for which the membership function is maximum.
+        * `"som"`: Smallest value for which the membership function is minimum.
+
+    >>> from fuzzy_expert.operators import defuzzificate
+    >>> u = [0, 1,   2, 3, 4]
+    >>> m = [0, 0, 0.5, 1, 1]
+    >>> defuzzificate(u, m, "cog")
+    2.9166666666666665
+
+    >>> defuzzificate(u, m, "boa")
+    3.0
+
+    >>> defuzzificate(u, m, "mom")
+    3.5
+
+    >>> defuzzificate(u, m, "lom")
+    4.0
+
+    >>> defuzzificate(u, m, "som")
+    3.0
 
     """
 
     def cog():
-        start = np.min(universe)
-        stop = np.max(universe)
-        x = np.linspace(start, stop, num=200)
-        m = np.interp(x, xp=universe, fp=membership)
-        return np.sum(x * m) / sum(m)
 
-    def coa():
-        start = np.min(universe)
-        stop = np.max(universe)
-        x = np.linspace(start, stop, num=200)
-        m = np.interp(x, xp=universe, fp=membership)
-        area = np.sum(m)
-        cum_area = np.cumsum(m)
-        return np.interp(area / 2, xp=cum_area, fp=x)
+        n_areas = len(universe) - 1
+
+        areas = []
+        centroids = []
+
+        for i in range(n_areas):
+            base = universe[i + 1] - universe[i]
+            area_rect = np.minimum(membership[i], membership[i + 1]) * base
+            centr_rect = universe[i] + base / 2.0
+            if membership[i + 1] == membership[i]:
+                area_tria = 0
+                centr_tri = 0
+            elif membership[i + 1] > membership[i]:
+                area_tria = base * np.abs(membership[i + 1] - membership[i]) / 2.0
+                centr_tri = universe[i] + 2.0 / 3.0 * base
+            else:
+                area_tria = base * np.abs(membership[i + 1] - membership[i]) / 2.0
+                centr_tri = universe[i] + 1.0 / 3.0 * base
+
+            area = area_rect + area_tria
+            if area == np.float64(0):
+                centr = np.float64(0)
+            else:
+                centr = (area_rect * centr_rect + area_tria * centr_tri) / (
+                    area_rect + area_tria
+                )
+
+            areas.append(area)
+            centroids.append(centr)
+
+        num = sum([area * centroid for area, centroid in zip(areas, centroids)])
+        den = sum(areas)
+        return num / den
+
+    def boa():
+
+        n_areas = len(universe) - 1
+
+        areas = []
+
+        for i_area in range(n_areas):
+            base = universe[i_area + 1] - universe[i_area]
+            area = (membership[i_area] + membership[i_area + 1]) * base / 2.0
+            areas.append(area)
+
+        total_area = sum(areas)
+
+        target = total_area / 2.0
+
+        cum_area = 0
+        for i_area in range(n_areas):
+            cum_area += areas[i_area]
+            if cum_area >= target:
+                break
+
+        xp = [universe[i_area], universe[i_area + 1]]
+        fp = [cum_area - areas[i_area], cum_area]
+
+        return np.interp(target, xp=fp, fp=xp)
 
     def mom():
         maximum = np.max(membership)
@@ -426,12 +498,15 @@ def defuzzificate(universe, membership, operator="cog"):
         maximum = np.array([u for u, m in zip(universe, membership) if m == maximum])
         return np.min(maximum)
 
+    universe = np.array(universe)
+    membership = np.array(membership)
+
     if np.sum(membership) == 0.0:
         return np.mean(universe)
 
     return {
         "cog": cog,
-        "coa": coa,
+        "boa": boa,
         "mom": mom,
         "lom": lom,
         "som": som,
