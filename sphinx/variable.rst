@@ -1,4 +1,4 @@
-.. automodule:: fuzzy_toolbox.mamdani.variable
+.. automodule:: fuzzy_expert.variable
     :members:
     :undoc-members:
     :show-inheritance:
