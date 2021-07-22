@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="es" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Tutorial 4 - Certainty factors &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>Tutorial 4 - Factores de certeza &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
   
 
   
@@ -35,15 +35,16 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Library reference" href="../reference.html" />
-    <link rel="prev" title="Tutorial 3 - Standard membership functions" href="tutorial-3.html" /> 
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Referencia de la librería" href="../reference.html" />
+    <link rel="prev" title="Tutorial 3 - Funciones de pertnencia estándar" href="tutorial-3.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -75,7 +76,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Buscar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -95,18 +96,18 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tutorial-1.html">Tutorial 1 - Bank decision loan problem with crisp inputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial-2.html">Tutorial 2 - Bank decision loan problem with fuzzy inputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial-3.html">Tutorial 3 - Standard membership functions</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial 4 - Certainty factors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Fuzzy-Variables">Fuzzy Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Fuzzy-rules-with-certainty-factors">Fuzzy rules with certainty factors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Facts-with-certainty-factors">Facts with certainty factors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial-1.html">Tutorial 1 - Problema bancario de decisión de préstamos con entradas concretas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial-2.html">Tutorial 2 - Problema de aprobación de préstamos bancarios con entradas difusas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial-3.html">Tutorial 3 - Funciones de pertnencia estándar</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial 4 - Factores de certeza</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Variables-difusas">Variables difusas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Reglas-difusas-con-factores-de-certeza">Reglas difusas con factores de certeza</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Hechos-con-factores-de-certeza">Hechos con factores de certeza</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../reference.html">Library reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Referencia de la librería</a></li>
 </ul>
 
             
@@ -157,13 +158,13 @@
         
           <li><a href="../tutorials.html">Tutorials</a> &raquo;</li>
         
-      <li>Tutorial 4 - Certainty factors</li>
+      <li>Tutorial 4 - Factores de certeza</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/tutorial-4.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/tutorials/tutorial-4.ipynb.txt" rel="nofollow"> Ver código fuente de la página</a>
           
         
       </li>
@@ -446,9 +447,9 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Tutorial-4---Certainty-factors">
-<h1>Tutorial 4 - Certainty factors<a class="headerlink" href="#Tutorial-4---Certainty-factors" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial uses the fuzzy inference system developed in Tutorial 1.</p>
+<div class="section" id="Tutorial-4---Factores-de-certeza">
+<h1>Tutorial 4 - Factores de certeza<a class="headerlink" href="#Tutorial-4---Factores-de-certeza" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Este tutorial usa el sistema de inferencia difusa desarrollado en el Tutorial 1.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -462,8 +463,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Fuzzy-Variables">
-<h2>Fuzzy Variables<a class="headerlink" href="#Fuzzy-Variables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Variables-difusas">
+<h2>Variables difusas<a class="headerlink" href="#Variables-difusas" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -512,9 +513,9 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
-<div class="section" id="Fuzzy-rules-with-certainty-factors">
-<h2>Fuzzy rules with certainty factors<a class="headerlink" href="#Fuzzy-rules-with-certainty-factors" title="Permalink to this headline">¶</a></h2>
-<p>It is possible to assign a certainty factor (<code class="docutils literal notranslate"><span class="pre">cf</span></code>) to each rule. If this value is not specified, it has assumed to be equal to 1.0. In addition, the <code class="docutils literal notranslate"><span class="pre">threshold_cf</span></code> is the minimum certainty factor required to consider the rule fired; this is, rules with a computed certainty factor below the threshold are not considering for computing the output of the system. The first rule has a certainty factor of <code class="docutils literal notranslate"><span class="pre">0.9</span></code>, while the second rule has a certainty factor of <code class="docutils literal notranslate"><span class="pre">1.0</span></code> (by default).</p>
+<div class="section" id="Reglas-difusas-con-factores-de-certeza">
+<h2>Reglas difusas con factores de certeza<a class="headerlink" href="#Reglas-difusas-con-factores-de-certeza" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es posible asignar un factor de certeza (<cite>cf</cite>) a cada regla. Si este valor no es especificado, se asume que es igual a <cite>1.0</cite>. Adicionalmente, el parámetro <cite>threshold_cf</cite> es el factor de certeza mínimo requerido para considerar la contribución de la regla; eso es,  reglas con un factor de certeza por debajo del valor límite no son consideradas para computar la salida del sistema. La primera regla tiene un factor de certeza de <cite>0.9</cite>, mientras que lasegunda regla tiene un factor de certeza de <cite>1.0</cite> (por defecto).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -543,9 +544,9 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
-<div class="section" id="Facts-with-certainty-factors">
-<h2>Facts with certainty factors<a class="headerlink" href="#Facts-with-certainty-factors" title="Permalink to this headline">¶</a></h2>
-<p>In addition, also it is possible to assign certainty factors to the facts. When a certainty factor not is specified by the user, it has a default value or 1.0. In the following code, the variables <code class="docutils literal notranslate"><span class="pre">score</span></code>, <code class="docutils literal notranslate"><span class="pre">ratio</span></code>, and <code class="docutils literal notranslate"><span class="pre">credit</span></code> have certainty factors of <code class="docutils literal notranslate"><span class="pre">0.9</span></code>, <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, and <code class="docutils literal notranslate"><span class="pre">0.95</span></code> respectively. The conclusion is <code class="docutils literal notranslate"><span class="pre">decision=8.01</span></code> with a certainty factor of <code class="docutils literal notranslate"><span class="pre">0.95</span></code>.</p>
+<div class="section" id="Hechos-con-factores-de-certeza">
+<h2>Hechos con factores de certeza<a class="headerlink" href="#Hechos-con-factores-de-certeza" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Adicionalmente, también es posible asignar factores de certeza a los hechos. Cuando un factor de certeza no es especificado por el usuario, este tiene un valor por defecto de <cite>1.0</cite>. En el siguiente código, las variables <cite>score</cite>, <cite>ratio</cite> y <cite>credit</cite> tienen factores de certeza de <cite>0.9</cite>, <cite>1.0</cite>, y <cite>0.95</cite> respectivamente. La conclusión es <cite>decision=8.01</cite> con un factor de certeza de <cite>0.95</cite>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -590,8 +591,8 @@ div.rendered_html tbody tr:hover {
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../reference.html" class="btn btn-neutral float-right" title="Library reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="tutorial-3.html" class="btn btn-neutral float-left" title="Tutorial 3 - Standard membership functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reference.html" class="btn btn-neutral float-right" title="Referencia de la librería" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tutorial-3.html" class="btn btn-neutral float-left" title="Tutorial 3 - Funciones de pertnencia estándar" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
     </div>
 
   <hr/>
@@ -604,11 +605,11 @@ div.rendered_html tbody tr:hover {
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
     
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

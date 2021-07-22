@@ -89,9 +89,15 @@ class MembershipFunction:
     ) -> List[Tuple[float, float]]:
         """Generalized bell-shaped membership function.
 
-        :param center: Defines the center of the membership function.
-        :param width: Defines the width of the membership function, where a larger value creates a wider membership function.
-        :param shape: Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition.
+        :param center:
+            Defines the center of the membership function.
+
+        :param width:
+            Defines the width of the membership function, where a larger value creates a wider membership function.
+
+        :param shape:
+            Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition.
+
 
         >>> from fuzzy_expert.mf import MembershipFunction
         >>> mf = MembershipFunction(n_points=3)
@@ -144,8 +150,11 @@ class MembershipFunction:
     ) -> List[Tuple[float, float]]:
         """Sigmoidal membership function.
 
-        :param center: Defines the center of the membership function.
-        :param width: Defines the width of the membership function.
+        :param center:
+            Defines the center of the membership function.
+
+        :param width:
+            Defines the width of the membership function.
 
         >>> from fuzzy_expert.mf import MembershipFunction
         >>> mf = MembershipFunction(n_points=3)
@@ -173,8 +182,11 @@ class MembershipFunction:
     ) -> List[Tuple[float, float]]:
         """S-shaped membership function.
 
-        :param foot: Defines the foot of the membership function.
-        :param shoulder: Defines the shoulder of the membership function.
+        :param foot:
+            Defines the foot of the membership function.
+
+        :param shoulder:
+            Defines the shoulder of the membership function.
 
         >>> from fuzzy_expert.mf import MembershipFunction
         >>> mf = MembershipFunction(n_points=4)
@@ -207,10 +219,18 @@ class MembershipFunction:
     ) -> List[Tuple[float, float]]:
         """Trapezoidal membership function.
 
-        :param left_feet: Defines the left feet of the membership function.
-        :param left_peak: Defines the left peak of the membership function.
-        :param right_peak: Defines the right peak of the membership function.
-        :param right_feet: Defines the right feet of the membership function.
+        :param left_feet:
+            Defines the left feet of the membership function.
+
+        :param left_peak:
+            Defines the left peak of the membership function.
+
+        :param right_peak:
+            Defines the right peak of the membership function.
+
+        :param right_feet:
+            Defines the right feet of the membership function.
+
 
         >>> from fuzzy_expert.mf import MembershipFunction
         >>> mf = MembershipFunction(n_points=4)
@@ -253,9 +273,14 @@ class MembershipFunction:
     ) -> List[Tuple[float, float]]:
         """Triangular membership function.
 
-        :param left_feet: Defines the left feet of the membership function.
-        :param peak: Defines the peak of the membership function.
-        :param right_feet: Defines the right feet of the membership function.
+        :param left_feet:
+            Defines the left feet of the membership function.
+
+        :param peak:
+            Defines the peak of the membership function.
+
+        :param right_feet:
+            Defines the right feet of the membership function.
 
         >>> from fuzzy_expert.mf import MembershipFunction
         >>> mf = MembershipFunction(n_points=4)
@@ -286,8 +311,11 @@ class MembershipFunction:
     ) -> List[Tuple[float, float]]:
         """Z-shaped membership function.
 
-        :param shoulder: Defines the shoulder of the membership function.
-        :param feet: Defines the feet of the membership function.
+        :param shoulder:
+            Defines the shoulder of the membership function.
+
+        :param feet:
+            Defines the feet of the membership function.
 
         >>> from fuzzy_expert.mf import MembershipFunction
         >>> mf = MembershipFunction(n_points=4)

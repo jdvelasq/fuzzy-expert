@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="es" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Modifiers and operators &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>Modificadores y operadores &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
   
 
   
@@ -35,13 +35,14 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Membership Functions" href="mf.html" />
     <link rel="prev" title="Library reference" href="reference.html" /> 
 </head>
@@ -75,7 +76,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Buscar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,7 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Modifiers and operators</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Modificadores y operadores</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mf.html">Membership Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variable.html">Fuzzy Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rule.html">Zadeh-Mamdani Rules</a></li>
@@ -153,13 +154,13 @@
         
           <li><a href="reference.html">Library reference</a> &raquo;</li>
         
-      <li>Modifiers and operators</li>
+      <li>Modificadores y operadores</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/operators.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/operators.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
           
         
       </li>
@@ -197,20 +198,17 @@
 }
 </style>
 <span class="target" id="module-fuzzy_expert.operators"></span><div class="section" id="modifiers-and-operators">
-<h1>Modifiers and operators<a class="headerlink" href="#modifiers-and-operators" title="Permalink to this headline">¶</a></h1>
+<h1>Modificadores y operadores<a class="headerlink" href="#modifiers-and-operators" title="Enlazar permanentemente con este título">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.apply_modifiers">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">apply_modifiers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modifiers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#apply_modifiers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.apply_modifiers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply a list of modifiers or hedges to a numpy array.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">apply_modifiers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modifiers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#apply_modifiers"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.apply_modifiers" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica una lista de modificadores a un vector NumPy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership values to be modified.</p></li>
-<li><p><strong>modifiers</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – List of modifiers or hedges.</p></li>
+<li><p><strong>membership</strong> – Valores de pertenencia a ser modificados.</p></li>
+<li><p><strong>modifiers</strong> – Lista de modificadores.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">apply_modifiers</span>
@@ -223,14 +221,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.bounded_diff">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">bounded_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#bounded_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.bounded_diff" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function max(0, u - v).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">bounded_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#bounded_diff"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.bounded_diff" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental max(0, u - v).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">bounded_diff</span>
@@ -244,14 +239,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.bounded_prod">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">bounded_prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#bounded_prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.bounded_prod" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function max(0, u + v - 1).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">bounded_prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#bounded_prod"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.bounded_prod" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental max(0, u + v - 1).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">bounded_prod</span>
@@ -264,14 +256,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.bounded_sum">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.bounded_sum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function min(1, u + v).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#bounded_sum"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.bounded_sum" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental min(1, u + v).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">bounded_sum</span>
@@ -284,26 +273,15 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.defuzzificate">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">defuzzificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">universe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membership</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cog'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#defuzzificate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.defuzzificate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes a representative crisp value for the fuzzy set.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">defuzzificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">universe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membership</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cog'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#defuzzificate"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.defuzzificate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Computa un valor concreto representantivo del conjunto borroso</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>universe</strong> – Array of values representing the universe of discourse.</p></li>
-<li><p><strong>membership</strong> – Array of values representing the membership function.</p></li>
-<li><p><strong>operator</strong> – <p>Method used for computing the crisp representative value of the fuzzy set.</p>
-<ul>
-<li><p><cite>”cog”</cite>: Center of gravity.</p></li>
-<li><p><cite>”boa”</cite>: Bisector of area.</p></li>
-<li><p><cite>”mom”</cite>: Mean of the values for which the membership function is maximum.</p></li>
-<li><p><cite>”lom”</cite>: Largest value for which the membership function is maximum.</p></li>
-<li><p><cite>”som”</cite>: Smallest value for which the membership function is minimum.</p></li>
+<li><p><strong>universe</strong> – Vector de valores representando el universo de discurso.</p></li>
+<li><p><strong>membership</strong> – Vector de valores que representan la función de pertenencia</p></li>
+<li><p><strong>operator</strong> – Método usado para calcular el valor concreto representativo de conjunto borroso.     * <cite>«cog»</cite>: Centro de gravedad.    * <cite>«boa»</cite>: Bisector del area.   * <cite>«mom»</cite>: Media de los valores para los cuales la función de pertenencia es máxima.    * <cite>«lom»</cite>: Valor más grande de los valores para los cuales la función de pertenencia es máxima.   * <cite>«som»</cite>: Valor más pequeño de los valores para los cuales la función de pertenencia es máxima.</p></li>
 </ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>dict</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">defuzzificate</span>
@@ -333,14 +311,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.drastic_prod">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">drastic_prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#drastic_prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.drastic_prod" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function f(u, v) = u if v == 0 else v if u == 1 else 0.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">drastic_prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#drastic_prod"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.drastic_prod" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental f(u, v) = u if v == 0 else v if u == 1 else 0.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">drastic_prod</span>
@@ -354,14 +329,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.drastic_sum">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">drastic_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#drastic_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.drastic_sum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function f(u, v) = u if v == 0 else v if u == 0 else 1.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">drastic_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#drastic_sum"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.drastic_sum" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental f(u, v) = u if v == 0 else v if u == 0 else 1.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">drastic_sum</span>
@@ -375,14 +347,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.extremely">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">extremely</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#extremely"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.extremely" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u) = u^3.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">extremely</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#extremely"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.extremely" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u^3.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">extremely</span>
@@ -394,14 +363,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.intensify">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">intensify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#intensify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.intensify" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u) = u^2 if u &lt;= 0.5 else 1 - 2 * (1 - u)^2.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">intensify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#intensify"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.intensify" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u^2 if u &lt;= 0.5 else 1 - 2 * (1 - u)^2.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">intensify</span>
@@ -413,14 +379,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.maximum">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">maximum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#maximum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.maximum" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">maximum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#maximum"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.maximum" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Applies the element-wise function f(u, v) = max(u, v).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">maximum</span>
@@ -434,14 +397,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.minimum">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">minimum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#minimum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.minimum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function f(u, v) = min(u, v).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">minimum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#minimum"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.minimum" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental f(u, v) = min(u, v).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">minimum</span>
@@ -455,14 +415,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.more_or_less">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">more_or_less</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#more_or_less"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.more_or_less" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function  fn(u) = u^(1/2).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">more_or_less</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#more_or_less"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.more_or_less" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u^(1/2).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">more_or_less</span>
@@ -474,14 +431,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.norm">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.norm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function  fn(u) = u / max(u).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#norm"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.norm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u / max(u).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -493,14 +447,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.not_">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">not_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#not_"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.not_" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u) = 1 - u.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">not_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#not_"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.not_" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = 1 - u.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">not_</span>
@@ -512,14 +463,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.plus">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.plus" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u) = u^1.25.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#plus"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.plus" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u^1.25.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">plus</span>
@@ -531,14 +479,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.prob_or">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">prob_or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#prob_or"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.prob_or" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u, v) = u + v - u * v. Also known as algebraic-sum.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">prob_or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#prob_or"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.prob_or" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u, v) = u + v - u * v. También conocida como algebraic-sum.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">prob_or</span>
@@ -552,14 +497,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.product">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.product" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memberships</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#product"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.product" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Applies the element-wise function f(u, v) = u * v.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>memberships</strong> (<em>List</em><em>[</em><em>npt.ArrayLike</em><em>]</em>) – List of arrays of membership values.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>memberships</strong> – Lista de vectores de valores de pertenencia.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">product</span>
@@ -572,14 +514,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.slightly">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">slightly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#slightly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.slightly" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u) = u^(1/2).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">slightly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#slightly"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.slightly" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u^(1/2).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">slightly</span>
@@ -591,14 +530,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.somewhat">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">somewhat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#somewhat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.somewhat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u) = u^(1/3).</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">somewhat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#somewhat"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.somewhat" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u^(1/3).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">somewhat</span>
@@ -610,14 +546,11 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="fuzzy_expert.operators.very">
-<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">very</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#very"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.very" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies the element-wise function fn(u) = u^2.</p>
+<span class="sig-prename descclassname"><span class="pre">fuzzy_expert.operators.</span></span><span class="sig-name descname"><span class="pre">very</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membership</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/operators.html#very"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.operators.very" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aplica la función elemental fn(u) = u^2.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>membership</strong> (<em>npt.ArrayLike</em>) – Membership function to be modified.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>npt.ArrayLike</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>membership</strong> – Función de pertenencia a ser modificada.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.operators</span> <span class="kn">import</span> <span class="n">very</span>
@@ -635,8 +568,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="mf.html" class="btn btn-neutral float-right" title="Membership Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="reference.html" class="btn btn-neutral float-left" title="Library reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mf.html" class="btn btn-neutral float-right" title="Membership Functions" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="reference.html" class="btn btn-neutral float-left" title="Library reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
     </div>
 
   <hr/>
@@ -649,11 +582,11 @@
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
     
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

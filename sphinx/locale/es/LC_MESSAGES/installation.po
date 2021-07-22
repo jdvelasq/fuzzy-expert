@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-21 22:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../installation.rst:2
+msgid "Installation"
+msgstr ""
+
+#: ../../installation.rst:5
+msgid "Requeriments"
+msgstr ""
+
+#: ../../installation.rst:7
+msgid ""
+"**Fuzzy-Expert** was developed in Python 3.9, and requires `Numpy` version 1.20 or higher."
+msgstr "**Fuzzy-Expert** se desarrolló en Python 3.9 y requiere la versión 1.20 o superior de `Numpy`."
+
+#: ../../installation.rst:11
+msgid "How to install"
+msgstr "Cómo instalar."
+
+#: ../../installation.rst:13
+msgid "The current stable version can be installed from the command line using:"
+msgstr "La versión estable actual se puede instalar desde la línea de comandos usando:"
+
+#: ../../installation.rst:20
+msgid ""
+"The current development version can be installed by clonning the GitHub repo `<https://github.com/jdvelasq/fuzzy-expert>`_ and executing"
+msgstr "La versión de desarrollo actual se puede instalar clonando el repositorio de GitHub `<https://github.com/jdvelasq/fuzzy-expert>`_ y ejecutando"
+
+#: ../../installation.rst:27
+msgid "at the command prompt."
+msgstr "en la línea de comandos."
+

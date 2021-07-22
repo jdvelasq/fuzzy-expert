@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-22 00:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: fuzzy_expert.mf:2 of
+msgid "Membership Functions"
+msgstr "Funciones de pertenencia"
+
+#: fuzzy_expert.mf:4 of
+msgid ""
+"Functions in this module returns a standard membership function specificaion as a list of points (x_i, u_i)."
+msgstr "Las funciones de este módulo devuelven una especificación de función de pertenencia estándar como una lista de puntos (x_i, u_i)."
+
+#: fuzzy_expert.mf.MembershipFunction:1 of
+msgid "Bases: :class:`object`"
+msgstr ""
+
+#: fuzzy_expert.mf.MembershipFunction:1 of
+msgid "Membership function constructor."
+msgstr "Constructor de funciones de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction
+#: fuzzy_expert.mf.MembershipFunction.gaussmf
+#: fuzzy_expert.mf.MembershipFunction.gbellmf
+#: fuzzy_expert.mf.MembershipFunction.pimf
+#: fuzzy_expert.mf.MembershipFunction.sigmf
+#: fuzzy_expert.mf.MembershipFunction.smf
+#: fuzzy_expert.mf.MembershipFunction.trapmf
+#: fuzzy_expert.mf.MembershipFunction.trimf
+#: fuzzy_expert.mf.MembershipFunction.zmf of
+msgid "Parameters"
+msgstr "Parámetros"
+
+#: fuzzy_expert.mf.MembershipFunction:3 of
+msgid "Number base point for building the approximations."
+msgstr "Número de puntos base para construuir las aproximaciones."
+
+#: fuzzy_expert.mf.MembershipFunction.gaussmf:1 of
+msgid "Gaussian membership function."
+msgstr "Función de pertenencia gaussiana."
+
+#: fuzzy_expert.mf.MembershipFunction.gaussmf:3
+#: fuzzy_expert.mf.MembershipFunction.gbellmf:3
+#: fuzzy_expert.mf.MembershipFunction.sigmf:3 of
+msgid "Defines the center of the membership function."
+msgstr "Define el centro de la función de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction.gaussmf:4
+#: fuzzy_expert.mf.MembershipFunction.gbellmf:6 of
+msgid ""
+"Defines the width of the membership function, where a larger value creates a wider membership function."
+msgstr ""
+"Define el ancho de la función de pertenencia, donde un valor más grande crea una función de pertenencia más ancha."
+
+#: fuzzy_expert.mf.MembershipFunction.gaussmf
+#: fuzzy_expert.mf.MembershipFunction.gbellmf
+#: fuzzy_expert.mf.MembershipFunction.pimf
+#: fuzzy_expert.mf.MembershipFunction.sigmf
+#: fuzzy_expert.mf.MembershipFunction.smf
+#: fuzzy_expert.mf.MembershipFunction.trapmf
+#: fuzzy_expert.mf.MembershipFunction.trimf
+#: fuzzy_expert.mf.MembershipFunction.zmf of
+msgid "Return type"
+msgstr "Tipo retornado"
+
+#: fuzzy_expert.mf.MembershipFunction.gbellmf:1 of
+msgid "Generalized bell-shaped membership function."
+msgstr "Función de pertenencia de campana generalizada."
+
+#: fuzzy_expert.mf.MembershipFunction.gbellmf:9 of
+msgid ""
+"Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition."
+msgstr "Define la forma de la curva a cada lado de la meseta central, donde un valor mayor crea una transición más pronunciada."
+
+#: fuzzy_expert.mf.MembershipFunction.pimf:1 of
+msgid "Pi-shaped membership function."
+msgstr "Función de pertenencia en forma de pi."
+
+#: fuzzy_expert.mf.MembershipFunction.pimf:3
+#: fuzzy_expert.mf.MembershipFunction.trapmf:3
+#: fuzzy_expert.mf.MembershipFunction.trimf:3 of
+msgid "Defines the left feet of the membership function."
+msgstr ""
+
+#: fuzzy_expert.mf.MembershipFunction.pimf:4
+#: fuzzy_expert.mf.MembershipFunction.trapmf:6 of
+msgid "Defines the left peak of the membership function."
+msgstr "Define el pie izquierdo de la función de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction.pimf:5
+#: fuzzy_expert.mf.MembershipFunction.trapmf:9 of
+msgid "Defines the right peak of the membership function."
+msgstr "Define el pico derecho de la función de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction.pimf:6
+#: fuzzy_expert.mf.MembershipFunction.trapmf:12
+#: fuzzy_expert.mf.MembershipFunction.trimf:9 of
+msgid "Defines the right feet of the membership function."
+msgstr "Define el pie derecho de la función de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction.sigmf:1 of
+msgid "Sigmoidal membership function."
+msgstr "Función de pertenencia sigmoidal."
+
+#: fuzzy_expert.mf.MembershipFunction.sigmf:6 of
+msgid "Defines the width of the membership function."
+msgstr "Define el ancho de la función de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction.smf:1 of
+msgid "S-shaped membership function."
+msgstr "Función de pertenencia en forma de S."
+
+#: fuzzy_expert.mf.MembershipFunction.smf:3 of
+msgid "Defines the foot of the membership function."
+msgstr "Define el pie de la función de pertnencia."
+
+#: fuzzy_expert.mf.MembershipFunction.smf:6
+#: fuzzy_expert.mf.MembershipFunction.zmf:3 of
+msgid "Defines the shoulder of the membership function."
+msgstr "Define el hombro de la función de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction.trapmf:1 of
+msgid "Trapezoidal membership function."
+msgstr "Función de pertenencia trapezoidal."
+
+#: fuzzy_expert.mf.MembershipFunction.trimf:1 of
+msgid "Triangular membership function."
+msgstr "Función de pertnencia triangular."
+
+#: fuzzy_expert.mf.MembershipFunction.trimf:6 of
+msgid "Defines the peak of the membership function."
+msgstr "Define el pico de la función de pertenencia."
+
+#: fuzzy_expert.mf.MembershipFunction.zmf:1 of
+msgid "Z-shaped membership function."
+msgstr "Función de pertenencia en forma de Z."
+
+#: fuzzy_expert.mf.MembershipFunction.zmf:6 of
+msgid "Defines the feet of the membership function."
+msgstr "Define el pie de la función de pertenencia."
+

@@ -42,3 +42,6 @@ Documentation
 Available at: https://jdvelasq.github.io/fuzzy_expert
 
 
+Internacionalizacion:
+
+https://www.sphinx-doc.org/en/master/usage/advanced/intl.html

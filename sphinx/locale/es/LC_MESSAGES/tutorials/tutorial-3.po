@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-21 22:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../tutorials/tutorial-3.ipynb:9
+msgid "Tutorial 3 - Standard membership functions"
+msgstr "Tutorial 3 - Funciones de pertnencia estándar"
+
+#: ../../tutorials/tutorial-3.ipynb:20
+msgid "This tutorial uses the fuzzy inference system developed in Tutorial 1."
+msgstr "Este tutorial usa el sistema de inferencia difuso desarrollado en el Tutorial 1."
+
+#: ../../tutorials/tutorial-3.ipynb:47
+msgid "Specification of the fuzzy variables with standard membership functions"
+msgstr "Especificación de las variables difusas con funciones de pertenencia estándar"
+
+#: ../../tutorials/tutorial-3.ipynb:58
+msgid ""
+"In the following code, fuzzy sets are specified using standard membership"
+" functions, which are described in the function reference section."
+msgstr ""
+"En el siguiente código, los conjuntos difusos se especifican mediante "
+"funciones de pertenencia estándar, que se describen en la sección de referencia de funciones."
+
+#: ../../tutorials/tutorial-3.ipynb:60
+msgid ""
+"Fuzzy sets in variables ``score`` and ``ratio`` are specified using the "
+"``smf`` and ``zmf`` functions. Fuzzy sets for variables ``credit`` and "
+"``decision`` are specified using the ``trapmf`` function."
+msgstr ""
+"Los conjuntos borrosos para las variables `score` y `ratio` son especificados "
+"usando las funciones `smf` y `zmf`. Los conjuntos difusos para las variables "
+"`credit` y `decision` son especificados usando la función `trapmf`."
+

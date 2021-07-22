@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-21 22:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../reference.rst:2
+msgid "Library reference"
+msgstr "Referencia de la librería"
+
+#: ../../reference.rst:4
+msgid ""
+"Description of the functions, classes and modules contained within **Fuzzy-Expert**."
+msgstr "Descripción de las funciones, clases y módulos contenidos dentro de **Fuzzy-Expert**."
+
+#: ../../reference.rst:16
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../../reference.rst:17
+msgid ":ref:`modindex`"
+msgstr ""
+
+#: ../../reference.rst:18
+msgid ":ref:`search`"
+msgstr ""
+

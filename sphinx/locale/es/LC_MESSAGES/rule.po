@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-22 00:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: fuzzy_expert.rule:2 of
+msgid "Zadeh-Mamdani Rules"
+msgstr "Reglas de Zadeh-Mamdani"
+
+#: fuzzy_expert.rule.FuzzyRule:1 of
+msgid "Bases: :class:`object`"
+msgstr ""
+
+#: fuzzy_expert.rule.FuzzyRule:1 of
+msgid "Creates a Zadeh-Mamdani fuzzy rule."
+msgstr "Crea una regla difusa de Zadeh-Mamdani."
+
+#: fuzzy_expert.rule.FuzzyRule of
+msgid "Parameters"
+msgstr "Parámetros"
+
+#: fuzzy_expert.rule.FuzzyRule:3 of
+msgid "List of propositions in rule premise."
+msgstr "Lista de proposiciones en la premisa de la regla."
+
+#: fuzzy_expert.rule.FuzzyRule:6 of
+msgid "List of propositions in rule consequence."
+msgstr "Lista de proposiciones en el consecuente de la regla."
+
+#: fuzzy_expert.rule.FuzzyRule:9 of
+msgid "Certainty factor of the rule."
+msgstr "Factor de certeza de la regla"
+
+#: fuzzy_expert.rule.FuzzyRule:12 of
+msgid "Minimum certainty factor for rule firing."
+msgstr "Factor mínimo de certeza para la activación de la regla."
+

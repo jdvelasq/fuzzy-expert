@@ -1,0 +1,222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-22 00:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: fuzzy_expert.operators:2 of
+msgid "Modifiers and operators"
+msgstr "Modificadores y operadores"
+
+#: fuzzy_expert.operators.apply_modifiers:1 of
+msgid "Apply a list of modifiers or hedges to a numpy array."
+msgstr "Aplica una lista de modificadores a un vector NumPy."
+
+#: fuzzy_expert.operators.apply_modifiers fuzzy_expert.operators.bounded_diff
+#: fuzzy_expert.operators.bounded_prod fuzzy_expert.operators.bounded_sum
+#: fuzzy_expert.operators.defuzzificate fuzzy_expert.operators.drastic_prod
+#: fuzzy_expert.operators.drastic_sum fuzzy_expert.operators.extremely
+#: fuzzy_expert.operators.intensify fuzzy_expert.operators.maximum
+#: fuzzy_expert.operators.minimum fuzzy_expert.operators.more_or_less
+#: fuzzy_expert.operators.norm fuzzy_expert.operators.not_
+#: fuzzy_expert.operators.plus fuzzy_expert.operators.prob_or
+#: fuzzy_expert.operators.product fuzzy_expert.operators.slightly
+#: fuzzy_expert.operators.somewhat fuzzy_expert.operators.very of
+msgid "Parameters"
+msgstr "Parámetros"
+
+#: fuzzy_expert.operators.apply_modifiers:3 of
+msgid "Membership values to be modified."
+msgstr "Valores de pertenencia a ser modificados."
+
+#: fuzzy_expert.operators.apply_modifiers:5 of
+msgid "List of modifiers or hedges."
+msgstr "Lista de modificadores."
+
+#: fuzzy_expert.operators.apply_modifiers fuzzy_expert.operators.bounded_diff
+#: fuzzy_expert.operators.bounded_prod fuzzy_expert.operators.bounded_sum
+#: fuzzy_expert.operators.defuzzificate fuzzy_expert.operators.drastic_prod
+#: fuzzy_expert.operators.drastic_sum fuzzy_expert.operators.extremely
+#: fuzzy_expert.operators.intensify fuzzy_expert.operators.maximum
+#: fuzzy_expert.operators.minimum fuzzy_expert.operators.more_or_less
+#: fuzzy_expert.operators.norm fuzzy_expert.operators.not_
+#: fuzzy_expert.operators.plus fuzzy_expert.operators.prob_or
+#: fuzzy_expert.operators.product fuzzy_expert.operators.slightly
+#: fuzzy_expert.operators.somewhat fuzzy_expert.operators.very of
+msgid "Return type"
+msgstr "Tipo retornado"
+
+#: fuzzy_expert.operators.bounded_diff:1 of
+msgid "Applies the element-wise function max(0, u - v)."
+msgstr "Aplica la función elemental max(0, u - v)."
+
+#: fuzzy_expert.operators.bounded_diff:3 fuzzy_expert.operators.bounded_prod:3
+#: fuzzy_expert.operators.bounded_sum:3 fuzzy_expert.operators.drastic_prod:3
+#: fuzzy_expert.operators.drastic_sum:3 fuzzy_expert.operators.maximum:3
+#: fuzzy_expert.operators.minimum:3 fuzzy_expert.operators.prob_or:3
+#: fuzzy_expert.operators.product:3 of
+msgid "List of arrays of membership values."
+msgstr "Lista de vectores de valores de pertenencia."
+
+#: fuzzy_expert.operators.bounded_prod:1 of
+msgid "Applies the element-wise function max(0, u + v - 1)."
+msgstr "Aplica la función elemental max(0, u + v - 1)."
+
+#: fuzzy_expert.operators.bounded_sum:1 of
+msgid "Applies the element-wise function min(1, u + v)."
+msgstr "Aplica la función elemental min(1, u + v)."
+
+#: fuzzy_expert.operators.defuzzificate:1 of
+msgid "Computes a representative crisp value for the fuzzy set."
+msgstr "Computa un valor concreto representantivo del conjunto borroso"
+
+#: fuzzy_expert.operators.defuzzificate:3 of
+msgid "Array of values representing the universe of discourse."
+msgstr "Vector de valores representando el universo de discurso."
+
+#: fuzzy_expert.operators.defuzzificate:4 of
+msgid "Array of values representing the membership function."
+msgstr "Vector de valores que representan la función de pertenencia"
+
+#: fuzzy_expert.operators.defuzzificate:5 of
+msgid ""
+"Method used for computing the crisp representative value of the fuzzy "
+"set.  * `\"cog\"`: Center of gravity. * `\"boa\"`: Bisector of area. * "
+"`\"mom\"`: Mean of the values for which the membership function is "
+"maximum. * `\"lom\"`: Largest value for which the membership function is "
+"maximum. * `\"som\"`: Smallest value for which the membership function is"
+" minimum."
+msgstr ""
+"Método usado para calcular el valor concreto representativo de conjunto borroso. "
+" "
+" "
+"  * `\"cog\"`: Centro de gravedad."
+" "
+" "
+"  * `\"boa\"`: Bisector del area."
+" "
+"  * `\"mom\"`: Media de los valores para los cuales la función de pertenencia es máxima. "
+" "
+"  * `\"lom\"`: Valor más grande de los valores para los cuales la función de pertenencia es máxima."
+" "
+"  * `\"som\"`: Valor más pequeño de los valores para los cuales la función de pertenencia es máxima."
+
+
+#: fuzzy_expert.operators.defuzzificate:5 of
+msgid "Method used for computing the crisp representative value of the fuzzy set."
+msgstr "Método usado para calcular el valor concreto representativo del conjunto borroso."
+
+#: fuzzy_expert.operators.defuzzificate:7 of
+msgid "`\"cog\"`: Center of gravity."
+msgstr "`\"cog\"`: Centro de gravedad."
+
+#: fuzzy_expert.operators.defuzzificate:8 of
+msgid "`\"boa\"`: Bisector of area."
+msgstr "`\"boa\"`: Bisector del area."
+
+#: fuzzy_expert.operators.defuzzificate:9 of
+msgid ""
+"`\"mom\"`: Mean of the values for which the membership function is maximum."
+msgstr ""
+"`\"mom\"`: Media de los valores para los cuales la función de pertenencia es máxima."
+
+#: fuzzy_expert.operators.defuzzificate:10 of
+msgid "`\"lom\"`: Largest value for which the membership function is maximum."
+msgstr "`\"lom\"`: Valor más grande de los valores para los cuales la función de pertenencia es máxima."
+
+#: fuzzy_expert.operators.defuzzificate:11 of
+msgid "`\"som\"`: Smallest value for which the membership function is minimum."
+msgstr "`\"som\"`: Valor más pequeño de los valores para los cuales la función de pertenencia es máxima."
+
+#: fuzzy_expert.operators.drastic_prod:1 of
+msgid ""
+"Applies the element-wise function f(u, v) = u if v == 0 else v if u == 1 else 0."
+msgstr ""
+"Aplica la función elemental f(u, v) = u if v == 0 else v if u == 1 else 0."
+
+#: fuzzy_expert.operators.drastic_sum:1 of
+msgid ""
+"Applies the element-wise function f(u, v) = u if v == 0 else v if u == 0 else 1."
+msgstr ""
+"Aplica la función elemental f(u, v) = u if v == 0 else v if u == 0 else 1."
+
+#: fuzzy_expert.operators.extremely:1 of
+msgid "Applies the element-wise function fn(u) = u^3."
+msgstr "Aplica la función elemental fn(u) = u^3."
+
+
+
+#: fuzzy_expert.operators.extremely:3 fuzzy_expert.operators.intensify:3
+#: fuzzy_expert.operators.more_or_less:3 fuzzy_expert.operators.norm:3
+#: fuzzy_expert.operators.not_:3 fuzzy_expert.operators.plus:3
+#: fuzzy_expert.operators.slightly:3 fuzzy_expert.operators.somewhat:3
+#: fuzzy_expert.operators.very:3 of
+msgid "Membership function to be modified."
+msgstr "Función de pertenencia a ser modificada."
+
+#: fuzzy_expert.operators.intensify:1 of
+msgid ""
+"Applies the element-wise function fn(u) = u^2 if u <= 0.5 else 1 - 2 * (1 - u)^2."
+msgstr "Aplica la función elemental fn(u) = u^2 if u <= 0.5 else 1 - 2 * (1 - u)^2."
+
+#: fuzzy_expert.operators.maximum:1 of
+msgid "Applies the element-wise function fn(u, v) = max(u, v)."
+msgstr "Aplica la función elemental fn(u, v) = max(u, v)."
+
+#: fuzzy_expert.operators.minimum:1 of
+msgid "Applies the element-wise function f(u, v) = min(u, v)."
+msgstr "Aplica la función elemental f(u, v) = min(u, v)."
+
+
+#: fuzzy_expert.operators.more_or_less:1 of
+msgid "Applies the element-wise function  fn(u) = u^(1/2)."
+msgstr "Aplica la función elemental fn(u) = u^(1/2)."
+
+#: fuzzy_expert.operators.norm:1 of
+msgid "Applies the element-wise function  fn(u) = u / max(u)."
+msgstr "Aplica la función elemental fn(u) = u / max(u)."
+
+#: fuzzy_expert.operators.not_:1 of
+msgid "Applies the element-wise function fn(u) = 1 - u."
+msgstr "Aplica la función elemental fn(u) = 1 - u."
+
+#: fuzzy_expert.operators.plus:1 of
+msgid "Applies the element-wise function fn(u) = u^1.25."
+msgstr "Aplica la función elemental fn(u) = u^1.25."
+
+#: fuzzy_expert.operators.prob_or:1 of
+msgid "Applies the element-wise function fn(u, v) = u + v - u * v. Also known as algebraic-sum."
+msgstr "Aplica la función elemental fn(u, v) = u + v - u * v. También conocida como algebraic-sum."
+
+#: fuzzy_expert.operators.product:1 of
+msgid "Applies the element-wise function fn(u, v) = u * v."
+msgstr "Aplica la función elemental fn(u, v) = u * v."
+
+#: fuzzy_expert.operators.slightly:1 of
+msgid "Applies the element-wise function fn(u) = u^(1/2)."
+msgstr "Aplica la función elemental fn(u) = u^(1/2)."
+
+#: fuzzy_expert.operators.somewhat:1 of
+msgid "Applies the element-wise function fn(u) = u^(1/3)."
+msgstr "Aplica la función elemental fn(u) = u^(1/3)."
+
+
+#: fuzzy_expert.operators.very:1 of
+msgid "Applies the element-wise function fn(u) = u^2."
+msgstr "Aplica la función elemental fn(u) = u^2."
+

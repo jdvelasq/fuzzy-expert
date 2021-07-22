@@ -22,6 +22,12 @@ import sys
 sys.path.insert(0, os.path.abspath("../"))
 
 
+# -- Sphinx traslation ------------------------------------------------
+
+locale_dirs = ["locale/"]
+gettext_compact = False
+
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -39,7 +45,8 @@ extensions = [
     "sphinx.ext.imgmath",
 ]
 
-autodoc_typehints = "description"
+# autodoc_typehints = "description"
+autodoc_typehints = "none"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]

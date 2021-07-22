@@ -23,6 +23,7 @@ def apply_modifiers(membership: npt.ArrayLike, modifiers: List[str]) -> npt.Arra
     Apply a list of modifiers or hedges to a numpy array.
 
     :param membership: Membership values to be modified.
+
     :param modifiers: List of modifiers or hedges.
 
     >>> from fuzzy_expert.operators import apply_modifiers

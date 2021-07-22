@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="es" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.inference &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>fuzzy_expert.inference &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
   
 
   
@@ -35,13 +35,14 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -73,7 +74,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Buscar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -142,7 +143,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../index.html">Código de módulo</a> &raquo;</li>
         
       <li>fuzzy_expert.inference</li>
     
@@ -159,7 +160,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for fuzzy_expert.inference</h1><div class="highlight"><pre>
+  <h1>Código fuente para fuzzy_expert.inference</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Inference Method</span>
 <span class="sd">===============================================================================</span>
@@ -191,56 +192,118 @@
 <span class="c1">#</span>
 
 
-<div class="viewcode-block" id="DecompositionalInference"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference">[docs]</a><span class="k">class</span> <span class="nc">DecompositionalInference</span><span class="p">:</span>
+<div class="viewcode-block" id="DecompositionalInference"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference">[documentos]</a><span class="k">class</span> <span class="nc">DecompositionalInference</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Decompositional inference method.</span>
 
 
 <span class="sd">    :param and_operator: AND operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:</span>
 
+
 <span class="sd">        * `&quot;min&quot;`.</span>
+
+
 <span class="sd">        * `&quot;prod&quot;`.</span>
+
+
 <span class="sd">        * `&quot;bunded_prod&quot;`.</span>
+
+
 <span class="sd">        * `&quot;drastic_prod&quot;`.</span>
+
 
 <span class="sd">    :param or_operator: OR operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:</span>
 
+
 <span class="sd">        * `&quot;max&quot;`.</span>
+
+
 <span class="sd">        * `&quot;prob_or&quot;`.</span>
+
+
 <span class="sd">        * `&quot;bounded_sum&quot;`.</span>
+
+
 <span class="sd">        * `&quot;drastic_sum&quot;`.</span>
+
 
 <span class="sd">    :param implication_operator: method for computing the compositions of propositions in a fuzzy rule premise, specified as one of the following:</span>
 
+
 <span class="sd">        * `&quot;Ra&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rm&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rc&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rb&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rs&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rg&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rsg&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rgs&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rgg&quot;`.</span>
+
+
 <span class="sd">        * `&quot;Rss&quot;`.</span>
+
 
 <span class="sd">    :param production_link: method for aggregating the consequences of the fuzzy rules, specified as one of the following:</span>
 
+
 <span class="sd">        *  `&quot;min&quot;`.</span>
+
+
 <span class="sd">        * `&quot;prod&quot;`.</span>
+
+
 <span class="sd">        * `&quot;bunded_prod&quot;`.</span>
+
+
 <span class="sd">        * `&quot;drastic_prod&quot;`.</span>
+
+
 <span class="sd">        * `&quot;max&quot;`.</span>
+
+
 <span class="sd">        * `&quot;prob_or&quot;`.</span>
+
+
 <span class="sd">        * `&quot;bounded_sum&quot;`.</span>
+
+
 <span class="sd">        * `&quot;drastic_sum&quot;`.</span>
+
 
 <span class="sd">    :param defuzzification_operator: Method for defuzzificate the resulting membership function, specified as one of the following:</span>
 
+
 <span class="sd">        * `&quot;cog&quot;`: Center of gravity.</span>
+
+
 <span class="sd">        * `&quot;boa&quot;`: Bisector of area.</span>
+
+
 <span class="sd">        * `&quot;mom&quot;`: Mean of the values for which the membership function is maximum.</span>
+
+
 <span class="sd">        * `&quot;lom&quot;`: Largest value for which the membership function is maximum.</span>
+
+
 <span class="sd">        * `&quot;som&quot;`: Smallest value for which the membership function is minimum.</span>
+
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -604,7 +667,7 @@
                 <span class="n">operator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">defuzzification_operator</span><span class="p">,</span>
             <span class="p">)</span>
 
-<div class="viewcode-block" id="DecompositionalInference.plot"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="o">**</span><span class="n">facts</span><span class="p">):</span>
+<div class="viewcode-block" id="DecompositionalInference.plot"><a class="viewcode-back" href="../../inference.html#fuzzy_expert.inference.DecompositionalInference.plot">[documentos]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="o">**</span><span class="n">facts</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">get_position</span><span class="p">():</span>
             <span class="n">position</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">i_name</span> <span class="k">for</span> <span class="n">i_name</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())}</span>
             <span class="k">return</span> <span class="n">position</span>
@@ -734,11 +797,11 @@
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
     
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

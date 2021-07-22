@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="es" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.mf &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>fuzzy_expert.mf &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
   
 
   
@@ -35,13 +35,14 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -73,7 +74,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Buscar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -142,7 +143,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../index.html">Código de módulo</a> &raquo;</li>
         
       <li>fuzzy_expert.mf</li>
     
@@ -159,7 +160,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for fuzzy_expert.mf</h1><div class="highlight"><pre>
+  <h1>Código fuente para fuzzy_expert.mf</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Membership Functions</span>
 <span class="sd">==============================================================================</span>
@@ -175,7 +176,7 @@
 <span class="c1">## pag. 27, FuzzyCLIPS</span>
 
 
-<div class="viewcode-block" id="MembershipFunction"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction">[docs]</a><span class="k">class</span> <span class="nc">MembershipFunction</span><span class="p">:</span>
+<div class="viewcode-block" id="MembershipFunction"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction">[documentos]</a><span class="k">class</span> <span class="nc">MembershipFunction</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Membership function constructor.</span>
 
 <span class="sd">    :param n_points: Number base point for building the approximations.</span>
@@ -216,7 +217,7 @@
 
         <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MembershipFunction.gaussmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.gaussmf">[docs]</a>    <span class="k">def</span> <span class="nf">gaussmf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<div class="viewcode-block" id="MembershipFunction.gaussmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.gaussmf">[documentos]</a>    <span class="k">def</span> <span class="nf">gaussmf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;Gaussian membership function.</span>
 
 <span class="sd">        :param center: Defines the center of the membership function.</span>
@@ -243,7 +244,7 @@
             <span class="o">+</span> <span class="p">[(</span><span class="n">center</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="MembershipFunction.gbellmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.gbellmf">[docs]</a>    <span class="k">def</span> <span class="nf">gbellmf</span><span class="p">(</span>
+<div class="viewcode-block" id="MembershipFunction.gbellmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.gbellmf">[documentos]</a>    <span class="k">def</span> <span class="nf">gbellmf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -251,9 +252,15 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;Generalized bell-shaped membership function.</span>
 
-<span class="sd">        :param center: Defines the center of the membership function.</span>
-<span class="sd">        :param width: Defines the width of the membership function, where a larger value creates a wider membership function.</span>
-<span class="sd">        :param shape: Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition.</span>
+<span class="sd">        :param center:</span>
+<span class="sd">            Defines the center of the membership function.</span>
+
+<span class="sd">        :param width:</span>
+<span class="sd">            Defines the width of the membership function, where a larger value creates a wider membership function.</span>
+
+<span class="sd">        :param shape:</span>
+<span class="sd">            Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition.</span>
+
 
 <span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
 <span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=3)</span>
@@ -275,7 +282,7 @@
             <span class="o">+</span> <span class="p">[(</span><span class="n">center</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="MembershipFunction.pimf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.pimf">[docs]</a>    <span class="k">def</span> <span class="nf">pimf</span><span class="p">(</span>
+<div class="viewcode-block" id="MembershipFunction.pimf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.pimf">[documentos]</a>    <span class="k">def</span> <span class="nf">pimf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">left_feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">left_peak</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -299,15 +306,18 @@
             <span class="n">shoulder</span><span class="o">=</span><span class="n">right_peak</span><span class="p">,</span> <span class="n">feet</span><span class="o">=</span><span class="n">right_feet</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="MembershipFunction.sigmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.sigmf">[docs]</a>    <span class="k">def</span> <span class="nf">sigmf</span><span class="p">(</span>
+<div class="viewcode-block" id="MembershipFunction.sigmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.sigmf">[documentos]</a>    <span class="k">def</span> <span class="nf">sigmf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">center</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;Sigmoidal membership function.</span>
 
-<span class="sd">        :param center: Defines the center of the membership function.</span>
-<span class="sd">        :param width: Defines the width of the membership function.</span>
+<span class="sd">        :param center:</span>
+<span class="sd">            Defines the center of the membership function.</span>
+
+<span class="sd">        :param width:</span>
+<span class="sd">            Defines the width of the membership function.</span>
 
 <span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
 <span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=3)</span>
@@ -328,15 +338,18 @@
             <span class="o">+</span> <span class="p">[(</span><span class="n">center</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="MembershipFunction.smf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.smf">[docs]</a>    <span class="k">def</span> <span class="nf">smf</span><span class="p">(</span>
+<div class="viewcode-block" id="MembershipFunction.smf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.smf">[documentos]</a>    <span class="k">def</span> <span class="nf">smf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">foot</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">shoulder</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;S-shaped membership function.</span>
 
-<span class="sd">        :param foot: Defines the foot of the membership function.</span>
-<span class="sd">        :param shoulder: Defines the shoulder of the membership function.</span>
+<span class="sd">        :param foot:</span>
+<span class="sd">            Defines the foot of the membership function.</span>
+
+<span class="sd">        :param shoulder:</span>
+<span class="sd">            Defines the shoulder of the membership function.</span>
 
 <span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
 <span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
@@ -360,7 +373,7 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="MembershipFunction.trapmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.trapmf">[docs]</a>    <span class="k">def</span> <span class="nf">trapmf</span><span class="p">(</span>
+<div class="viewcode-block" id="MembershipFunction.trapmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.trapmf">[documentos]</a>    <span class="k">def</span> <span class="nf">trapmf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">left_feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">left_peak</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -369,10 +382,18 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;Trapezoidal membership function.</span>
 
-<span class="sd">        :param left_feet: Defines the left feet of the membership function.</span>
-<span class="sd">        :param left_peak: Defines the left peak of the membership function.</span>
-<span class="sd">        :param right_peak: Defines the right peak of the membership function.</span>
-<span class="sd">        :param right_feet: Defines the right feet of the membership function.</span>
+<span class="sd">        :param left_feet:</span>
+<span class="sd">            Defines the left feet of the membership function.</span>
+
+<span class="sd">        :param left_peak:</span>
+<span class="sd">            Defines the left peak of the membership function.</span>
+
+<span class="sd">        :param right_peak:</span>
+<span class="sd">            Defines the right peak of the membership function.</span>
+
+<span class="sd">        :param right_feet:</span>
+<span class="sd">            Defines the right feet of the membership function.</span>
+
 
 <span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
 <span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
@@ -407,7 +428,7 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="MembershipFunction.trimf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.trimf">[docs]</a>    <span class="k">def</span> <span class="nf">trimf</span><span class="p">(</span>
+<div class="viewcode-block" id="MembershipFunction.trimf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.trimf">[documentos]</a>    <span class="k">def</span> <span class="nf">trimf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">left_feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">peak</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -415,9 +436,14 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;Triangular membership function.</span>
 
-<span class="sd">        :param left_feet: Defines the left feet of the membership function.</span>
-<span class="sd">        :param peak: Defines the peak of the membership function.</span>
-<span class="sd">        :param right_feet: Defines the right feet of the membership function.</span>
+<span class="sd">        :param left_feet:</span>
+<span class="sd">            Defines the left feet of the membership function.</span>
+
+<span class="sd">        :param peak:</span>
+<span class="sd">            Defines the peak of the membership function.</span>
+
+<span class="sd">        :param right_feet:</span>
+<span class="sd">            Defines the right feet of the membership function.</span>
 
 <span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
 <span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
@@ -441,15 +467,18 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="MembershipFunction.zmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.zmf">[docs]</a>    <span class="k">def</span> <span class="nf">zmf</span><span class="p">(</span>
+<div class="viewcode-block" id="MembershipFunction.zmf"><a class="viewcode-back" href="../../mf.html#fuzzy_expert.mf.MembershipFunction.zmf">[documentos]</a>    <span class="k">def</span> <span class="nf">zmf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">shoulder</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">feet</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;Z-shaped membership function.</span>
 
-<span class="sd">        :param shoulder: Defines the shoulder of the membership function.</span>
-<span class="sd">        :param feet: Defines the feet of the membership function.</span>
+<span class="sd">        :param shoulder:</span>
+<span class="sd">            Defines the shoulder of the membership function.</span>
+
+<span class="sd">        :param feet:</span>
+<span class="sd">            Defines the feet of the membership function.</span>
 
 <span class="sd">        &gt;&gt;&gt; from fuzzy_expert.mf import MembershipFunction</span>
 <span class="sd">        &gt;&gt;&gt; mf = MembershipFunction(n_points=4)</span>
@@ -485,11 +514,11 @@
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
     
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

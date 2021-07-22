@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="es" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Zadeh-Mamdani Rules &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>Reglas de Zadeh-Mamdani &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
   
 
   
@@ -35,14 +35,15 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Inference Method" href="inference.html" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Método de Inferencia" href="inference.html" />
     <link rel="prev" title="Fuzzy Variables" href="variable.html" /> 
 </head>
 
@@ -75,7 +76,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Buscar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -95,12 +96,12 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="operators.html">Modifiers and operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mf.html">Membership Functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Referencia de la librería</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Modificadores y operadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mf.html">Funciones de pertenencia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variable.html">Fuzzy Variables</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Zadeh-Mamdani Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inference.html">Inference Method</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Reglas de Zadeh-Mamdani</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html">Método de Inferencia</a></li>
 </ul>
 </li>
 </ul>
@@ -151,15 +152,15 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="reference.html">Library reference</a> &raquo;</li>
+          <li><a href="reference.html">Referencia de la librería</a> &raquo;</li>
         
-      <li>Zadeh-Mamdani Rules</li>
+      <li>Reglas de Zadeh-Mamdani</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/rule.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/rule.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
           
         
       </li>
@@ -197,19 +198,19 @@
 }
 </style>
 <span class="target" id="module-fuzzy_expert.rule"></span><div class="section" id="zadeh-mamdani-rules">
-<h1>Zadeh-Mamdani Rules<a class="headerlink" href="#zadeh-mamdani-rules" title="Permalink to this headline">¶</a></h1>
+<h1>Reglas de Zadeh-Mamdani<a class="headerlink" href="#zadeh-mamdani-rules" title="Enlazar permanentemente con este título">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="fuzzy_expert.rule.FuzzyRule">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.rule.</span></span><span class="sig-name descname"><span class="pre">FuzzyRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">premise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_cf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/rule.html#FuzzyRule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.rule.FuzzyRule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.rule.</span></span><span class="sig-name descname"><span class="pre">FuzzyRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">premise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_cf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/rule.html#FuzzyRule"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.rule.FuzzyRule" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Creates a Zadeh-Mamdani fuzzy rule.</p>
+<p>Crea una regla difusa de Zadeh-Mamdani.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>premise</strong> – List of propositions in rule premise.</p></li>
-<li><p><strong>consequence</strong> – List of propositions in rule consequence.</p></li>
-<li><p><strong>cf</strong> (<em>float</em>) – Certainty factor of the rule.</p></li>
-<li><p><strong>threshold_cf</strong> (<em>float</em>) – Minimum certainty factor for rule firing.</p></li>
+<li><p><strong>premise</strong> – Lista de proposiciones en la premisa de la regla.</p></li>
+<li><p><strong>consequence</strong> – Lista de proposiciones en el consecuente de la regla.</p></li>
+<li><p><strong>cf</strong> – Factor de certeza de la regla</p></li>
+<li><p><strong>threshold_cf</strong> – Factor mínimo de certeza para la activación de la regla.</p></li>
 </ul>
 </dd>
 </dl>
@@ -242,8 +243,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="inference.html" class="btn btn-neutral float-right" title="Inference Method" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="variable.html" class="btn btn-neutral float-left" title="Fuzzy Variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inference.html" class="btn btn-neutral float-right" title="Método de Inferencia" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="variable.html" class="btn btn-neutral float-left" title="Fuzzy Variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
     </div>
 
   <hr/>
@@ -256,11 +257,11 @@
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
     
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

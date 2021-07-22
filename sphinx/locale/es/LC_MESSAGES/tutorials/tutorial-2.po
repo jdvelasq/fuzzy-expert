@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-21 22:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../tutorials/tutorial-2.ipynb:9
+msgid "Tutorial 2 - Bank decision loan problem with fuzzy inputs"
+msgstr "Tutorial 2 - Problema de aprobación de préstamos bancarios con entradas difusas"
+
+#: ../../tutorials/tutorial-2.ipynb:20
+msgid "This tutorial uses the fuzzy inference system developed in Tutorial 1."
+msgstr "Este tutorial usa el sistema difuso de inferencia desarrollado en el Tutorial 1."
+
+#: ../../tutorials/tutorial-2.ipynb:47
+msgid "Specification of the fuzzy inference system"
+msgstr "Especificación del sistema difuso de inferencia"
+
+#: ../../tutorials/tutorial-2.ipynb:136
+msgid "Computation with fuzzy inputs"
+msgstr "Cálculos con entradas difusas"
+
+#: ../../tutorials/tutorial-2.ipynb:147
+msgid ""
+"Fuzzy inputs are specified as a list of points (x, u), where x is a point"
+" in the universe of discourse and u is the corresponding value of the "
+"membership function. In the first case, the fuzziness of inputs are "
+"considered; however, values are according with an approval decision."
+msgstr ""
+"Las entradas difusas se especifican como una lista de puntos (x, u), "
+"donde x es un punto en el universo del discurso y u es el valor "
+"correspondiente de la función de pertenencia. En el primer caso, se "
+"considera la falta de claridad de las entradas; sin embargo, "
+"los valores están de acuerdo con una decisión de aprobación.""
+
+#: ../../tutorials/tutorial-2.ipynb:193
+msgid "In the second case, the values are clearly related to a reject decision."
+msgstr "En el segundo caso, los valores están claramente relacionados con una decisión de rechazo."
+
+#: ../../tutorials/tutorial-2.ipynb:239
+msgid ""
+"In the third case, two variables have good values and the third a bad "
+"value, causing indetermination in the result."
+msgstr ""
+"En el tercer caso, dos variables tienen buenos valores y la tercera un mal valor, "
+"causando la indeterminación del resultado."

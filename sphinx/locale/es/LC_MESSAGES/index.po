@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-21 22:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../index.rst:2
+msgid "Fuzzy-Expert: Mamdani Fuzzy Inference Systems in Python"
+msgstr "Fuzzy-Expert: Sistemas de Inferencia Borrosa de Zadeh-Mamdani en Python"
+
+#: ../../index.rst:5
+msgid "**Author**"
+msgstr ""
+
+#: ../../index.rst:7
+msgid "Prof. Juan David Velásquez-Henao, MSc, PhD"
+msgstr ""
+
+#: ../../index.rst:8
+msgid "Universidad Nacional de Colombia, Sede Medellín."
+msgstr ""
+
+#: ../../index.rst:9
+msgid "jdvelasq@unal.edu.co"
+msgstr ""
+
+#: ../../index.rst:13
+msgid "**What is it?**"
+msgstr "**¿Qué es?**"
+
+#: ../../index.rst:16
+msgid ""
+"**Fuzzy-Expert** is a Python package for building Mamdani Fuzzy Inference"
+" Systems. **Fuzzy-Expert** admits a mix of fuzzy and crisp values and "
+"associated certainty values. The inference system returns crisp values "
+"and certainty factors for the conclusions of the rules."
+msgstr ""
+"**Fuzzy-Expert** es un paquete de Python para construir Sistemas de Inferencia Borrosa "
+"de Zadeh-Mamdani. **Fuzzy-Expert** admite una combinación de valores difusos y concretos y"
+"valores de certeza asociados. El sistema de inferencia devuelve valores concretos "
+"y factores de certeza para las conclusiones de las reglas."
+
+#: ../../index.rst:19
+msgid "**Main Features**"
+msgstr "**Principales Características**"
+
+#: ../../index.rst:22
+msgid "Specification of membership functions using standard functions or as a list of points."
+msgstr "Especificación de funciones de pertenencia mediante funciones estándar o como una lista de puntos."
+
+#: ../../index.rst:25
+msgid "Different functions for specifying T-norms and Conorms."
+msgstr "Diferentes funciones para especificar T-normas y Conormas."
+
+#: ../../index.rst:28
+msgid "Different implication operators."
+msgstr "Diferentes operadores de implicación."
+
+#: ../../index.rst:31
+msgid "Composition using `max-min` or `max-prod` rules."
+msgstr "Composición usando las reglas` max-min` o `max-prod`."
+
+#: ../../index.rst:34
+msgid "Most common functions for production aggregation."
+msgstr "Funciones más comunes para la agregación de producciones".
+
+#: ../../index.rst:37
+msgid "Different operators to defuzzificate fuzzy sets."
+msgstr "Diferentes operadores para desfuzzificar conjuntos borrosos."
+
+#: ../../index.rst:40
+msgid "**Release Information**"
+msgstr "**Información de la Publicación**"
+
+#: ../../index.rst:43
+msgid "Date:   June 24, 2021  **Version**: 0.1.0"
+msgstr "Fecha: Junio 24, 2021  **Version**: 0.1.0"
+
+#: ../../index.rst:46
+msgid "Binary Installers:  `<https://pypi.org/project/fuzzy_expert>`_"
+msgstr "Instaladores binarios: `<https://pypi.org/project/fuzzy_expert>`_"
+
+#: ../../index.rst:49
+msgid "Source Repository:  `<https://github.com/jdvelasq/fuzzy-expert>`_"
+msgstr "Repositorio fuente: `<https://github.com/jdvelasq/fuzzy-expert>`_"
+
+#: ../../index.rst:52
+msgid "Documentation:  `<https://jdvelasq.github.io/fuzzy-expert/>`_"
+msgstr "Documentacion: `<https://jdvelasq.github.io/fuzzy-expert/>`_"
+

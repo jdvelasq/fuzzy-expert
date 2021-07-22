@@ -10,10 +10,17 @@ from __future__ import annotations
 class FuzzyRule:
     """Creates a Zadeh-Mamdani fuzzy rule.
 
-    :param premise: List of propositions in rule premise.
-    :param consequence: List of propositions in rule consequence.
-    :param cf: Certainty factor of the rule.
-    :param threshold_cf: Minimum certainty factor for rule firing.
+    :param premise:
+        List of propositions in rule premise.
+
+    :param consequence:
+        List of propositions in rule consequence.
+
+    :param cf:
+        Certainty factor of the rule.
+
+    :param threshold_cf:
+        Minimum certainty factor for rule firing.
 
     >>> from fuzzy_expert.rule import FuzzyRule
     >>> rule = FuzzyRule(

@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-22 00:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: fuzzy_expert.variable:2 of
+msgid "Fuzzy Variables"
+msgstr "Variables difusas"
+
+#: fuzzy_expert.variable.FuzzyVariable:1 of
+msgid "Bases: :class:`object`"
+msgstr ""
+
+#: fuzzy_expert.variable.FuzzyVariable:1 of
+msgid "Creates a fuzzy variable."
+msgstr "Crea una variable difusa."
+
+#: fuzzy_expert.variable.FuzzyVariable
+#: fuzzy_expert.variable.FuzzyVariable.get_modified_membeship
+#: fuzzy_expert.variable.FuzzyVariable.plot
+#: fuzzy_expert.variable.FuzzyVariable.plot_input of
+msgid "Parameters"
+msgstr "Parámetros"
+
+#: fuzzy_expert.variable.FuzzyVariable:3 of
+msgid "Limits of the universe of discourse."
+msgstr "Límites del universo de discurso."
+
+#: fuzzy_expert.variable.FuzzyVariable:6 of
+msgid ""
+"Dictionary where each term is the key of the dictionary, and the values is the membership function."
+msgstr ""
+"Diccionario donde cada término es la clave del diccionario y los valores son la función de pertenencia."
+
+#: fuzzy_expert.variable.FuzzyVariable:9 of
+msgid ""
+"Value controling the resolution for the discrete representation of the universe."
+msgstr ""
+"Valor que controla la resolución de la representación discreta del universo."
+
+
+#: fuzzy_expert.variable.FuzzyVariable
+#: fuzzy_expert.variable.FuzzyVariable.get_modified_membeship
+#: fuzzy_expert.variable.FuzzyVariable.plot of
+msgid "Return type"
+msgstr "Tipo retornado"
+
+#: fuzzy_expert.variable.FuzzyVariable.get_modified_membeship:1 of
+msgid "Returns the membership modified values for the term."
+msgstr "Devuelve los valores modificados de pertenencia para el término."
+
+#: fuzzy_expert.variable.FuzzyVariable.get_modified_membeship:3 of
+msgid "Name of the fuzzy set."
+msgstr "Nombre del conjunto difuso."
+
+#: fuzzy_expert.variable.FuzzyVariable.get_modified_membeship:6 of
+msgid "List of modifiers."
+msgstr "Lista de modificadores."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot:1 of
+msgid "Plots a fuzzy variable."
+msgstr "Grafica la variable difusa."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot:3 of
+msgid "Format string passed to Matplotlib.pyplot."
+msgstr "Cadena de formato pasada a Matplotlib.pyplot."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot:4 of
+msgid "Width of lines."
+msgstr "Ancho de las lineas."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot_input:1 of
+msgid "Plots the fuzzy set, and the input."
+msgstr "Grafica el conjunto borroso y la entrada."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot_input:3 of
+msgid "Crisp or fuzzy input value."
+msgstr "Valor de entrada difuso o concreto."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot_input:6 of
+msgid "Term to plot."
+msgstr "Término a graficar."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot_input:9 of
+msgid "Draw the x-axis of plot"
+msgstr "Dibuja el eje-X de la gráfica."
+
+#: fuzzy_expert.variable.FuzzyVariable.plot_input:12 of
+msgid "Draw the y-axis of plot at left or right side."
+msgstr "Dibuja el eje-Y de la gráfica a la izquierda o a la derecha."
+

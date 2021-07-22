@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="es" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Inference Method &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>Método de Inferencia &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
   
 
   
@@ -35,13 +35,14 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="prev" title="Zadeh-Mamdani Rules" href="rule.html" /> 
 </head>
 
@@ -74,7 +75,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Buscar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -95,11 +96,11 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="operators.html">Modifiers and operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Modificadores y operadores</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mf.html">Membership Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variable.html">Fuzzy Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rule.html">Zadeh-Mamdani Rules</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Inference Method</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Método de Inferencia</a></li>
 </ul>
 </li>
 </ul>
@@ -152,13 +153,13 @@
         
           <li><a href="reference.html">Library reference</a> &raquo;</li>
         
-      <li>Inference Method</li>
+      <li>Método de Inferencia</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/inference.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/inference.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
           
         
       </li>
@@ -196,72 +197,26 @@
 }
 </style>
 <span class="target" id="module-fuzzy_expert.inference"></span><div class="section" id="inference-method">
-<h1>Inference Method<a class="headerlink" href="#inference-method" title="Permalink to this headline">¶</a></h1>
+<h1>Método de Inferencia<a class="headerlink" href="#inference-method" title="Enlazar permanentemente con este título">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="fuzzy_expert.inference.DecompositionalInference">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.inference.</span></span><span class="sig-name descname"><span class="pre">DecompositionalInference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">and_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">or_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">implication_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">production_link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defuzzification_operator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/inference.html#DecompositionalInference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.inference.DecompositionalInference" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.inference.</span></span><span class="sig-name descname"><span class="pre">DecompositionalInference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">and_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">or_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">implication_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">production_link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defuzzification_operator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/inference.html#DecompositionalInference"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.inference.DecompositionalInference" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Decompositional inference method.</p>
+<p>Método descomposicional de inferencia.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>and_operator</strong> – <p>AND operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:</p>
-<ul>
-<li><p><cite>”min”</cite>.</p></li>
-<li><p><cite>”prod”</cite>.</p></li>
-<li><p><cite>”bunded_prod”</cite>.</p></li>
-<li><p><cite>”drastic_prod”</cite>.</p></li>
-</ul>
-</p></li>
-<li><p><strong>or_operator</strong> – <p>OR operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:</p>
-<ul>
-<li><p><cite>”max”</cite>.</p></li>
-<li><p><cite>”prob_or”</cite>.</p></li>
-<li><p><cite>”bounded_sum”</cite>.</p></li>
-<li><p><cite>”drastic_sum”</cite>.</p></li>
-</ul>
-</p></li>
-<li><p><strong>implication_operator</strong> – <p>method for computing the compositions of propositions in a fuzzy rule premise, specified as one of the following:</p>
-<ul>
-<li><p><cite>”Ra”</cite>.</p></li>
-<li><p><cite>”Rm”</cite>.</p></li>
-<li><p><cite>”Rc”</cite>.</p></li>
-<li><p><cite>”Rb”</cite>.</p></li>
-<li><p><cite>”Rs”</cite>.</p></li>
-<li><p><cite>”Rg”</cite>.</p></li>
-<li><p><cite>”Rsg”</cite>.</p></li>
-<li><p><cite>”Rgs”</cite>.</p></li>
-<li><p><cite>”Rgg”</cite>.</p></li>
-<li><p><cite>”Rss”</cite>.</p></li>
-</ul>
-</p></li>
-<li><p><strong>production_link</strong> – <p>method for aggregating the consequences of the fuzzy rules, specified as one of the following:</p>
-<ul>
-<li><p><cite>”min”</cite>.</p></li>
-<li><p><cite>”prod”</cite>.</p></li>
-<li><p><cite>”bunded_prod”</cite>.</p></li>
-<li><p><cite>”drastic_prod”</cite>.</p></li>
-<li><p><cite>”max”</cite>.</p></li>
-<li><p><cite>”prob_or”</cite>.</p></li>
-<li><p><cite>”bounded_sum”</cite>.</p></li>
-<li><p><cite>”drastic_sum”</cite>.</p></li>
-</ul>
-</p></li>
-<li><p><strong>defuzzification_operator</strong> – <p>Method for defuzzificate the resulting membership function, specified as one of the following:</p>
-<ul>
-<li><p><cite>”cog”</cite>: Center of gravity.</p></li>
-<li><p><cite>”boa”</cite>: Bisector of area.</p></li>
-<li><p><cite>”mom”</cite>: Mean of the values for which the membership function is maximum.</p></li>
-<li><p><cite>”lom”</cite>: Largest value for which the membership function is maximum.</p></li>
-<li><p><cite>”som”</cite>: Smallest value for which the membership function is minimum.</p></li>
-</ul>
-</p></li>
+<li><p><strong>and_operator</strong> – Método del operador AND para combinar las composiciones de proposiciones en una premisa de regla difusa, especificada como una de las siguientes:    * <cite>«min»</cite>.   * <cite>«prod»</cite>.   * <cite>«bunded_prod»</cite>.   * <cite>«drastic_prod»</cite>.</p></li>
+<li><p><strong>or_operator</strong> – Método del operador OR para combinar las composiciones de proposiciones en una premisa de regla difusa, especificada como una de las siguientes:   * <cite>«max»</cite>.   * <cite>«prob_or»</cite>   * <cite>«bounded_sum»</cite>.   * <cite>«drastic_sum»</cite>.</p></li>
+<li><p><strong>implication_operator</strong> – Método para calcular las composiciones de proposiciones en una premisa de regla difusa, especificado como uno de los siguientes:   * <cite>«Ra»</cite>.   * <cite>«Rm»</cite>.   * <cite>«Rc»</cite>.   * <cite>«Rb»</cite>.   * <cite>«Rs»</cite>.   * <cite>«Rg»</cite>.   * <cite>«Rsg»</cite>.   * <cite>«Rgs»</cite>.   * <cite>«Rgg»</cite>.   * <cite>«Rss»</cite>.</p></li>
+<li><p><strong>production_link</strong> – Método para agregar las consecuencias de las reglas difusas, especificado como uno de los siguientes:  *  <cite>«min»</cite>.   * <cite>«prod»</cite>.   * <cite>«bunded_prod»</cite>.   * <cite>«drastic_prod»</cite>.   * <cite>«max»</cite>.   * <cite>«prob_or»</cite>.   * <cite>«bounded_sum»</cite>.   * <cite>«drastic_sum»</cite>.</p></li>
+<li><p><strong>defuzzification_operator</strong> – Método para defuzzificar la función de pertenencia resultante, especificado como uno de los siguientes:   * <cite>«cog»</cite>: Centro de gravedad.   * <cite>«boa»</cite>: Bisector del área.   * <cite>«mom»</cite>: Media de los valores para los cuales la función de pertenencia es máxima.   * <cite>«lom»</cite>: Máximo de los valores para los cuales la función de pertenencia es máxima.   * <cite>«som»</cite>: Mínimo de los valores para los cuales la función de pertenencia es máxima.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.inference.DecompositionalInference.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">facts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/inference.html#DecompositionalInference.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.inference.DecompositionalInference.plot" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">facts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/inference.html#DecompositionalInference.plot"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.inference.DecompositionalInference.plot" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -274,7 +229,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="rule.html" class="btn btn-neutral float-left" title="Zadeh-Mamdani Rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rule.html" class="btn btn-neutral float-left" title="Zadeh-Mamdani Rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
     </div>
 
   <hr/>
@@ -287,11 +242,11 @@
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
     
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

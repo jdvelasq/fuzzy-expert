@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-21 22:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../tutorials/tutorial-4.ipynb:9
+msgid "Tutorial 4 - Certainty factors"
+msgstr "Tutorial 4 - Factores de certeza"
+
+#: ../../tutorials/tutorial-4.ipynb:20
+msgid "This tutorial uses the fuzzy inference system developed in Tutorial 1."
+msgstr "Este tutorial usa el sistema de inferencia difusa desarrollado en el Tutorial 1."
+
+#: ../../tutorials/tutorial-4.ipynb:46
+msgid "Fuzzy Variables"
+msgstr "Variables difusas"
+
+#: ../../tutorials/tutorial-4.ipynb:106
+msgid "Fuzzy rules with certainty factors"
+msgstr "Reglas difusas con factores de certeza"
+
+#: ../../tutorials/tutorial-4.ipynb:117
+msgid ""
+"It is possible to assign a certainty factor (``cf``) to each rule. If "
+"this value is not specified, it has assumed to be equal to 1.0. In "
+"addition, the ``threshold_cf`` is the minimum certainty factor required "
+"to consider the rule fired; this is, rules with a computed certainty "
+"factor below the threshold are not considering for computing the output "
+"of the system. The first rule has a certainty factor of ``0.9``, while "
+"the second rule has a certainty factor of ``1.0`` (by default)."
+msgstr ""
+"Es posible asignar un factor de certeza (`cf`) a cada regla. "
+"Si este valor no es especificado, se asume que es igual a `1.0`. "
+"Adicionalmente, el parámetro `threshold_cf` es el factor de certeza "
+"mínimo requerido para considerar la contribución de la regla; eso es, "
+" reglas con un factor de certeza por debajo del valor límite no son "
+"consideradas para computar la salida del sistema. "
+"La primera regla tiene un factor de certeza de `0.9`, mientras que la"
+"segunda regla tiene un factor de certeza de `1.0` (por defecto)."
+
+
+#: ../../tutorials/tutorial-4.ipynb:157
+msgid "Facts with certainty factors"
+msgstr "Hechos con factores de certeza"
+
+#: ../../tutorials/tutorial-4.ipynb:168
+msgid ""
+"In addition, also it is possible to assign certainty factors to the "
+"facts. When a certainty factor not is specified by the user, it has a "
+"default value or 1.0. In the following code, the variables ``score``, "
+"``ratio``, and ``credit`` have certainty factors of ``0.9``, ``1.0``, and"
+" ``0.95`` respectively. The conclusion is ``decision=8.01`` with a "
+"certainty factor of ``0.95``."
+msgstr ""
+"Adicionalmente, también es posible asignar factores de certeza a los hechos. "
+"Cuando un factor de certeza no es especificado por el usuario, este tiene un "
+"valor por defecto de `1.0`. "
+"En el siguiente código, las variables `score`, `ratio` y `credit` tienen "
+"factores de certeza de `0.9`, `1.0`, y `0.95` respectivamente. "
+"La conclusión es `decision=8.01` con un factor de certeza de `0.95`."

@@ -36,49 +36,111 @@ class DecompositionalInference:
 
     :param and_operator: AND operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:
 
+
         * `"min"`.
+
+
         * `"prod"`.
+
+
         * `"bunded_prod"`.
+
+
         * `"drastic_prod"`.
+
 
     :param or_operator: OR operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:
 
+
         * `"max"`.
+
+
         * `"prob_or"`.
+
+
         * `"bounded_sum"`.
+
+
         * `"drastic_sum"`.
+
 
     :param implication_operator: method for computing the compositions of propositions in a fuzzy rule premise, specified as one of the following:
 
+
         * `"Ra"`.
+
+
         * `"Rm"`.
+
+
         * `"Rc"`.
+
+
         * `"Rb"`.
+
+
         * `"Rs"`.
+
+
         * `"Rg"`.
+
+
         * `"Rsg"`.
+
+
         * `"Rgs"`.
+
+
         * `"Rgg"`.
+
+
         * `"Rss"`.
+
 
     :param production_link: method for aggregating the consequences of the fuzzy rules, specified as one of the following:
 
+
         *  `"min"`.
+
+
         * `"prod"`.
+
+
         * `"bunded_prod"`.
+
+
         * `"drastic_prod"`.
+
+
         * `"max"`.
+
+
         * `"prob_or"`.
+
+
         * `"bounded_sum"`.
+
+
         * `"drastic_sum"`.
+
 
     :param defuzzification_operator: Method for defuzzificate the resulting membership function, specified as one of the following:
 
+
         * `"cog"`: Center of gravity.
+
+
         * `"boa"`: Bisector of area.
+
+
         * `"mom"`: Mean of the values for which the membership function is maximum.
+
+
         * `"lom"`: Largest value for which the membership function is maximum.
+
+
         * `"som"`: Smallest value for which the membership function is minimum.
+
 
     """
 

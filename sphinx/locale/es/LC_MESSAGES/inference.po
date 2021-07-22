@@ -1,0 +1,240 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Juan D. Velasquez
+# This file is distributed under the same license as the Fuzzy-Expert: A
+# Package for building Mamdani fuzzy inference systems in Python package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fuzzy-Expert: A Package for building Mamdani fuzzy "
+"inference systems in Python 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-22 00:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: fuzzy_expert.inference:2 of
+msgid "Inference Method"
+msgstr "Método de Inferencia"
+
+#: fuzzy_expert.inference.DecompositionalInference:1 of
+msgid "Bases: :class:`object`"
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:1 of
+msgid "Decompositional inference method."
+msgstr "Método descomposicional de inferencia."
+
+#: fuzzy_expert.inference.DecompositionalInference of
+msgid "Parameters"
+msgstr "Parámetros"
+
+#: fuzzy_expert.inference.DecompositionalInference:4 of
+msgid ""
+"AND operator method for combining the compositions of propositions in a "
+"fuzzy rule premise, specified as one of the following:   * `\"min\"`.   *"
+" `\"prod\"`.   * `\"bunded_prod\"`.   * `\"drastic_prod\"`."
+msgstr ""
+"Método del operador AND para combinar las composiciones de proposiciones en una premisa de regla difusa, especificada como una de las siguientes: "
+"   * `\"min\"`."
+"   * `\"prod\"`."
+"   * `\"bunded_prod\"`."
+"   * `\"drastic_prod\"`."
+
+#: fuzzy_expert.inference.DecompositionalInference:4 of
+msgid ""
+"Método del operador AND para combinar las composiciones de proposiciones en una premisa de regla difusa, especificada como una de las siguientes:"
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:7
+#: fuzzy_expert.inference.DecompositionalInference:70 of
+msgid "`\"min\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:10
+#: fuzzy_expert.inference.DecompositionalInference:73 of
+msgid "`\"prod\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:13
+#: fuzzy_expert.inference.DecompositionalInference:76 of
+msgid "`\"bunded_prod\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:16
+#: fuzzy_expert.inference.DecompositionalInference:79 of
+msgid "`\"drastic_prod\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:19 of
+msgid ""
+"OR operator method for combining the compositions of propositions in a "
+"fuzzy rule premise, specified as one of the following:   * `\"max\"`.   *"
+" `\"prob_or\"`.   * `\"bounded_sum\"`.   * `\"drastic_sum\"`."
+msgstr ""
+"Método del operador OR para combinar las composiciones de proposiciones en una premisa de regla difusa, especificada como una de las siguientes:"
+"   * `\"max\"`."
+"   * `\"prob_or\"`"
+"   * `\"bounded_sum\"`."
+"   * `\"drastic_sum\"`."
+
+
+#: fuzzy_expert.inference.DecompositionalInference:19 of
+msgid ""
+"OR operator method for combining the compositions of propositions in a fuzzy rule premise, specified as one of the following:"
+msgstr ""
+"Método del operador OR para combinar las composiciones de proposiciones en una premisa de regla difusa, especificada como una de las siguientes:"
+
+#: fuzzy_expert.inference.DecompositionalInference:22
+#: fuzzy_expert.inference.DecompositionalInference:82 of
+msgid "`\"max\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:25
+#: fuzzy_expert.inference.DecompositionalInference:85 of
+msgid "`\"prob_or\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:28
+#: fuzzy_expert.inference.DecompositionalInference:88 of
+msgid "`\"bounded_sum\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:31
+#: fuzzy_expert.inference.DecompositionalInference:91 of
+msgid "`\"drastic_sum\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:34 of
+msgid ""
+"method for computing the compositions of propositions in a fuzzy rule "
+"premise, specified as one of the following:   * `\"Ra\"`.   * `\"Rm\"`."
+"   * `\"Rc\"`.   * `\"Rb\"`.   * `\"Rs\"`.   * `\"Rg\"`.   * `\"Rsg\"`."
+"   * `\"Rgs\"`.   * `\"Rgg\"`.   * `\"Rss\"`."
+msgstr ""
+"Método para calcular las composiciones de proposiciones en una premisa de regla difusa, especificado como uno de los siguientes:"
+"   * `\"Ra\"`.   * `\"Rm\"`."
+"   * `\"Rc\"`.   * `\"Rb\"`.   * `\"Rs\"`.   * `\"Rg\"`.   * `\"Rsg\"`."
+"   * `\"Rgs\"`.   * `\"Rgg\"`.   * `\"Rss\"`."
+
+
+#: fuzzy_expert.inference.DecompositionalInference:34 of
+msgid ""
+"method for computing the compositions of propositions in a fuzzy rule "
+"premise, specified as one of the following:"
+msgstr ""
+"Método para calcular la composición de proposiciones en una premisa de regla difusa, especificado como uno de los siguientes:"
+
+#: fuzzy_expert.inference.DecompositionalInference:37 of
+msgid "`\"Ra\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:40 of
+msgid "`\"Rm\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:43 of
+msgid "`\"Rc\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:46 of
+msgid "`\"Rb\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:49 of
+msgid "`\"Rs\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:52 of
+msgid "`\"Rg\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:55 of
+msgid "`\"Rsg\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:58 of
+msgid "`\"Rgs\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:61 of
+msgid "`\"Rgg\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:64 of
+msgid "`\"Rss\"`."
+msgstr ""
+
+#: fuzzy_expert.inference.DecompositionalInference:67 of
+msgid ""
+"method for aggregating the consequences of the fuzzy rules, specified as "
+"one of the following:   *  `\"min\"`.   * `\"prod\"`.   * "
+"`\"bunded_prod\"`.   * `\"drastic_prod\"`.   * `\"max\"`.   * "
+"`\"prob_or\"`.   * `\"bounded_sum\"`.   * `\"drastic_sum\"`."
+msgstr ""
+"Método para agregar las consecuencias de las reglas difusas, especificado como uno de los siguientes:"
+"  *  `\"min\"`.   * `\"prod\"`.   * "
+"`\"bunded_prod\"`.   * `\"drastic_prod\"`.   * `\"max\"`.   * "
+"`\"prob_or\"`.   * `\"bounded_sum\"`.   * `\"drastic_sum\"`."
+
+#: fuzzy_expert.inference.DecompositionalInference:67 of
+msgid ""
+"method for aggregating the consequences of the fuzzy rules, specified as "
+"one of the following:"
+msgstr ""
+"Método para agregar los consecuentes de las reglas difusas, especificado como uno de los siguientes:"
+
+
+#: fuzzy_expert.inference.DecompositionalInference:94 of
+msgid ""
+"Method for defuzzificate the resulting membership function, specified as "
+"one of the following:   * `\"cog\"`: Center of gravity.   * `\"boa\"`: "
+"Bisector of area.   * `\"mom\"`: Mean of the values for which the "
+"membership function is maximum.   * `\"lom\"`: Largest value for which "
+"the membership function is maximum.   * `\"som\"`: Smallest value for "
+"which the membership function is minimum."
+msgstr ""
+"Método para defuzzificar la función de pertenencia resultante, especificado como uno de los siguientes:"
+"   * `\"cog\"`: Centro de gravedad."
+"   * `\"boa\"`: Bisector del área."
+"   * `\"mom\"`: Media de los valores para los cuales la función de pertenencia es máxima."
+"   * `\"lom\"`: Máximo de los valores para los cuales la función de pertenencia es máxima."
+"   * `\"som\"`: Mínimo de los valores para los cuales la función de pertenencia es máxima."
+
+
+#: fuzzy_expert.inference.DecompositionalInference:94 of
+msgid ""
+"Method for defuzzificate the resulting membership function, specified as one of the following:"
+msgstr ""
+"Método para defuzzificar la función de pertenencia resultante, especificado como uno de los siguientes:"
+
+#: fuzzy_expert.inference.DecompositionalInference:97 of
+msgid "`\"cog\"`: Center of gravity."
+msgstr "`\"cog\"`: Centro de gravedad."
+
+#: fuzzy_expert.inference.DecompositionalInference:100 of
+msgid "`\"boa\"`: Bisector of area."
+msgstr "`\"boa\"`: Bisector del área."
+
+#: fuzzy_expert.inference.DecompositionalInference:103 of
+msgid ""
+"`\"mom\"`: Mean of the values for which the membership function is "
+"maximum."
+msgstr ""
+" `\"mom\"`: Media de los valores para los cuales la función de pertenencia es máxima."
+
+#: fuzzy_expert.inference.DecompositionalInference:106 of
+msgid "`\"lom\"`: Largest value for which the membership function is maximum."
+msgstr "`\"lom\"`: Máximo de los valores para los cuales la función de pertenencia es máxima."
+
+#: fuzzy_expert.inference.DecompositionalInference:109 of
+msgid "`\"som\"`: Smallest value for which the membership function is minimum."
+msgstr "`\"som\"`: Mínimo de los valores para los cuales la función de pertenencia es máxima."
+
+

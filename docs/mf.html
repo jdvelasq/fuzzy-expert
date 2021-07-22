@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="es" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Membership Functions &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
+  <title>Funciones de pertenencia &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
   
 
   
@@ -35,15 +35,16 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Fuzzy Variables" href="variable.html" />
-    <link rel="prev" title="Modifiers and operators" href="operators.html" /> 
+    <link rel="prev" title="Modificadores y operadores" href="operators.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -75,7 +76,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Buscar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,11 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="operators.html">Modifiers and operators</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Membership Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Modificadores y operadores</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Funciones de pertenencia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variable.html">Fuzzy Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rule.html">Zadeh-Mamdani Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inference.html">Inference Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html">Método de Inferencia</a></li>
 </ul>
 </li>
 </ul>
@@ -153,13 +154,13 @@
         
           <li><a href="reference.html">Library reference</a> &raquo;</li>
         
-      <li>Membership Functions</li>
+      <li>Funciones de pertenencia</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/mf.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mf.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
           
         
       </li>
@@ -197,16 +198,16 @@
 }
 </style>
 <span class="target" id="module-fuzzy_expert.mf"></span><div class="section" id="membership-functions">
-<h1>Membership Functions<a class="headerlink" href="#membership-functions" title="Permalink to this headline">¶</a></h1>
-<p>Functions in this module returns a standard membership function specificaion as a list of points (x_i, u_i).</p>
+<h1>Funciones de pertenencia<a class="headerlink" href="#membership-functions" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Las funciones de este módulo devuelven una especificación de función de pertenencia estándar como una lista de puntos (x_i, u_i).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.mf.</span></span><span class="sig-name descname"><span class="pre">MembershipFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.mf.</span></span><span class="sig-name descname"><span class="pre">MembershipFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Membership function constructor.</p>
+<p>Constructor de funciones de pertenencia.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>n_points</strong> (<em>int</em>) – Number base point for building the approximations.</p>
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>n_points</strong> – Número de puntos base para construuir las aproximaciones.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -217,17 +218,14 @@
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.gaussmf">
-<span class="sig-name descname"><span class="pre">gaussmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.gaussmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.gaussmf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gaussian membership function.</p>
+<span class="sig-name descname"><span class="pre">gaussmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.gaussmf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.gaussmf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertenencia gaussiana.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>center</strong> (<em>float</em>) – Defines the center of the membership function.</p></li>
-<li><p><strong>sigma</strong> (<em>float</em>) – Defines the width of the membership function, where a larger value creates a wider membership function.</p></li>
+<li><p><strong>center</strong> – Define el centro de la función de pertenencia.</p></li>
+<li><p><strong>sigma</strong> – Define el ancho de la función de pertenencia, donde un valor más grande crea una función de pertenencia más ancha.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -240,18 +238,15 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.gbellmf">
-<span class="sig-name descname"><span class="pre">gbellmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.gbellmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.gbellmf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generalized bell-shaped membership function.</p>
+<span class="sig-name descname"><span class="pre">gbellmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.gbellmf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.gbellmf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertenencia de campana generalizada.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>center</strong> (<em>float</em>) – Defines the center of the membership function.</p></li>
-<li><p><strong>width</strong> (<em>float</em>) – Defines the width of the membership function, where a larger value creates a wider membership function.</p></li>
-<li><p><strong>shape</strong> (<em>float</em>) – Defines the shape of the curve on either side of the central plateau, where a larger value creates a more steep transition.</p></li>
+<li><p><strong>center</strong> – Define el centro de la función de pertenencia.</p></li>
+<li><p><strong>width</strong> – Define el ancho de la función de pertenencia, donde un valor más grande crea una función de pertenencia más ancha.</p></li>
+<li><p><strong>shape</strong> – Define la forma de la curva a cada lado de la meseta central, donde un valor mayor crea una transición más pronunciada.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -264,19 +259,16 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.pimf">
-<span class="sig-name descname"><span class="pre">pimf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_feet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.pimf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.pimf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pi-shaped membership function.</p>
+<span class="sig-name descname"><span class="pre">pimf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_feet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.pimf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.pimf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertenencia en forma de pi.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>left_feet</strong> (<em>float</em>) – Defines the left feet of the membership function.</p></li>
-<li><p><strong>left_peak</strong> (<em>float</em>) – Defines the left peak of the membership function.</p></li>
-<li><p><strong>right_peak</strong> (<em>float</em>) – Defines the right peak of the membership function.</p></li>
-<li><p><strong>right_feet</strong> (<em>float</em>) – Defines the right feet of the membership function.</p></li>
+<li><p><strong>left_feet</strong> – Defines the left feet of the membership function.</p></li>
+<li><p><strong>left_peak</strong> – Define el pie izquierdo de la función de pertenencia.</p></li>
+<li><p><strong>right_peak</strong> – Define el pico derecho de la función de pertenencia.</p></li>
+<li><p><strong>right_feet</strong> – Define el pie derecho de la función de pertenencia.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -289,17 +281,14 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.sigmf">
-<span class="sig-name descname"><span class="pre">sigmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.sigmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.sigmf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sigmoidal membership function.</p>
+<span class="sig-name descname"><span class="pre">sigmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.sigmf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.sigmf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertenencia sigmoidal.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>center</strong> (<em>float</em>) – Defines the center of the membership function.</p></li>
-<li><p><strong>width</strong> (<em>float</em>) – Defines the width of the membership function.</p></li>
+<li><p><strong>center</strong> – Define el centro de la función de pertenencia.</p></li>
+<li><p><strong>width</strong> – Define el ancho de la función de pertenencia.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -312,17 +301,14 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.smf">
-<span class="sig-name descname"><span class="pre">smf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">foot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shoulder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.smf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.smf" title="Permalink to this definition">¶</a></dt>
-<dd><p>S-shaped membership function.</p>
+<span class="sig-name descname"><span class="pre">smf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">foot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shoulder</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.smf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.smf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertenencia en forma de S.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>foot</strong> (<em>float</em>) – Defines the foot of the membership function.</p></li>
-<li><p><strong>shoulder</strong> (<em>float</em>) – Defines the shoulder of the membership function.</p></li>
+<li><p><strong>foot</strong> – Define el pie de la función de pertnencia.</p></li>
+<li><p><strong>shoulder</strong> – Define el hombro de la función de pertenencia.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -335,19 +321,16 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.trapmf">
-<span class="sig-name descname"><span class="pre">trapmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_feet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.trapmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.trapmf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Trapezoidal membership function.</p>
+<span class="sig-name descname"><span class="pre">trapmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_feet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.trapmf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.trapmf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertenencia trapezoidal.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>left_feet</strong> (<em>float</em>) – Defines the left feet of the membership function.</p></li>
-<li><p><strong>left_peak</strong> (<em>float</em>) – Defines the left peak of the membership function.</p></li>
-<li><p><strong>right_peak</strong> (<em>float</em>) – Defines the right peak of the membership function.</p></li>
-<li><p><strong>right_feet</strong> (<em>float</em>) – Defines the right feet of the membership function.</p></li>
+<li><p><strong>left_feet</strong> – Defines the left feet of the membership function.</p></li>
+<li><p><strong>left_peak</strong> – Define el pie izquierdo de la función de pertenencia.</p></li>
+<li><p><strong>right_peak</strong> – Define el pico derecho de la función de pertenencia.</p></li>
+<li><p><strong>right_feet</strong> – Define el pie derecho de la función de pertenencia.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -360,18 +343,15 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.trimf">
-<span class="sig-name descname"><span class="pre">trimf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_feet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.trimf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.trimf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Triangular membership function.</p>
+<span class="sig-name descname"><span class="pre">trimf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_feet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.trimf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.trimf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertnencia triangular.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>left_feet</strong> (<em>float</em>) – Defines the left feet of the membership function.</p></li>
-<li><p><strong>peak</strong> (<em>float</em>) – Defines the peak of the membership function.</p></li>
-<li><p><strong>right_feet</strong> (<em>float</em>) – Defines the right feet of the membership function.</p></li>
+<li><p><strong>left_feet</strong> – Defines the left feet of the membership function.</p></li>
+<li><p><strong>peak</strong> – Define el pico de la función de pertenencia.</p></li>
+<li><p><strong>right_feet</strong> – Define el pie derecho de la función de pertenencia.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -384,17 +364,14 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.mf.MembershipFunction.zmf">
-<span class="sig-name descname"><span class="pre">zmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shoulder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.zmf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.zmf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Z-shaped membership function.</p>
+<span class="sig-name descname"><span class="pre">zmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shoulder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/mf.html#MembershipFunction.zmf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.mf.MembershipFunction.zmf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de pertenencia en forma de Z.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parámetros</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>shoulder</strong> (<em>float</em>) – Defines the shoulder of the membership function.</p></li>
-<li><p><strong>feet</strong> (<em>float</em>) – Defines the feet of the membership function.</p></li>
+<li><p><strong>shoulder</strong> – Define el hombro de la función de pertenencia.</p></li>
+<li><p><strong>feet</strong> – Define el pie de la función de pertenencia.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fuzzy_expert.mf</span> <span class="kn">import</span> <span class="n">MembershipFunction</span>
@@ -415,8 +392,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="variable.html" class="btn btn-neutral float-right" title="Fuzzy Variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="operators.html" class="btn btn-neutral float-left" title="Modifiers and operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="variable.html" class="btn btn-neutral float-right" title="Fuzzy Variables" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="operators.html" class="btn btn-neutral float-left" title="Modificadores y operadores" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
     </div>
 
   <hr/>
@@ -429,11 +406,11 @@
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
     
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

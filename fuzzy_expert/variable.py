@@ -17,9 +17,14 @@ from fuzzy_expert.plots import plot_crisp_input, plot_fuzzy_input, plot_fuzzy_va
 class FuzzyVariable:
     """Creates a fuzzy variable.
 
-    :param unverse_range: Limits of the universe of discourse.
-    :param terms: Dictionary where each term is the key of the dictionary, and the values is the membership function.
-    :param step: Value controling the resolution for the discrete representation of the universe.
+    :param unverse_range:
+        Limits of the universe of discourse.
+
+    :param terms:
+        Dictionary where each term is the key of the dictionary, and the values is the membership function.
+
+    :param step:
+        Value controling the resolution for the discrete representation of the universe.
 
     >>> from fuzzy_expert.variable import FuzzyVariable
     >>> v = FuzzyVariable(
@@ -118,8 +123,11 @@ class FuzzyVariable:
     ) -> np.ndarray:
         """Returns the membership modified values for the term.
 
-        :param term: Name of the fuzzy set.
-        :param modifiers: List of modifiers.
+        :param term:
+            Name of the fuzzy set.
+
+        :param modifiers:
+            List of modifiers.
 
         >>> import matplotlib.pyplot as plt
         >>> from fuzzy_expert.variable import FuzzyVariable
@@ -176,10 +184,17 @@ class FuzzyVariable:
     def plot_input(self, value, fuzzyset, view_xaxis=True, view_yaxis="left"):
         """Plots the fuzzy set, and the input.
 
-        :param value: Crisp or fuzzy input value.
-        :param fuzzyset: Term to plot.
-        :param view_xaxis: Draw the x-axis of plot
-        :param view_yaxis: Draw the y-axis of plot at left or right side.
+        :param value:
+            Crisp or fuzzy input value.
+
+        :param fuzzyset:
+            Term to plot.
+
+        :param view_xaxis:
+            Draw the x-axis of plot
+
+        :param view_yaxis:
+            Draw the y-axis of plot at left or right side.
 
         >>> from fuzzy_expert.variable import FuzzyVariable
         >>> v = FuzzyVariable(
