@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="es" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.variable &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
+  <title>fuzzy_expert.variable &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -35,14 +35,13 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Búsqueda" href="../../search.html" /> 
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -74,7 +73,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -143,7 +142,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../index.html">Código de módulo</a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
         
       <li>fuzzy_expert.variable</li>
     
@@ -160,7 +159,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Código fuente para fuzzy_expert.variable</h1><div class="highlight"><pre>
+  <h1>Source code for fuzzy_expert.variable</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Fuzzy Variables</span>
 <span class="sd">===============================================================================</span>
@@ -177,7 +176,7 @@
 <span class="kn">from</span> <span class="nn">fuzzy_expert.plots</span> <span class="kn">import</span> <span class="n">plot_crisp_input</span><span class="p">,</span> <span class="n">plot_fuzzy_input</span><span class="p">,</span> <span class="n">plot_fuzzy_variable</span>
 
 
-<div class="viewcode-block" id="FuzzyVariable"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable">[documentos]</a><span class="k">class</span> <span class="nc">FuzzyVariable</span><span class="p">:</span>
+<div class="viewcode-block" id="FuzzyVariable"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable">[docs]</a><span class="k">class</span> <span class="nc">FuzzyVariable</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Creates a fuzzy variable.</span>
 
 <span class="sd">    :param unverse_range:</span>
@@ -248,7 +247,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_points_to_universe</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">xp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">universe</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">xp</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">fp</span><span class="p">)</span>
 
-<div class="viewcode-block" id="FuzzyVariable.add_points_to_universe"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.add_points_to_universe">[documentos]</a>    <span class="k">def</span> <span class="nf">add_points_to_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+<div class="viewcode-block" id="FuzzyVariable.add_points_to_universe"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.add_points_to_universe">[docs]</a>    <span class="k">def</span> <span class="nf">add_points_to_universe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
 
         <span class="c1">#</span>
         <span class="c1"># Adds new points to the universe</span>
@@ -281,7 +280,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="p">[</span><span class="n">term</span><span class="p">]</span>
 
-<div class="viewcode-block" id="FuzzyVariable.get_modified_membeship"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.get_modified_membeship">[documentos]</a>    <span class="k">def</span> <span class="nf">get_modified_membeship</span><span class="p">(</span>
+<div class="viewcode-block" id="FuzzyVariable.get_modified_membeship"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.get_modified_membeship">[docs]</a>    <span class="k">def</span> <span class="nf">get_modified_membeship</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Returns the membership modified values for the term.</span>
@@ -320,7 +319,7 @@
 
         <span class="k">return</span> <span class="n">membership</span></div>
 
-<div class="viewcode-block" id="FuzzyVariable.plot"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.plot">[documentos]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="FuzzyVariable.plot"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plots a fuzzy variable.</span>
 
@@ -344,7 +343,7 @@
             <span class="n">view_yaxis</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="FuzzyVariable.plot_input"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.plot_input">[documentos]</a>    <span class="k">def</span> <span class="nf">plot_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">fuzzyset</span><span class="p">,</span> <span class="n">view_xaxis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">view_yaxis</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="FuzzyVariable.plot_input"><a class="viewcode-back" href="../../variable.html#fuzzy_expert.variable.FuzzyVariable.plot_input">[docs]</a>    <span class="k">def</span> <span class="nf">plot_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">fuzzyset</span><span class="p">,</span> <span class="n">view_xaxis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">view_yaxis</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plots the fuzzy set, and the input.</span>
 
 <span class="sd">        :param value:</span>
@@ -414,11 +413,11 @@
     
     
     
-    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
-    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

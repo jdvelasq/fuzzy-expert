@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="es" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fuzzy_expert.operators &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
+  <title>fuzzy_expert.operators &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -35,14 +35,13 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Búsqueda" href="../../search.html" /> 
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -74,7 +73,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -143,7 +142,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../index.html">Código de módulo</a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
         
       <li>fuzzy_expert.operators</li>
     
@@ -160,7 +159,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Código fuente para fuzzy_expert.operators</h1><div class="highlight"><pre>
+  <h1>Source code for fuzzy_expert.operators</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Modifiers and operators</span>
 <span class="sd">===============================================================================</span>
@@ -181,7 +180,7 @@
 <span class="c1"># #############################################################################</span>
 
 
-<div class="viewcode-block" id="apply_modifiers"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.apply_modifiers">[documentos]</a><span class="k">def</span> <span class="nf">apply_modifiers</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="apply_modifiers"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.apply_modifiers">[docs]</a><span class="k">def</span> <span class="nf">apply_modifiers</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Apply a list of modifiers or hedges to a numpy array.</span>
 
@@ -220,7 +219,7 @@
     <span class="k">return</span> <span class="n">membership</span></div>
 
 
-<div class="viewcode-block" id="extremely"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.extremely">[documentos]</a><span class="k">def</span> <span class="nf">extremely</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="extremely"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.extremely">[docs]</a><span class="k">def</span> <span class="nf">extremely</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u) = u^3.</span>
 
@@ -234,7 +233,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="intensify"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.intensify">[documentos]</a><span class="k">def</span> <span class="nf">intensify</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="intensify"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.intensify">[docs]</a><span class="k">def</span> <span class="nf">intensify</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u) = u^2 if u &lt;= 0.5 else 1 - 2 * (1 - u)^2.</span>
 
@@ -253,7 +252,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="more_or_less"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.more_or_less">[documentos]</a><span class="k">def</span> <span class="nf">more_or_less</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="more_or_less"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.more_or_less">[docs]</a><span class="k">def</span> <span class="nf">more_or_less</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function  fn(u) = u^(1/2).</span>
 
@@ -267,7 +266,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="norm"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.norm">[documentos]</a><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="norm"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.norm">[docs]</a><span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function  fn(u) = u / max(u).</span>
 
@@ -281,7 +280,7 @@
     <span class="k">return</span> <span class="n">membership</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="not_"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.not_">[documentos]</a><span class="k">def</span> <span class="nf">not_</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="not_"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.not_">[docs]</a><span class="k">def</span> <span class="nf">not_</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u) = 1 - u.</span>
 
@@ -295,7 +294,7 @@
     <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">membership</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="plus"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.plus">[documentos]</a><span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="plus"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.plus">[docs]</a><span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u) = u^1.25.</span>
 
@@ -310,7 +309,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="somewhat"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.somewhat">[documentos]</a><span class="k">def</span> <span class="nf">somewhat</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="somewhat"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.somewhat">[docs]</a><span class="k">def</span> <span class="nf">somewhat</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u) = u^(1/3).</span>
 
@@ -324,7 +323,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="very"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.very">[documentos]</a><span class="k">def</span> <span class="nf">very</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="very"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.very">[docs]</a><span class="k">def</span> <span class="nf">very</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u) = u^2.</span>
 
@@ -338,7 +337,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="slightly"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.slightly">[documentos]</a><span class="k">def</span> <span class="nf">slightly</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="slightly"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.slightly">[docs]</a><span class="k">def</span> <span class="nf">slightly</span><span class="p">(</span><span class="n">membership</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u) = u^(1/2).</span>
 
@@ -367,7 +366,7 @@
 <span class="c1"># #############################################################################</span>
 
 
-<div class="viewcode-block" id="prob_or"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.prob_or">[documentos]</a><span class="k">def</span> <span class="nf">prob_or</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="prob_or"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.prob_or">[docs]</a><span class="k">def</span> <span class="nf">prob_or</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function fn(u, v) = u + v - u * v. Also known as algebraic-sum.</span>
 
@@ -387,7 +386,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="bounded_prod"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_prod">[documentos]</a><span class="k">def</span> <span class="nf">bounded_prod</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="bounded_prod"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_prod">[docs]</a><span class="k">def</span> <span class="nf">bounded_prod</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function max(0, u + v - 1).</span>
 
@@ -406,7 +405,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="bounded_sum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_sum">[documentos]</a><span class="k">def</span> <span class="nf">bounded_sum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="bounded_sum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_sum">[docs]</a><span class="k">def</span> <span class="nf">bounded_sum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function min(1, u + v).</span>
 
@@ -425,7 +424,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="bounded_diff"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_diff">[documentos]</a><span class="k">def</span> <span class="nf">bounded_diff</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="bounded_diff"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.bounded_diff">[docs]</a><span class="k">def</span> <span class="nf">bounded_diff</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function max(0, u - v).</span>
 
@@ -445,7 +444,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="drastic_prod"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.drastic_prod">[documentos]</a><span class="k">def</span> <span class="nf">drastic_prod</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="drastic_prod"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.drastic_prod">[docs]</a><span class="k">def</span> <span class="nf">drastic_prod</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function f(u, v) = u if v == 0 else v if u == 1 else 0.</span>
 
@@ -470,7 +469,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="drastic_sum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.drastic_sum">[documentos]</a><span class="k">def</span> <span class="nf">drastic_sum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="drastic_sum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.drastic_sum">[docs]</a><span class="k">def</span> <span class="nf">drastic_sum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function f(u, v) = u if v == 0 else v if u == 0 else 1.</span>
 
@@ -493,7 +492,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="product"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.product">[documentos]</a><span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="product"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.product">[docs]</a><span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function f(u, v) = u * v.</span>
 
@@ -512,7 +511,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="maximum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.maximum">[documentos]</a><span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="maximum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.maximum">[docs]</a><span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function f(u, v) = max(u, v).</span>
 
@@ -532,7 +531,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="minimum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.minimum">[documentos]</a><span class="k">def</span> <span class="nf">minimum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
+<div class="viewcode-block" id="minimum"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.minimum">[docs]</a><span class="k">def</span> <span class="nf">minimum</span><span class="p">(</span><span class="n">memberships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the element-wise function f(u, v) = min(u, v).</span>
 
@@ -552,7 +551,7 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="defuzzificate"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.defuzzificate">[documentos]</a><span class="k">def</span> <span class="nf">defuzzificate</span><span class="p">(</span><span class="n">universe</span><span class="p">,</span> <span class="n">membership</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="s2">&quot;cog&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="defuzzificate"><a class="viewcode-back" href="../../operators.html#fuzzy_expert.operators.defuzzificate">[docs]</a><span class="k">def</span> <span class="nf">defuzzificate</span><span class="p">(</span><span class="n">universe</span><span class="p">,</span> <span class="n">membership</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="s2">&quot;cog&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Computes a representative crisp value for the fuzzy set.</span>
 
 <span class="sd">    :param universe: Array of values representing the universe of discourse.</span>
@@ -692,11 +691,11 @@
     
     
     
-    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
-    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

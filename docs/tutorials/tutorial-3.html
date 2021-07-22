@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="es" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Tutorial 3 - Funciones de pertnencia estándar &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
+  <title>Tutorial 3 - Standard membership functions &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -35,16 +35,15 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Índice" href="../genindex.html" />
-    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tutorial 4 - Certainty factors" href="tutorial-4.html" />
-    <link rel="prev" title="Tutorial 2 - Problema de aprobación de préstamos bancarios con entradas difusas" href="tutorial-2.html" /> 
+    <link rel="prev" title="Tutorial 2 - Bank decision loan problem with fuzzy inputs" href="tutorial-2.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -76,7 +75,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,16 +95,16 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tutorial-1.html">Tutorial 1 - Problema bancario de decisión de préstamos con entradas concretas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial-2.html">Tutorial 2 - Problema de aprobación de préstamos bancarios con entradas difusas</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial 3 - Funciones de pertnencia estándar</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Especificación-de-las-variables-difusas-con-funciones-de-pertenencia-estándar">Especificación de las variables difusas con funciones de pertenencia estándar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial-1.html">Tutorial 1 - Bank decision loan problem with crisp inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial-2.html">Tutorial 2 - Bank decision loan problem with fuzzy inputs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial 3 - Standard membership functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Specification-of-the-fuzzy-variables-with-standard-membership-functions">Specification of the fuzzy variables with standard membership functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial-4.html">Tutorial 4 - Certainty factors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../reference.html">Referencia de la librería</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Library reference</a></li>
 </ul>
 
             
@@ -156,13 +155,13 @@
         
           <li><a href="../tutorials.html">Tutorials</a> &raquo;</li>
         
-      <li>Tutorial 3 - Funciones de pertnencia estándar</li>
+      <li>Tutorial 3 - Standard membership functions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/tutorial-3.ipynb.txt" rel="nofollow"> Ver código fuente de la página</a>
+            <a href="../_sources/tutorials/tutorial-3.ipynb.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -445,9 +444,9 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Tutorial-3---Funciones-de-pertnencia-estándar">
-<h1>Tutorial 3 - Funciones de pertnencia estándar<a class="headerlink" href="#Tutorial-3---Funciones-de-pertnencia-estándar" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Este tutorial usa el sistema de inferencia difuso desarrollado en el Tutorial 1.</p>
+<div class="section" id="Tutorial-3---Standard-membership-functions">
+<h1>Tutorial 3 - Standard membership functions<a class="headerlink" href="#Tutorial-3---Standard-membership-functions" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial uses the fuzzy inference system developed in Tutorial 1.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -462,10 +461,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Especificación-de-las-variables-difusas-con-funciones-de-pertenencia-estándar">
-<h2>Especificación de las variables difusas con funciones de pertenencia estándar<a class="headerlink" href="#Especificación-de-las-variables-difusas-con-funciones-de-pertenencia-estándar" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>En el siguiente código, los conjuntos difusos se especifican mediante funciones de pertenencia estándar, que se describen en la sección de referencia de funciones.</p>
-<p>Los conjuntos borrosos para las variables <cite>score</cite> y <cite>ratio</cite> son especificados usando las funciones <cite>smf</cite> y <cite>zmf</cite>. Los conjuntos difusos para las variables <cite>credit</cite> y <cite>decision</cite> son especificados usando la función <cite>trapmf</cite>.</p>
+<div class="section" id="Specification-of-the-fuzzy-variables-with-standard-membership-functions">
+<h2>Specification of the fuzzy variables with standard membership functions<a class="headerlink" href="#Specification-of-the-fuzzy-variables-with-standard-membership-functions" title="Permalink to this headline">¶</a></h2>
+<p>In the following code, fuzzy sets are specified using standard membership functions, which are described in the function reference section.</p>
+<p>Fuzzy sets in variables <code class="docutils literal notranslate"><span class="pre">score</span></code> and <code class="docutils literal notranslate"><span class="pre">ratio</span></code> are specified using the <code class="docutils literal notranslate"><span class="pre">smf</span></code> and <code class="docutils literal notranslate"><span class="pre">zmf</span></code> functions. Fuzzy sets for variables <code class="docutils literal notranslate"><span class="pre">credit</span></code> and <code class="docutils literal notranslate"><span class="pre">decision</span></code> are specified using the <code class="docutils literal notranslate"><span class="pre">trapmf</span></code> function.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -580,8 +579,8 @@ div.rendered_html tbody tr:hover {
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="tutorial-4.html" class="btn btn-neutral float-right" title="Tutorial 4 - Certainty factors" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="tutorial-2.html" class="btn btn-neutral float-left" title="Tutorial 2 - Problema de aprobación de préstamos bancarios con entradas difusas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="tutorial-4.html" class="btn btn-neutral float-right" title="Tutorial 4 - Certainty factors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tutorial-2.html" class="btn btn-neutral float-left" title="Tutorial 2 - Bank decision loan problem with fuzzy inputs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
@@ -594,11 +593,11 @@ div.rendered_html tbody tr:hover {
     
     
     
-    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
-    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

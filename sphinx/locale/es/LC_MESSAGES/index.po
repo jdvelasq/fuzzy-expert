@@ -25,7 +25,7 @@ msgstr "Fuzzy-Expert: Sistemas de Inferencia Borrosa de Zadeh-Mamdani en Python"
 
 #: ../../index.rst:5
 msgid "**Author**"
-msgstr ""
+msgstr "**Autor**"
 
 #: ../../index.rst:7
 msgid "Prof. Juan David Velásquez-Henao, MSc, PhD"
@@ -73,7 +73,7 @@ msgstr "Diferentes operadores de implicación."
 
 #: ../../index.rst:31
 msgid "Composition using `max-min` or `max-prod` rules."
-msgstr "Composición usando las reglas` max-min` o `max-prod`."
+msgstr "Composición usando las reglas `max-min` o `max-prod`."
 
 #: ../../index.rst:34
 msgid "Most common functions for production aggregation."

@@ -242,7 +242,7 @@ latex_documents = [
     (
         master_doc,
         "fuzzy-expert.tex",
-        "Fuzzy-Expert Documentation",
+        "Fuzzy-Expert: Guía del Usuario",
         "Juan D. Velasquez",
         "manual",
     ),

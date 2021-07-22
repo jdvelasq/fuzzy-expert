@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="es" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Tutorial 1 - Problema bancario de decisión de préstamos con entradas concretas &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
+  <title>Tutorial 1 - Bank decision loan problem with crisp inputs &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -35,14 +35,13 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Índice" href="../genindex.html" />
-    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tutorial 2 - Bank decision loan problem with fuzzy inputs" href="tutorial-2.html" />
     <link rel="prev" title="Tutorials" href="../tutorials.html" /> 
 </head>
@@ -76,7 +75,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,12 +95,12 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial 1 - Problema bancario de decisión de préstamos con entradas concretas</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Especificación-de-las-variables">Especificación de las variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Especificación-de-las-reglas">Especificación de las reglas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Especificación-del-sistema-de-inferencia-y-cálculos">Especificación del sistema de inferencia y cálculos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Visualización-de-los-resultados">Visualización de los resultados</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Interación-con-el-usuario">Interación con el usuario</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial 1 - Bank decision loan problem with crisp inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Variable-specification">Variable specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Rule-specification">Rule specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Inference-system-specification-and-computations">Inference system specification and computations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Visualization-of-the-results">Visualization of the results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#User-interaction">User interaction</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial-2.html">Tutorial 2 - Bank decision loan problem with fuzzy inputs</a></li>
@@ -109,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorial-4.html">Tutorial 4 - Certainty factors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../reference.html">Referencia de la librería</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Library reference</a></li>
 </ul>
 
             
@@ -160,13 +159,13 @@
         
           <li><a href="../tutorials.html">Tutorials</a> &raquo;</li>
         
-      <li>Tutorial 1 - Problema bancario de decisión de préstamos con entradas concretas</li>
+      <li>Tutorial 1 - Bank decision loan problem with crisp inputs</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/tutorial-1.ipynb.txt" rel="nofollow"> Ver código fuente de la página</a>
+            <a href="../_sources/tutorials/tutorial-1.ipynb.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -449,9 +448,9 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Tutorial-1---Problema-bancario-de-decisión-de-préstamos-con-entradas-concretas">
-<h1>Tutorial 1 - Problema bancario de decisión de préstamos con entradas concretas<a class="headerlink" href="#Tutorial-1---Problema-bancario-de-decisión-de-préstamos-con-entradas-concretas" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>En este tutorial se construye un sistema de inferencia difuso para la aprobación de préstamos. El problema tiene tres variables de entrada: puntuación, razón y crédito; y una variable de salida: decisión»</p>
+<div class="section" id="Tutorial-1---Bank-decision-loan-problem-with-crisp-inputs">
+<h1>Tutorial 1 - Bank decision loan problem with crisp inputs<a class="headerlink" href="#Tutorial-1---Bank-decision-loan-problem-with-crisp-inputs" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial a fuzzy inference system for loan approbation is builded. The problem has three input variables: score, ratio, and credit; and one output variable: decision.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -474,9 +473,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Especificación-de-las-variables">
-<h2>Especificación de las variables<a class="headerlink" href="#Especificación-de-las-variables" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>En el siguiente código se define un diccionario que contiene las variables del problema. Las claves del diccionario son los nombres de las variables en las reglas. Para cada variable se definen los límites del universo deldiscurso, los términos y la función de pertenencia para cada término. Finalmente, se grafica la variable <cite>score</cite>.</p>
+<div class="section" id="Variable-specification">
+<h2>Variable specification<a class="headerlink" href="#Variable-specification" title="Permalink to this headline">¶</a></h2>
+<p>In the following code, a dictionary containing the variables of the problem is defined. The keys of the dictionary are the names of the variables in the rules. For each variable is defined the limits of the universe of discourse, the terms, and the membership function for each term. Finally, the variable <code class="docutils literal notranslate"><span class="pre">score</span></code> is ploted.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -532,9 +531,9 @@ div.rendered_html tbody tr:hover {
 <img alt="../_images/tutorials_tutorial-1_5_0.svg" src="../_images/tutorials_tutorial-1_5_0.svg" /></div>
 </div>
 </div>
-<div class="section" id="Especificación-de-las-reglas">
-<h2>Especificación de las reglas<a class="headerlink" href="#Especificación-de-las-reglas" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>El sistema de inferencia difusa tiene dos reglas. Ellas se almacenan directamente en una lista.</p>
+<div class="section" id="Rule-specification">
+<h2>Rule specification<a class="headerlink" href="#Rule-specification" title="Permalink to this headline">¶</a></h2>
+<p>The fuzzy inference system has two rules. They are directly stored in a list.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -592,9 +591,9 @@ Threshold-CF = 0.00
 </pre></div></div>
 </div>
 </div>
-<div class="section" id="Especificación-del-sistema-de-inferencia-y-cálculos">
-<h2>Especificación del sistema de inferencia y cálculos<a class="headerlink" href="#Especificación-del-sistema-de-inferencia-y-cálculos" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Finalmente, se especifica el sistema de inferencia difusa. El modelo se utiliza para evaluar los siguientes valores concretos para las variables de entrada: <cite>score=190</cite>, <cite>ratio=0.39</cite> y <cite>credit=1.5</cite>. El modelo devuelve un diccionario con los valores de las variables en el consecuente de las reglas y el factor de certeza de la conclusión.</p>
+<div class="section" id="Inference-system-specification-and-computations">
+<h2>Inference system specification and computations<a class="headerlink" href="#Inference-system-specification-and-computations" title="Permalink to this headline">¶</a></h2>
+<p>Finally, the fuzzy inference system is specified. The model is used to evaluate the following crisp values for the input variables: <code class="docutils literal notranslate"><span class="pre">score=190</span></code>, <code class="docutils literal notranslate"><span class="pre">ratio=0.39</span></code>, and <code class="docutils literal notranslate"><span class="pre">credit=1.5</span></code>. The model returns a dictionary with the values of the variables in the consequence of the rules and the certainty factor of the conclusion.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -631,9 +630,9 @@ Threshold-CF = 0.00
 </pre></div></div>
 </div>
 </div>
-<div class="section" id="Visualización-de-los-resultados">
-<h2>Visualización de los resultados<a class="headerlink" href="#Visualización-de-los-resultados" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>La función <cite>plot</cite> se puede utilizar para obtener una representación gráfica de los resultados de los sistemas de inferencia. Utiliza los mismos parámetros utilizados para la evaluación del sistema.</p>
+<div class="section" id="Visualization-of-the-results">
+<h2>Visualization of the results<a class="headerlink" href="#Visualization-of-the-results" title="Permalink to this headline">¶</a></h2>
+<p>The function plot can be used to obtain a graphical represntation of the results of the inference systems. It uses the same parameters used to the evaluation of the system.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -657,9 +656,9 @@ Threshold-CF = 0.00
 <img alt="../_images/tutorials_tutorial-1_12_0.svg" src="../_images/tutorials_tutorial-1_12_0.svg" /></div>
 </div>
 </div>
-<div class="section" id="Interación-con-el-usuario">
-<h2>Interación con el usuario<a class="headerlink" href="#Interación-con-el-usuario" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Usando el paquete <cite>ipywidgets</cite> en Jupyter Lab es posible obtener una interfaz de usuario interactiva para el usuario. La función <cite>demo</cite> se utiliza para trazar los resultados. A continuación, la función <cite>interact</cite> se utiliza para crear la interfaz de usuario.</p>
+<div class="section" id="User-interaction">
+<h2>User interaction<a class="headerlink" href="#User-interaction" title="Permalink to this headline">¶</a></h2>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> package in Jupyter Lab it is possible to obtain an interactive user interface for the user. The funtion <code class="docutils literal notranslate"><span class="pre">demo</span></code> is used to plot the results; following, the function <code class="docutils literal notranslate"><span class="pre">interact</span></code> is used to create the user interface.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -711,8 +710,8 @@ Threshold-CF = 0.00
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="tutorial-2.html" class="btn btn-neutral float-right" title="Tutorial 2 - Bank decision loan problem with fuzzy inputs" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../tutorials.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="tutorial-2.html" class="btn btn-neutral float-right" title="Tutorial 2 - Bank decision loan problem with fuzzy inputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../tutorials.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
@@ -725,11 +724,11 @@ Threshold-CF = 0.00
     
     
     
-    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
-    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>

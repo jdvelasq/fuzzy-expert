@@ -21,11 +21,11 @@ msgstr ""
 
 #: ../../installation.rst:2
 msgid "Installation"
-msgstr ""
+msgstr "Instalación"
 
 #: ../../installation.rst:5
 msgid "Requeriments"
-msgstr ""
+msgstr "Requerimientos"
 
 #: ../../installation.rst:7
 msgid ""

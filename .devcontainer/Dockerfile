@@ -23,7 +23,7 @@ RUN python3 -m pip install \
     ipykernel \
     scikit-learn \
     progressbar2 \
-    sphinx \
+    sphinx==4.0.3 \
     nbsphinx \
     sphinx-rtd-theme \ 
     sphinx_copybutton \

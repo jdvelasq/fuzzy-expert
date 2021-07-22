@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../tutorials/tutorial-3.ipynb:9
 msgid "Tutorial 3 - Standard membership functions"
-msgstr "Tutorial 3 - Funciones de pertnencia estándar"
+msgstr "Tutorial 3 - Funciones de pertenencia estándar"
 
 #: ../../tutorials/tutorial-3.ipynb:20
 msgid "This tutorial uses the fuzzy inference system developed in Tutorial 1."

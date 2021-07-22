@@ -1,13 +1,13 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="es" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Variables difusas &mdash; documentación de Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python - 0.1.0</title>
+  <title>Fuzzy Variables &mdash; Fuzzy-Expert: A Package for building Mamdani fuzzy inference systems in Python 0.1.0 documentation</title>
   
 
   
@@ -35,16 +35,15 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/translations.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-    <link rel="index" title="Índice" href="genindex.html" />
-    <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="Reglas de Zadeh-Mamdani" href="rule.html" />
-    <link rel="prev" title="Funciones de pertenencia" href="mf.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Zadeh-Mamdani Rules" href="rule.html" />
+    <link rel="prev" title="Membership Functions" href="mf.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -76,7 +75,7 @@
           
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,12 +95,12 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Referencia de la librería</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="operators.html">Modificadores y operadores</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mf.html">Funciones de pertenencia</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Variables difusas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rule.html">Reglas de Zadeh-Mamdani</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inference.html">Método de Inferencia</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Modifiers and operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mf.html">Membership Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fuzzy Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html">Zadeh-Mamdani Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html">Inference Method</a></li>
 </ul>
 </li>
 </ul>
@@ -152,15 +151,15 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="reference.html">Referencia de la librería</a> &raquo;</li>
+          <li><a href="reference.html">Library reference</a> &raquo;</li>
         
-      <li>Variables difusas</li>
+      <li>Fuzzy Variables</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/variable.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+            <a href="_sources/variable.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -198,18 +197,18 @@
 }
 </style>
 <span class="target" id="module-fuzzy_expert.variable"></span><div class="section" id="fuzzy-variables">
-<h1>Variables difusas<a class="headerlink" href="#fuzzy-variables" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1>Fuzzy Variables<a class="headerlink" href="#fuzzy-variables" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="fuzzy_expert.variable.FuzzyVariable">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.variable.</span></span><span class="sig-name descname"><span class="pre">FuzzyVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">universe_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">fuzzy_expert.variable.</span></span><span class="sig-name descname"><span class="pre">FuzzyVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">universe_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Crea una variable difusa.</p>
+<p>Creates a fuzzy variable.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parámetros</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>unverse_range</strong> – Límites del universo de discurso.</p></li>
-<li><p><strong>terms</strong> – Diccionario donde cada término es la clave del diccionario y los valores son la función de pertenencia.</p></li>
-<li><p><strong>step</strong> – Valor que controla la resolución de la representación discreta del universo.</p></li>
+<li><p><strong>unverse_range</strong> – Limits of the universe of discourse.</p></li>
+<li><p><strong>terms</strong> – Dictionary where each term is the key of the dictionary, and the values is the membership function.</p></li>
+<li><p><strong>step</strong> – Value controling the resolution for the discrete representation of the universe.</p></li>
 </ul>
 </dd>
 </dl>
@@ -227,18 +226,18 @@
 <a class="reference internal image-reference" href="_images/fuzzyvar.png"><img alt="_images/fuzzyvar.png" class="align-center" src="_images/fuzzyvar.png" style="width: 350px;" /></a>
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.variable.FuzzyVariable.add_points_to_universe">
-<span class="sig-name descname"><span class="pre">add_points_to_universe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.add_points_to_universe"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.add_points_to_universe" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_points_to_universe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.add_points_to_universe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.add_points_to_universe" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.variable.FuzzyVariable.get_modified_membeship">
-<span class="sig-name descname"><span class="pre">get_modified_membeship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.get_modified_membeship"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.get_modified_membeship" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Devuelve los valores modificados de pertenencia para el término.</p>
+<span class="sig-name descname"><span class="pre">get_modified_membeship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.get_modified_membeship"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.get_modified_membeship" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the membership modified values for the term.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parámetros</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>term</strong> – Nombre del conjunto difuso.</p></li>
-<li><p><strong>modifiers</strong> – Lista de modificadores.</p></li>
+<li><p><strong>term</strong> – Name of the fuzzy set.</p></li>
+<li><p><strong>modifiers</strong> – List of modifiers.</p></li>
 </ul>
 </dd>
 </dl>
@@ -263,13 +262,13 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.variable.FuzzyVariable.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.plot"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.plot" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Grafica la variable difusa.</p>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a fuzzy variable.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parámetros</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fmt</strong> – Cadena de formato pasada a Matplotlib.pyplot.</p></li>
-<li><p><strong>linewidth</strong> – Ancho de las lineas.</p></li>
+<li><p><strong>fmt</strong> – Format string passed to Matplotlib.pyplot.</p></li>
+<li><p><strong>linewidth</strong> – Width of lines.</p></li>
 </ul>
 </dd>
 </dl>
@@ -277,15 +276,15 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fuzzy_expert.variable.FuzzyVariable.plot_input">
-<span class="sig-name descname"><span class="pre">plot_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuzzyset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_xaxis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_yaxis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.plot_input"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.plot_input" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Grafica el conjunto borroso y la entrada.</p>
+<span class="sig-name descname"><span class="pre">plot_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuzzyset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_xaxis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_yaxis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fuzzy_expert/variable.html#FuzzyVariable.plot_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fuzzy_expert.variable.FuzzyVariable.plot_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the fuzzy set, and the input.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parámetros</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> – Valor de entrada difuso o concreto.</p></li>
-<li><p><strong>fuzzyset</strong> – Término a graficar.</p></li>
-<li><p><strong>view_xaxis</strong> – Dibuja el eje-X de la gráfica.</p></li>
-<li><p><strong>view_yaxis</strong> – Dibuja el eje-Y de la gráfica a la izquierda o a la derecha.</p></li>
+<li><p><strong>value</strong> – Crisp or fuzzy input value.</p></li>
+<li><p><strong>fuzzyset</strong> – Term to plot.</p></li>
+<li><p><strong>view_xaxis</strong> – Draw the x-axis of plot</p></li>
+<li><p><strong>view_yaxis</strong> – Draw the y-axis of plot at left or right side.</p></li>
 </ul>
 </dd>
 </dl>
@@ -313,8 +312,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="rule.html" class="btn btn-neutral float-right" title="Reglas de Zadeh-Mamdani" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="mf.html" class="btn btn-neutral float-left" title="Funciones de pertenencia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="rule.html" class="btn btn-neutral float-right" title="Zadeh-Mamdani Rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mf.html" class="btn btn-neutral float-left" title="Membership Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
@@ -327,11 +326,11 @@
     
     
     
-    Construido con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
-    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
